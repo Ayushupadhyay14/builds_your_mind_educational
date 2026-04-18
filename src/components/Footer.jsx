@@ -74,7 +74,7 @@ const Footer = () => {
           <div className="sm:col-span-2 lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-6">
               <img
-                src="/logo.svg"
+                src="/logo.jpg"
                 alt="Builds Your Mind Logo"
                 className="h-10 w-10 lg:h-12 lg:w-12 rounded-full object-cover"
               />
