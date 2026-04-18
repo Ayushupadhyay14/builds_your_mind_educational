@@ -59,7 +59,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
             <img
-              src="/logo.svg"
+              src="/logo.jpg"
               alt="Builds Your Mind Logo"
               className="h-10 w-10 lg:h-12 lg:w-12 rounded-full object-cover"
             />
