@@ -210,7 +210,7 @@ const Footer = () => {
         <div className="container-custom py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-blue-200/60 text-sm text-center md:text-left">
-              © {new Date().getFullYear()} Buildsyourmind Pvt. Ltd. All rights
+              © {new Date().getFullYear()} Harmono Pvt. Ltd. All rights
               reserved.
               <span className="mx-2">|</span>
               Designed and developed by Growthify Services❤️.
