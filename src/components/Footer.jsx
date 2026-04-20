@@ -212,8 +212,6 @@ const Footer = () => {
             <p className="text-blue-200/60 text-sm text-center md:text-left">
               © {new Date().getFullYear()} Harmono Pvt. Ltd. All rights
               reserved.
-              <span className="mx-2">|</span>
-              Designed and developed by Growthify Services❤️.
             </p>
             <div className="flex gap-6 text-sm text-blue-200/60">
               <Link
