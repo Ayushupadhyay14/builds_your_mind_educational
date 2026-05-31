@@ -1,53 +1,124 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { FaGraduationCap, FaWhatsapp } from 'react-icons/fa';
 import { FiCheck, FiArrowRight, FiMinus, FiPlus, FiArrowLeft } from 'react-icons/fi';
+import { getProductBySlug } from '../services/api';
+import toast from 'react-hot-toast';
+import Loading from '../components/Loading';
+
+// Sample product data fallback
+const sampleProduct = {
+  id: 1,
+  name: 'Basic Electronics Kit',
+  slug: 'basic-electronics-kit',
+  category: { name: 'Electronics Kits', slug: 'electronics' },
+  ageGroup: '8-12 Years',
+  price: 1499,
+  bulkPrice: 1199,
+  minBulkQuantity: 10,
+  shortDescription: 'Learn basic electronics with hands-on experiments',
+  description: `The Basic Electronics Kit is designed to introduce young learners to the fascinating world of electronics through hands-on experiments and projects. This comprehensive kit includes all the components needed to build circuits and understand fundamental electronic concepts.
+
+Perfect for home learning, classroom experiments, or science fairs, this kit provides a safe and engaging way to explore electronics while developing problem-solving and critical thinking skills.`,
+  features: [
+    'Complete kit with all components included',
+    'Step-by-step instruction manual',
+    'Safe, child-friendly components',
+    'Multiple experiment projects',
+    'Reusable components for extended learning',
+    'QR codes for video tutorials'
+  ],
+  learningOutcomes: [
+    'Understanding of basic circuit concepts',
+    'Knowledge of electronic components',
+    'Hands-on soldering skills',
+    'Problem-solving abilities',
+    'Scientific thinking and experimentation'
+  ],
+  image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800',
+  galleryImages: [
+    'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800',
+    'https://images.unsplash.com/photo-1553406830-ef2513450d76?w=800',
+    'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800',
+  ],
+  isEcoFriendly: true,
+  stockStatus: 'in_stock',
+  videoUrl: '',
+};
 
 const ProductDetail = () => {
   const { slug } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
 
-  // Sample product data (will be replaced with API data)
-  const product = {
-    id: 1,
-    name: 'Basic Electronics Kit',
-    slug: 'basic-electronics-kit',
-    category: { name: 'Electronics Kits', slug: 'electronics' },
-    ageGroup: '8-12 Years',
-    price: 1499,
-    bulkPrice: 1199,
-    minBulkQuantity: 10,
-    shortDescription: 'Learn basic electronics with hands-on experiments',
-    description: `The Basic Electronics Kit is designed to introduce young learners to the fascinating world of electronics through hands-on experiments and projects. This comprehensive kit includes all the components needed to build circuits and understand fundamental electronic concepts.
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        setLoading(true);
+        const res = await getProductBySlug(slug);
+        if (res?.data) {
+          const data = res.data;
+          setProduct({
+            id: data.id || data._id || 1,
+            name: data.name || '',
+            slug: data.slug || slug || '',
+            category: data.category || { name: 'Educational Kit', slug: 'kits' },
+            ageGroup: data.age_group || data.ageGroup || 'All Ages',
+            price: data.price || 0,
+            bulkPrice: data.bulk_price || data.bulkPrice || 0,
+            minBulkQuantity: data.min_bulk_quantity || data.minBulkQuantity || 1,
+            shortDescription: data.short_description || data.shortDescription || '',
+            description: data.description || '',
+            features: Array.isArray(data.features) 
+              ? data.features 
+              : (data.features ? data.features.split('\n') : []),
+            learningOutcomes: Array.isArray(data.learning_outcomes) 
+              ? data.learning_outcomes 
+              : (Array.isArray(data.learningOutcomes) 
+                ? data.learningOutcomes 
+                : (data.learning_outcomes ? data.learning_outcomes.split('\n') : [])),
+            image: data.image || '/placeholder.jpg',
+            galleryImages: Array.isArray(data.gallery_images)
+              ? data.gallery_images
+              : (Array.isArray(data.galleryImages)
+                ? data.galleryImages
+                : [data.image || '/placeholder.jpg']),
+            isEcoFriendly: data.is_eco_friendly !== undefined ? data.is_eco_friendly : (data.isEcoFriendly !== undefined ? data.isEcoFriendly : true),
+            stockStatus: data.stock_status || data.stockStatus || 'in_stock',
+            videoUrl: data.video_url || data.videoUrl || '',
+          });
+        } else {
+          if (slug === 'basic-electronics-kit') {
+            setProduct(sampleProduct);
+          } else {
+            setProduct(null);
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching product:', err);
+        if (slug === 'basic-electronics-kit') {
+          setProduct(sampleProduct);
+        } else {
+          setProduct(null);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (slug) {
+      fetchProduct();
+    }
+  }, [slug]);
 
-Perfect for home learning, classroom experiments, or science fairs, this kit provides a safe and engaging way to explore electronics while developing problem-solving and critical thinking skills.`,
-    features: [
-      'Complete kit with all components included',
-      'Step-by-step instruction manual',
-      'Safe, child-friendly components',
-      'Multiple experiment projects',
-      'Reusable components for extended learning',
-      'QR codes for video tutorials'
-    ],
-    learningOutcomes: [
-      'Understanding of basic circuit concepts',
-      'Knowledge of electronic components',
-      'Hands-on soldering skills',
-      'Problem-solving abilities',
-      'Scientific thinking and experimentation'
-    ],
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800',
-    galleryImages: [
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800',
-      'https://images.unsplash.com/photo-1553406830-ef2513450d76?w=800',
-      'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800',
-    ],
-    isEcoFriendly: true,
-    stockStatus: 'in_stock',
-  };
+  useEffect(() => {
+    if (product && activeImage >= (product.galleryImages?.length || 0)) {
+      setActiveImage(0);
+    }
+  }, [product, activeImage]);
 
   const relatedProducts = [
     {
@@ -65,6 +136,22 @@ Perfect for home learning, classroom experiments, or science fairs, this kit pro
       image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400',
     },
   ];
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (!product) {
+    return (
+      <div className="min-h-screen bg-brand-cream flex items-center justify-center px-4 py-20">
+        <div className="text-center">
+          <h1 className="text-2xl font-display font-bold text-brand-blue mb-4">Product Not Found</h1>
+          <p className="text-gray-600 mb-6 max-w-sm mx-auto">The product you are looking for does not exist or has been removed.</p>
+          <Link to="/products" className="btn-primary">Browse All Products</Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -197,11 +284,20 @@ Perfect for home learning, classroom experiments, or science fairs, this kit pro
                 href={`https://wa.me/919876543210?text=Hi, I'm interested in ${product.name}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full py-3 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors"
+                className="flex items-center justify-center gap-2 w-full py-3 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors font-semibold"
               >
                 <FaWhatsapp size={20} />
                 Chat on WhatsApp
               </a>
+
+              {/* Video Tutorial */}
+              <Link
+                to={`/catalog/${product.slug || product.id}`}
+                className="flex items-center justify-center gap-2 w-full mt-4 py-3 bg-brand-blue hover:bg-brand-blue-dark text-white rounded-full transition-colors font-semibold shadow-md hover:shadow-lg"
+              >
+                <FaGraduationCap size={20} className="text-brand-orange" />
+                Watch Video Tutorial
+              </Link>
             </motion.div>
           </div>
 
