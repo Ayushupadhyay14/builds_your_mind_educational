@@ -1,89 +1,26 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { FiArrowLeft, FiInfo, FiExternalLink, FiAlertCircle } from 'react-icons/fi';
 import { FaGraduationCap } from 'react-icons/fa';
-import { getProductBySlug, getProducts } from '../services/api';
+
 import Loading from '../components/Loading';
 
 const CatalogVideo = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
+
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [videoUrl, setVideoUrl] = useState('');
-  const [youtubeId, setYoutubeId] = useState(null);
   const [error, setError] = useState(false);
 
-  const getYouTubeId = (url) => {
-    if (!url) return null;
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : null;
-  };
 
   useEffect(() => {
-    const resolveVideo = async () => {
-      try {
-        setLoading(true);
-        setError(false);
-        let resolvedProduct = null;
-        let resolvedUrl = '';
-
-        // 1. Try to fetch the product by ID from API
-        try {
-          const res = await getProductBySlug(id);
-          if (res?.data) {
-            resolvedProduct = res.data;
-            resolvedUrl = res.data.video_url || res.data.videoUrl || '';
-          }
-        } catch (err) {
-          console.warn("Direct lookup failed, trying products list lookup:", err);
-        }
-
-        // 2. Fallback to list lookup if direct search failed or returned nothing
-        if (!resolvedProduct) {
-          try {
-            const listRes = await getProducts();
-            const products = listRes?.data?.results || listRes?.data || [];
-            resolvedProduct = products.find(p => p.id === id || p._id === id || p.slug === id);
-            if (resolvedProduct) {
-              resolvedUrl = resolvedProduct.video_url || resolvedProduct.videoUrl || '';
-            }
-          } catch (listErr) {
-            console.error("List lookup failed:", listErr);
-          }
-        }
-
-        if (resolvedProduct) {
-          setProduct(resolvedProduct);
-        }
-
-        // 3. Determine the video URL
-        // If the product specifies a video URL, use it. 
-        // Otherwise, assume there's a local video file in /videos/:id.mp4
-        if (resolvedUrl) {
-          setVideoUrl(resolvedUrl);
-          const ytId = getYouTubeId(resolvedUrl);
-          if (ytId) {
-            setYoutubeId(ytId);
-          }
-        } else {
-          // Default local fallback path (e.g. public/videos/688c504bf093218cde4c9f29.mp4)
-          setVideoUrl(`/videos/${id}.mp4`);
-        }
-      } catch (err) {
-        console.error("Error resolving video:", err);
-        // Still try to play local file as fallback even on error
-        setVideoUrl(`/videos/${id}.mp4`);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     if (id) {
-      resolveVideo();
+      const url = `/videos/${id}.mp4`;
+      setVideoUrl(url);
+      setLoading(false);
     }
   }, [id]);
 
@@ -165,15 +102,6 @@ const CatalogVideo = () => {
                   </Link>
                 </div>
               </div>
-            ) : youtubeId ? (
-              <iframe
-                className="w-full h-full"
-                src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&modestbranding=1&rel=0`}
-                title={product ? product.name : 'Tutorial Video'}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
             ) : (
               <video
                 key={videoUrl}
