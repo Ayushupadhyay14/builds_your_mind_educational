@@ -1,0 +1,31 @@
+// Single route table used by the browser app, the server render and the
+// pre-render script, so all three always agree.
+// `prerender: true` pages are rendered to static HTML at build time.
+export const routes = [
+  { path: '/', page: 'Home', prerender: true },
+  { path: '/about', page: 'About', prerender: true },
+  { path: '/products', page: 'Products', prerender: true },
+  { path: '/products/:slug', page: 'ProductDetail' },
+  { path: '/catalog/:id', page: 'CatalogVideo' },
+  { path: '/workshops', redirect: '/stem-workshops-schools-indore' },
+  { path: '/stem-workshops-schools-indore', page: 'WorkshopPage', props: { pageId: 'P03' }, prerender: true },
+  { path: '/robotics-workshops-schools-indore', page: 'WorkshopPage', props: { pageId: 'P04' }, prerender: true },
+  { path: '/ai-workshops-schools', page: 'WorkshopPage', props: { pageId: 'P05' }, prerender: true },
+  { path: '/iot-workshops-schools', page: 'WorkshopPage', props: { pageId: 'P06' }, prerender: true },
+  { path: '/coding-workshops-schools', page: 'WorkshopPage', props: { pageId: 'P07' }, prerender: true },
+  { path: '/stem-lab-setup-schools-indore', page: 'ServicePage', props: { pageId: 'P08' }, prerender: true },
+  { path: '/school-stem-programme-indore', page: 'ServicePage', props: { pageId: 'P09' }, prerender: true },
+  { path: '/college-university-workshops-indore', page: 'ServicePage', props: { pageId: 'P10' }, prerender: true },
+  { path: '/stem-partnership-mou', page: 'ServicePage', props: { pageId: 'P11' }, prerender: true },
+  { path: '/stem-education-madhya-pradesh', page: 'ServicePage', props: { pageId: 'P12' }, prerender: true },
+  { path: '/case-studies', page: 'CaseStudies', prerender: true },
+  { path: '/blog', page: 'Blog', prerender: true },
+  { path: '/home-tuition', page: 'HomeTuition', prerender: true },
+  { path: '/for-schools', page: 'ForSchools', prerender: true },
+  { path: '/oem-services', page: 'OEMServices', prerender: true },
+  { path: '/odm-services', page: 'ODMServices', prerender: true },
+  { path: '/distributor-program', page: 'DistributorProgram', prerender: true },
+  { path: '/retailer-program', page: 'RetailerProgram', prerender: true },
+  { path: '/contact', page: 'Contact', prerender: true },
+  { path: '*', page: 'NotFound' },
+];

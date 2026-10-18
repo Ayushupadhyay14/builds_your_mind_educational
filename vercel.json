@@ -1,8 +1,16 @@
 {
   "redirects": [
-    { "source": "/workshops", "destination": "/stem-workshops-schools-indore", "permanent": true }
+    {
+      "source": "/workshops",
+      "destination": "/stem-workshops-schools-indore",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
+    {
+      "source": "/(.*)",
+      "destination": "/200.html"
+    }
+  ],
+  "cleanUrls": true
 }

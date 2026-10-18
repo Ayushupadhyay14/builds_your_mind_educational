@@ -1,96 +1,42 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { Suspense, createElement } from 'react';
+import { Toaster } from 'react-hot-toast';
 import Layout from './components/Layout';
 import Loading from './components/Loading';
+import { routes } from './routes';
 
-const Home = lazy(() => import('./pages/Home'));
-const About = lazy(() => import('./pages/About'));
-const Products = lazy(() => import('./pages/Products'));
-const ProductDetail = lazy(() => import('./pages/ProductDetail'));
-const CatalogVideo = lazy(() => import('./pages/CatalogVideo'));
-const WorkshopPage = lazy(() => import('./pages/WorkshopPage'));
-const ServicePage = lazy(() => import('./pages/ServicePage'));
-const CaseStudies = lazy(() => import('./pages/CaseStudies'));
-const Blog = lazy(() => import('./pages/Blog'));
-const HomeTuition = lazy(() => import('./pages/HomeTuition'));
-const ForSchools = lazy(() => import('./pages/ForSchools'));
-const OEMServices = lazy(() => import('./pages/OEMServices'));
-const ODMServices = lazy(() => import('./pages/ODMServices'));
-const DistributorProgram = lazy(() => import('./pages/DistributorProgram'));
-const RetailerProgram = lazy(() => import('./pages/RetailerProgram'));
-const Contact = lazy(() => import('./pages/Contact'));
-const NotFound = lazy(() => import('./pages/NotFound'));
-
-function App() {
+// `pages` maps a page name to its component. The browser passes lazy
+// (code-split) components; the server render passes plain ones.
+function App({ pages }) {
   return (
-    <Layout>
-      <Suspense fallback={<Loading />}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:slug" element={<ProductDetail />} />
-          <Route path="/catalog/:id" element={<CatalogVideo />} />
-          {/* P03-P07: workshop service pages. Old /workshops URL redirects to P03. */}
-          <Route
-            path="/workshops"
-            element={<Navigate to="/stem-workshops-schools-indore" replace />}
-          />
-          <Route
-            path="/stem-workshops-schools-indore"
-            element={<WorkshopPage pageId="P03" />}
-          />
-          <Route
-            path="/robotics-workshops-schools-indore"
-            element={<WorkshopPage pageId="P04" />}
-          />
-          <Route
-            path="/ai-workshops-schools"
-            element={<WorkshopPage pageId="P05" />}
-          />
-          <Route
-            path="/iot-workshops-schools"
-            element={<WorkshopPage pageId="P06" />}
-          />
-          <Route
-            path="/coding-workshops-schools"
-            element={<WorkshopPage pageId="P07" />}
-          />
-          {/* P08-P12: lab, programme, college and area pages. */}
-          <Route
-            path="/stem-lab-setup-schools-indore"
-            element={<ServicePage pageId="P08" />}
-          />
-          <Route
-            path="/school-stem-programme-indore"
-            element={<ServicePage pageId="P09" />}
-          />
-          <Route
-            path="/college-university-workshops-indore"
-            element={<ServicePage pageId="P10" />}
-          />
-          <Route
-            path="/stem-partnership-mou"
-            element={<ServicePage pageId="P11" />}
-          />
-          <Route
-            path="/stem-education-madhya-pradesh"
-            element={<ServicePage pageId="P12" />}
-          />
-          {/* P13-P14: case studies (structure only) and blog (structure only). */}
-          <Route path="/case-studies" element={<CaseStudies />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/home-tuition" element={<HomeTuition />} />
-          <Route path="/for-schools" element={<ForSchools />} />
-          <Route path="/oem-services" element={<OEMServices />} />
-          <Route path="/odm-services" element={<ODMServices />} />
-          <Route path="/distributor-program" element={<DistributorProgram />} />
-          <Route path="/retailer-program" element={<RetailerProgram />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
-    </Layout>
+    <>
+      <Layout>
+        <Suspense fallback={<Loading />}>
+          <Routes>
+            {routes.map((r) => (
+              <Route
+                key={r.path}
+                path={r.path}
+                element={
+                  r.redirect ? (
+                    <Navigate to={r.redirect} replace />
+                  ) : (
+                    createElement(pages[r.page], r.props)
+                  )
+                }
+              />
+            ))}
+          </Routes>
+        </Suspense>
+      </Layout>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 4000,
+          style: { background: '#1E3A8A', color: '#fff' },
+        }}
+      />
+    </>
   );
 }
 

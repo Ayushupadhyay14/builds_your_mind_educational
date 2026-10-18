@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  // Server render (pre-render step) bundles its dependencies so node needs no interop
+  ssr: { noExternal: true },
   server: {
     port: 3000,
     proxy: {

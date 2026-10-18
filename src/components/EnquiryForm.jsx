@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaWhatsapp } from 'react-icons/fa';
 import { FiSend, FiCheckCircle } from 'react-icons/fi';
@@ -47,6 +47,9 @@ const EnquiryForm = ({ defaultProgramme = '', source = '' }) => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [failed, setFailed] = useState(false);
+  // Set after mount so the pre-rendered HTML never bakes in the build date.
+  const [today, setToday] = useState(undefined);
+  useEffect(() => setToday(new Date().toISOString().split('T')[0]), []);
   const {
     register,
     handleSubmit,
@@ -299,7 +302,7 @@ const EnquiryForm = ({ defaultProgramme = '', source = '' }) => {
               id="eq-date"
               type="date"
               className="input-field"
-              min={new Date().toISOString().split('T')[0]}
+              min={today}
               {...register('preferred_date', {
                 validate: (v) =>
                   !v || v >= new Date().toISOString().split('T')[0] || 'Choose today or a later date',
