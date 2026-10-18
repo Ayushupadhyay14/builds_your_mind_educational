@@ -338,7 +338,7 @@ const EnquiryForm = ({ defaultProgramme = '', source = '' }) => {
           </button>
           <WhatsAppBtn className="flex-1" />
         </div>
-        <p className="text-xs text-gray-500">Fields marked * are required.</p>
+        <p className="text-sm text-gray-500">Fields marked * are required.</p>
       </form>
     </div>
   );

@@ -31,7 +31,7 @@ const OutlineSlot = ({ index }) => (
       taken from the Content Topic Bank and is NOT invented here. Paste it in{' '}
       <code>src/data/blogPosts.js</code>.
     </p>
-    <p className="text-xs text-brand-orange font-medium mt-3 uppercase tracking-wide">
+    <p className="text-sm text-brand-orange-dark font-medium mt-3 uppercase tracking-wide">
       Empty slot — fill from the Content Topic Bank
     </p>
   </div>
@@ -194,7 +194,7 @@ const Blog = () => {
                   Student project showcases appear here once the matching{' '}
                   <Link
                     to="/case-studies"
-                    className="text-brand-blue underline underline-offset-4 hover:text-brand-orange"
+                    className="inline-block py-3 -my-3 text-brand-blue underline underline-offset-4 hover:text-brand-orange-dark"
                   >
                     case studies
                   </Link>{' '}

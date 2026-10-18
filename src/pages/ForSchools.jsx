@@ -103,7 +103,7 @@ const ForSchools = () => {
                 </div>
                 <h3 className="font-display font-semibold text-lg text-brand-blue mb-2">{o.title}</h3>
                 <p className="text-gray-600 text-sm mb-4">{o.desc}</p>
-                <Link to={o.link} className="inline-flex items-center gap-2 text-brand-blue font-medium text-sm hover:gap-3 transition-all">
+                <Link to={o.link} className="inline-flex items-center gap-2 min-h-[44px] text-brand-blue font-medium text-sm hover:gap-3 transition-all">
                   Learn More <FiArrowRight />
                 </Link>
               </motion.div>
@@ -127,7 +127,7 @@ const ForSchools = () => {
                 ))}
               </ul>
               <a href="https://wa.me/919109711321" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange text-white rounded-full hover:bg-brand-orange-dark transition-colors">
+                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange-deep text-white rounded-full hover:bg-brand-orange-dark transition-colors">
                 <FaWhatsapp size={20} /> Chat on WhatsApp
               </a>
             </div>
@@ -184,8 +184,8 @@ const ForSchools = () => {
                         { name: 'interest_tuition', label: 'Home Tuition' },
                         { name: 'interest_oem', label: 'Custom Kits (OEM/ODM)' },
                       ].map((item) => (
-                        <label key={item.name} className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
-                          <input type="checkbox" {...register(item.name)} className="w-4 h-4 text-brand-blue rounded border-gray-300 focus:ring-brand-blue" />
+                        <label key={item.name} className="flex items-center gap-3 min-h-[44px] text-sm text-gray-700 cursor-pointer">
+                          <input type="checkbox" {...register(item.name)} className="w-5 h-5 text-brand-blue rounded border-gray-300 focus:ring-brand-blue" />
                           {item.label}
                         </label>
                       ))}

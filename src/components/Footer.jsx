@@ -52,13 +52,13 @@ const Footer = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="flex-1 px-5 py-3 rounded-l-full bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-brand-orange min-w-0"
+                className="flex-1 px-5 py-3 rounded-l-full bg-white/10 border border-white/20 text-white placeholder:text-white/70 focus:outline-none focus:border-brand-orange min-w-0"
                 required
               />
               <button
                 type="submit"
                 disabled={loading}
-                className="px-6 py-3 bg-brand-orange text-white font-semibold rounded-r-full hover:bg-brand-orange-dark transition-colors disabled:opacity-50 flex-shrink-0"
+                className="px-6 py-3 bg-brand-orange-deep text-white font-semibold rounded-r-full hover:bg-brand-orange-dark transition-colors disabled:opacity-50 flex-shrink-0"
               >
                 {loading ? "..." : <FiSend size={20} />}
               </button>
@@ -82,7 +82,7 @@ const Footer = () => {
                 <span className="font-display font-bold text-2xl">
                   Builds Your Mind
                 </span>
-                <p className="text-xs text-blue-200/60">by Harmono Pvt. Ltd.</p>
+                <p className="text-sm text-blue-200/80">by Harmono Pvt. Ltd.</p>
               </div>
             </Link>
             <p className="text-blue-200/80 mb-6 max-w-sm">
@@ -100,7 +100,7 @@ const Footer = () => {
                 <a
                   key={i}
                   href="#"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-orange transition-all"
+                  className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-orange transition-all"
                 >
                   <Icon size={18} />
                 </a>
@@ -113,7 +113,7 @@ const Footer = () => {
             <h4 className="font-display font-semibold text-lg mb-6">
               Quick Links
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-0">
               {[
                 { name: "Home", path: "/" },
                 { name: "Products", path: "/products" },
@@ -143,7 +143,7 @@ const Footer = () => {
             <h4 className="font-display font-semibold text-lg mb-6">
               For Business
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-0">
               {[
                 { name: "For Schools", path: "/for-schools" },
                 { name: "OEM Services", path: "/oem-services" },
@@ -168,7 +168,7 @@ const Footer = () => {
             <h4 className="font-display font-semibold text-lg mb-6">
               Contact Us
             </h4>
-            <ul className="space-y-4">
+            <ul className="space-y-1">
               <li className="flex items-start gap-3">
                 <FiMail className="text-brand-orange mt-1 flex-shrink-0" />
                 <a
@@ -213,11 +213,11 @@ const Footer = () => {
       <div className="border-t border-white/10">
         <div className="container-custom py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-blue-200/60 text-sm text-center md:text-left">
+            <p className="text-blue-200/80 text-sm text-center md:text-left">
               © {new Date().getFullYear()} Harmono Pvt. Ltd. All rights
               reserved.
             </p>
-            <div className="flex gap-6 text-sm text-blue-200/60">
+            <div className="flex gap-6 text-sm text-blue-200/80">
               <Link
                 to="/privacy"
                 className="hover:text-brand-orange transition-colors"

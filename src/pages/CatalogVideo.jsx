@@ -65,7 +65,7 @@ const CatalogVideo = () => {
             {product?.slug ? (
               <Link
                 to={`/products/${product.slug}`}
-                className="flex items-center gap-1 text-brand-orange hover:text-brand-orange-light text-xs sm:text-sm font-semibold transition"
+                className="flex items-center gap-1 text-brand-orange hover:text-brand-orange-light text-sm sm:text-sm font-semibold transition"
               >
                 <span>Details</span>
                 <FiExternalLink size={14} />
@@ -85,7 +85,7 @@ const CatalogVideo = () => {
                 <FiAlertCircle className="text-brand-orange text-5xl mb-4 animate-bounce" />
                 <h3 className="text-xl font-bold text-white mb-2">Tutorial Video Not Loaded</h3>
                 <p className="text-blue-200 text-sm max-w-md mb-6">
-                  We couldn't load the tutorial video. If you are developing locally, please verify that you placed the video file inside the <code className="bg-brand-blue-dark px-2 py-1 rounded text-brand-orange text-xs">public/videos/</code> folder as <code className="bg-brand-blue-dark px-2 py-1 rounded text-brand-orange text-xs">{id}.mp4</code>.
+                  We couldn't load the tutorial video. If you are developing locally, please verify that you placed the video file inside the <code className="bg-brand-blue-dark px-2 py-1 rounded text-brand-orange text-sm">public/videos/</code> folder as <code className="bg-brand-blue-dark px-2 py-1 rounded text-brand-orange text-sm">{id}.mp4</code>.
                 </p>
                 <div className="flex gap-4">
                   <button 
@@ -96,7 +96,7 @@ const CatalogVideo = () => {
                   </button>
                   <Link 
                     to="/products"
-                    className="px-5 py-2.5 bg-brand-orange hover:bg-brand-orange-dark font-semibold rounded-full text-sm text-white transition"
+                    className="px-5 py-2.5 min-h-[44px] bg-brand-orange-deep hover:bg-brand-orange-dark font-semibold rounded-full text-sm text-white transition"
                   >
                     Browse Catalog
                   </Link>
@@ -125,7 +125,7 @@ const CatalogVideo = () => {
             >
               <div className="flex items-center gap-2 mb-3">
                 <FiInfo className="text-brand-orange" />
-                <span className="text-xs uppercase tracking-wider text-blue-200 font-bold">About the Kit</span>
+                <span className="text-sm uppercase tracking-wider text-blue-200 font-bold">About the Kit</span>
               </div>
               <h2 className="text-lg font-bold text-white mb-2">{product.name}</h2>
               <p className="text-blue-200 text-sm leading-relaxed">
@@ -136,7 +136,7 @@ const CatalogVideo = () => {
         </main>
 
         {/* Cinematic Footer */}
-        <footer className="w-full py-6 px-4 text-center text-xs text-blue-200 border-t border-white/10 bg-brand-blue-dark">
+        <footer className="w-full py-6 px-4 text-center text-sm text-blue-200 border-t border-white/10 bg-brand-blue-dark">
           <p>© {new Date().getFullYear()} Builds Your Mind - Premium Educational Video Portal</p>
         </footer>
       </div>

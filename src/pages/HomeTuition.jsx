@@ -185,7 +185,7 @@ const HomeTuition = () => {
             >
               <a
                 href="#apply-form"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-orange text-white font-semibold rounded-full hover:bg-brand-orange-dark transition-all"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-orange-deep text-white font-semibold rounded-full hover:bg-brand-orange-dark transition-all"
               >
                 Apply for Tuition <FiArrowRight />
               </a>
@@ -645,7 +645,7 @@ const HomeTuition = () => {
             href="https://wa.me/919109711321"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-brand-orange text-white font-semibold rounded-full hover:bg-brand-orange-dark transition-all shadow-lg"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-brand-orange-deep text-white font-semibold rounded-full hover:bg-brand-orange-dark transition-all shadow-lg"
           >
             <FaWhatsapp size={24} /> Chat on WhatsApp
           </a>

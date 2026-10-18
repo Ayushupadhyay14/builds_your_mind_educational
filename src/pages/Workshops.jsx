@@ -182,19 +182,19 @@ const Workshops = () => {
 
         <div className="flex flex-wrap gap-2 mb-3">
           {w.target_audience && (
-            <span className="text-xs bg-blue-100/30 text-brand-blue px-2 py-1 rounded">
+            <span className="text-sm bg-blue-100/30 text-brand-blue px-2 py-1 rounded">
               {w.target_audience.replace("_", " ")}
             </span>
           )}
 
           {w.duration && (
-            <span className="text-xs bg-orange-100/30 text-brand-orange px-2 py-1 rounded">
+            <span className="text-sm bg-orange-100/30 text-brand-orange px-2 py-1 rounded">
               {w.duration}
             </span>
           )}
 
           {w.max_students && (
-            <span className="text-xs bg-blue-100 text-brand-blue px-2 py-1 rounded">
+            <span className="text-sm bg-blue-100 text-brand-blue px-2 py-1 rounded">
               Max {w.max_students} students
             </span>
           )}
@@ -255,7 +255,7 @@ const Workshops = () => {
                 href="https://wa.me/919109711321"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-brand-orange text-white rounded-full hover:bg-brand-orange-dark transition-colors"
+                className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-brand-orange-deep text-white rounded-full hover:bg-brand-orange-dark transition-colors"
               >
                 <FaWhatsapp size={20} /> Quick Enquiry on WhatsApp
               </a>

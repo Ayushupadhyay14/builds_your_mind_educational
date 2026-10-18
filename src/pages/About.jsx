@@ -93,7 +93,7 @@ const About = () => {
       </section>
 
       {/* Story Section */}
-      <section className="py-20 bg-brand-cream">
+      <section className="overflow-hidden py-20 bg-brand-cream">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -143,7 +143,7 @@ const About = () => {
       </section>
 
       {/* Approach Section */}
-      <section className="py-20 bg-white">
+      <section className="overflow-hidden py-20 bg-white">
         <div className="container-custom">
           <motion.div
             initial="hidden"
@@ -172,7 +172,7 @@ const About = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-brand-blue">
+      <section className="overflow-hidden py-20 bg-brand-blue">
         <div className="container-custom">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -195,7 +195,7 @@ const About = () => {
       </section>
 
       {/* Values Section */}
-      <section className="py-20 bg-white">
+      <section className="overflow-hidden py-20 bg-white">
         <div className="container-custom">
           <motion.div
             initial="hidden"
@@ -240,7 +240,7 @@ const About = () => {
       </section>
 
       {/* Eco Commitment Section */}
-      <section className="py-20 bg-brand-cream brand-pattern">
+      <section className="overflow-hidden py-20 bg-brand-cream brand-pattern">
         <div className="container-custom">
           <motion.div
             initial="hidden"
@@ -287,7 +287,7 @@ const About = () => {
       </section>
 
       {/* Who We Work With Section */}
-      <section className="py-20 bg-white">
+      <section className="overflow-hidden py-20 bg-white">
         <div className="container-custom">
           <motion.div
             initial="hidden"
@@ -337,7 +337,7 @@ const About = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-brand-cream brand-pattern">
+      <section className="overflow-hidden py-20 bg-brand-cream brand-pattern">
         <div className="container-custom">
           <motion.div
             initial="hidden"
@@ -366,7 +366,7 @@ const About = () => {
       </section>
 
       {/* Harmono Section */}
-      <section className="py-20 bg-white">
+      <section className="overflow-hidden py-20 bg-white">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -420,7 +420,7 @@ const About = () => {
       </section>
 
       {/* Our Work So Far Section */}
-      <section className="py-20 bg-white">
+      <section className="overflow-hidden py-20 bg-white">
         <div className="container-custom">
           <motion.div
             initial="hidden"
@@ -453,7 +453,7 @@ const About = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 gradient-brand">
+      <section className="overflow-hidden py-20 gradient-brand">
         <div className="container-custom text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

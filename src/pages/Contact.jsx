@@ -184,7 +184,7 @@ const Contact = () => {
                 href="https://wa.me/919109711321"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 flex items-center justify-center gap-2 w-full py-4 bg-brand-orange text-white rounded-xl hover:bg-brand-orange-dark transition-colors"
+                className="mt-8 flex items-center justify-center gap-2 w-full py-4 bg-brand-orange-deep text-white rounded-xl hover:bg-brand-orange-dark transition-colors"
               >
                 <FaWhatsapp size={24} />
                 <span className="font-semibold">Chat on WhatsApp</span>

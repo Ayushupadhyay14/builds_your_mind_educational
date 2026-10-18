@@ -142,7 +142,7 @@ const OEMServices = () => {
                 className="relative"
               >
                 <div className="bg-brand-cream rounded-2xl p-6">
-                  <span className="text-5xl font-display font-bold text-blue-100/50">{item.step}</span>
+                  <span className="text-5xl font-display font-bold text-primary-500">{item.step}</span>
                   <h3 className="font-display font-semibold text-xl text-brand-blue mt-2 mb-2">{item.title}</h3>
                   <p className="text-gray-600">{item.desc}</p>
                 </div>

@@ -166,9 +166,9 @@ const ProductDetail = () => {
           <nav className="mb-8">
             <ol className="flex items-center gap-2 text-sm">
               <li><Link to="/" className="text-gray-500 hover:text-brand-blue">Home</Link></li>
-              <li className="text-gray-400">/</li>
+              <li className="text-gray-500">/</li>
               <li><Link to="/products" className="text-gray-500 hover:text-brand-blue">Products</Link></li>
-              <li className="text-gray-400">/</li>
+              <li className="text-gray-500">/</li>
               <li className="text-brand-blue font-medium">{product.name}</li>
             </ol>
           </nav>
@@ -284,7 +284,7 @@ const ProductDetail = () => {
                 href={`https://wa.me/919876543210?text=Hi, I'm interested in ${product.name}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full py-3 bg-brand-orange text-white rounded-full hover:bg-brand-orange-dark transition-colors font-semibold"
+                className="flex items-center justify-center gap-2 w-full py-3 bg-brand-orange-deep text-white rounded-full hover:bg-brand-orange-dark transition-colors font-semibold"
               >
                 <FaWhatsapp size={20} />
                 Chat on WhatsApp

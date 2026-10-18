@@ -144,7 +144,7 @@ const Navbar = () => {
               <span className="block font-display font-bold text-xl text-brand-blue">
                 Builds Your Mind
               </span>
-              <span className="block text-xs text-brand-gray-light">
+              <span className="block text-sm text-brand-gray-light">
                 by Harmono Pvt. Ltd.
               </span>
             </div>

@@ -72,7 +72,7 @@ const DistributorProgram = () => {
       </section>
 
       {/* Benefits */}
-      <section className="py-20 bg-brand-cream">
+      <section className="overflow-hidden py-20 bg-brand-cream">
         <div className="container-custom">
           <motion.div
             initial="hidden"
@@ -114,7 +114,7 @@ const DistributorProgram = () => {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-white">
+      <section className="overflow-hidden py-20 bg-white">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -151,7 +151,7 @@ const DistributorProgram = () => {
       </section>
 
       {/* Requirements */}
-      <section className="py-20 bg-brand-blue">
+      <section className="overflow-hidden py-20 bg-brand-blue">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-white text-center mb-12">
@@ -172,7 +172,7 @@ const DistributorProgram = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-brand-cream">
+      <section className="overflow-hidden py-20 bg-brand-cream">
         <div className="container-custom">
           <div className="bg-white rounded-3xl p-12 shadow-xl text-center relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>

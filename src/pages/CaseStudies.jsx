@@ -45,7 +45,7 @@ const PhotoSpot = ({ label, detail }) => (
     <FiImage className="mx-auto text-3xl text-brand-orange mb-3" />
     <p className="font-semibold text-brand-blue mb-2">{label}</p>
     <p className="text-gray-600 text-sm max-w-2xl mx-auto">{detail}</p>
-    <p className="text-xs text-brand-orange font-medium mt-3 uppercase tracking-wide">
+    <p className="text-sm text-brand-orange-dark font-medium mt-3 uppercase tracking-wide">
       Placeholder — replace before launch
     </p>
   </div>

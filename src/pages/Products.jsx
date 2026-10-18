@@ -138,7 +138,7 @@ const Products = () => {
 
             {/* Search Bar */}
             <div className="max-w-xl mx-auto relative">
-              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl" />
+              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-xl" />
               <input
                 type="text"
                 value={searchQuery}
@@ -166,7 +166,7 @@ const Products = () => {
       </section>
 
       {/* Products Section */}
-      <section className="py-20 bg-brand-cream">
+      <section className="overflow-hidden py-20 bg-brand-cream">
         <div className="container-custom">
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Sidebar Filters - Desktop */}
@@ -315,7 +315,7 @@ const Products = () => {
                       setSelectedCategory("all");
                       setSelectedAge("all");
                     }}
-                    className="mt-4 text-brand-blue font-medium hover:underline"
+                    className="mt-4 min-h-[44px] text-brand-blue font-medium hover:underline"
                   >
                     Clear all filters
                   </button>
@@ -340,7 +340,7 @@ const Products = () => {
                         />
 
                         {product.is_featured && (
-                          <span className="absolute top-3 left-3 bg-brand-blue text-white text-xs px-3 py-1 rounded-full">
+                          <span className="absolute top-3 left-3 bg-brand-blue text-white text-sm px-3 py-1 rounded-full">
                             Featured
                           </span>
                         )}
@@ -353,10 +353,10 @@ const Products = () => {
                       {/* CONTENT */}
                       <div className="p-5">
                         <div className="flex items-center gap-2 mb-2">
-                          <span className="text-xs bg-blue-100/40 text-brand-blue px-2 py-1 rounded">
+                          <span className="text-sm bg-blue-100/40 text-brand-blue px-2 py-1 rounded">
                             {product.category?.name || "Product"}
                           </span>
-                          <span className="text-xs text-gray-500">
+                          <span className="text-sm text-gray-500">
                             {
                               ageGroups.find((a) => a.id === product.age_group)
                                 ?.name
@@ -402,7 +402,7 @@ const Products = () => {
       </section>
 
       {/* B2B CTA Section */}
-      <section className="py-20 bg-white">
+      <section className="overflow-hidden py-20 bg-white">
         <div className="container-custom">
           <div className="bg-brand-blue rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand-orange/20 rounded-full -translate-y-1/2 translate-x-1/2"></div>
