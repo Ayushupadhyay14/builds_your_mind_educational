@@ -10,6 +10,7 @@ import {
 } from '../data/servicePages';
 import { workshopPages } from '../data/workshopPages';
 import { ParallaxLayer } from '../components/Parallax';
+import StockFigure from '../components/StockFigure';
 
 const programmeByPage = {
   P08: 'STEM Lab Setup & Programme',
@@ -54,7 +55,7 @@ const pageRegistry = {
 /**
  * Labelled photo spot.
  * Real photographs must be dropped in here before launch.
- * Stock images are deliberately NOT used.
+ * Hero photos on service pages are labelled illustrative stock (STOCK_IMAGES.md).
  */
 const PhotoSpot = ({ label, detail }) => (
   <div className="border-2 border-dashed border-brand-orange/60 bg-orange-50 rounded-2xl p-6 md:p-8 text-center">
@@ -159,18 +160,12 @@ const ServicePage = ({ pageId }) => {
         </div>
       </section>
 
-      {/* Photo spots */}
-      {showPlaceholders && (
+      {/* Illustrative stock photo (see STOCK_IMAGES.md) */}
       <section className="py-20 bg-white">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto grid gap-6">
-            {page.photoSpots.map((spot, index) => (
-              <PhotoSpot key={index} label={spot.label} detail={spot.detail} />
-            ))}
-          </div>
+          <StockFigure pageId={pageId} />
         </div>
       </section>
-      )}
 
       {/* Content sections */}
       {page.sections.map((section, index) => (

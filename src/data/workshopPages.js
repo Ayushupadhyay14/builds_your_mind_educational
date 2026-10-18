@@ -149,7 +149,7 @@ export const workshopPages = {
       },
       {
         heading: "Photos from Real Workshops",
-        body: "We publish photographs from real, completed workshops, with the school's permission. Nothing on this page is shown with a stock or borrowed image.",
+        body: "We publish photographs from real, completed workshops, with the school's permission. The photo at the top of this page is an illustrative stock photograph, not one of our sessions.",
         photoSlots: 2,
       },
     ],

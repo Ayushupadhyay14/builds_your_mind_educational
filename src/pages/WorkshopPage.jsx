@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import EnquiryForm from "../components/EnquiryForm";
 import { FiCheck, FiArrowRight, FiImage } from "react-icons/fi";
 import { ParallaxLayer } from '../components/Parallax';
+import StockFigure from "../components/StockFigure";
 import {
   workshopPages,
   workshopOrder,
@@ -36,7 +37,7 @@ const staggerContainer = {
 /**
  * Labelled photo spot.
  * Real workshop photographs must be dropped in here before launch.
- * Stock images are deliberately NOT used.
+ * Hero photos on service pages are labelled illustrative stock (STOCK_IMAGES.md).
  */
 const PhotoSpot = ({ label, detail }) => (
   <div className="border-2 border-dashed border-brand-orange/60 bg-orange-50 rounded-2xl p-6 md:p-8 text-center">
@@ -141,18 +142,12 @@ const WorkshopPage = ({ pageId }) => {
         </div>
       </section>
 
-      {/* Photo spots (hero) */}
-      {showPlaceholders && (
+      {/* Illustrative stock photo (see STOCK_IMAGES.md) */}
       <section className="py-20 bg-white">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto grid gap-6">
-            {page.photoSpots.map((spot, index) => (
-              <PhotoSpot key={index} label={spot.label} detail={spot.detail} />
-            ))}
-          </div>
+          <StockFigure pageId={pageId} />
         </div>
       </section>
-      )}
 
       {/* Content sections */}
       {page.sections.map((section, index) => (
