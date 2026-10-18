@@ -56,8 +56,8 @@ const About = () => {
   return (
     <>
       <Helmet>
-        <title>About Us | Builds Your Mind - Eco-Friendly Educational Kits</title>
-        <meta name="description" content="Learn about Builds Your Mind, a purpose-driven educational kit brand by Harmono Pvt. Ltd. focused on eco-friendly, engaging learning solutions." />
+        <title>About Builds Your Mind | STEM Education Partner Indore</title>
+        <meta name="description" content="Know the team behind Builds Your Mind and how we bring hands-on STEM, robotics, AI, coding and IoT learning to schools and colleges in Madhya Pradesh." />
       </Helmet>
 
       {/* Hero Section */}
@@ -76,8 +76,7 @@ const About = () => {
               About Builds Your Mind
             </motion.span>
             <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6">
-              Building Minds, <br />
-              <span className="text-brand-orange">Sustaining Earth</span>
+              About <span className="text-brand-orange">Builds Your Mind</span>
             </motion.h1>
             <motion.p variants={fadeInUp} className="text-lg md:text-xl text-blue-100/90">
               Purpose-driven educational kits that inspire learning while protecting our planet.
@@ -140,6 +139,35 @@ const About = () => {
               </motion.p>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Approach Section */}
+      <section className="py-20 bg-white">
+        <div className="container-custom">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <motion.span variants={fadeInUp} className="inline-block px-4 py-1 bg-blue-100/30 text-brand-blue text-sm font-medium rounded-full mb-4">
+              How We Teach
+            </motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title mb-6">
+              Our Approach: Learning by Building
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="text-gray-600 mb-6 text-lg">
+              We believe students understand an idea best when they build it. Our
+              workshops and kits are built around doing — assembling a circuit,
+              testing a robot, fixing what did not work, and explaining why.
+            </motion.p>
+            <motion.p variants={fadeInUp} className="text-gray-600">
+              That is why our sessions are practical rather than theoretical, and
+              why they are designed to be run with your own class groups.
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
@@ -258,6 +286,85 @@ const About = () => {
         </div>
       </section>
 
+      {/* Who We Work With Section */}
+      <section className="py-20 bg-white">
+        <div className="container-custom">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="text-center mb-16"
+          >
+            <motion.span variants={fadeInUp} className="inline-block px-4 py-1 bg-blue-100/30 text-brand-blue text-sm font-medium rounded-full mb-4">
+              Our Audience
+            </motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title mb-4">
+              Who We Work With
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle mx-auto">
+              Different visitors need different things. Here is who we serve and
+              how.
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {[
+              { title: 'Schools', desc: 'Workshops, STEM lab planning and programmes for class groups, from primary to senior school.' },
+              { title: 'Colleges & Universities', desc: 'Technology sessions for departments and student groups.' },
+              { title: 'Institutions & Training Centres', desc: 'Programme planning and activity support.' },
+              { title: 'Parents & Students', desc: 'Eco-friendly learning kits and home tuition services.' },
+              { title: 'Distributors & Retailers', desc: 'Area-wise supply of educational kits.' },
+              { title: 'Brands & Businesses', desc: 'OEM and ODM services to launch kits under your own brand.' },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="card p-6"
+              >
+                <h3 className="font-display font-semibold text-lg text-brand-blue mb-2">{item.title}</h3>
+                <p className="text-gray-600 text-sm">{item.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-20 bg-brand-cream brand-pattern">
+        <div className="container-custom">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <motion.span variants={fadeInUp} className="inline-block px-4 py-1 bg-brand-blue text-white text-sm font-medium rounded-full mb-4">
+              The People
+            </motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title mb-6">
+              Our Team
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="text-gray-600 mb-6 text-lg">
+              Builds Your Mind is run by educators, engineers and makers, and is
+              supported by the design, manufacturing and quality teams at our
+              parent company, Harmono Pvt. Ltd.
+            </motion.p>
+            <motion.p variants={fadeInUp} className="text-gray-600">
+              For institutional enquiries, a programme advisor is your point of
+              contact from the first conversation through to the session itself.
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Harmono Section */}
       <section className="py-20 bg-white">
         <div className="container-custom">
@@ -312,6 +419,39 @@ const About = () => {
         </div>
       </section>
 
+      {/* Our Work So Far Section */}
+      <section className="py-20 bg-white">
+        <div className="container-custom">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <motion.span variants={fadeInUp} className="inline-block px-4 py-1 bg-blue-100/30 text-brand-blue text-sm font-medium rounded-full mb-4">
+              Where We Are Today
+            </motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title mb-6">
+              Our Work So Far
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="text-gray-600 mb-6 text-lg">
+              Builds Your Mind kits are designed, manufactured and quality-tested
+              by Harmono Pvt. Ltd. Our work with institutions is delivered through
+              workshops and programmes for schools and colleges.
+            </motion.p>
+            <motion.p variants={fadeInUp} className="text-gray-600 mb-8">
+              We publish case studies only from real, completed work, shared with
+              permission. We do not use invented numbers or borrowed examples to
+              describe our work.
+            </motion.p>
+            <Link to="/workshops" className="btn-primary">
+              See Our Workshops <FiArrowRight className="ml-2" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 gradient-brand">
         <div className="container-custom text-center">
@@ -324,12 +464,13 @@ const About = () => {
               Ready to Partner With Us?
             </h2>
             <p className="text-blue-100/90 text-lg mb-8 max-w-2xl mx-auto">
-              Whether you're looking for educational kits for your school, OEM/ODM services for your brand, 
-              or want to become a distributor, we're here to help.
+              Whether you're looking for educational kits for your school, a
+              workshop or programme, OEM/ODM services for your brand, or want to
+              become a distributor, we're here to help.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-white text-brand-blue font-semibold rounded-full hover:bg-blue-100 transition-all">
-                Contact Us <FiArrowRight />
+                Talk to Our Team <FiArrowRight />
               </Link>
               <Link to="/products" className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-all">
                 View Products

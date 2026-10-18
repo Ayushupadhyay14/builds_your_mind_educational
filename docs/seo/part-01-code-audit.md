@@ -84,24 +84,26 @@ All pages set their title via `react-helmet-async`. Limits: 60 chars title / 155
 
 ## 3. Current H1s (live code)
 
-| Page | H1 today |
-|---|---|
-| `/` Home | **none** (top heading is an `<h2>`) |
-| `/about` | **none** |
-| `/products` | yes — "…" (line 132), 1 H1 |
-| `/products/:slug` | yes — product name (plus a second H1 in the "Product Not Found" branch) |
-| `/catalog/:id` | yes — 1 H1 |
-| `/workshops` | **none** |
-| `/home-tuition` | **none** |
-| `/for-schools` | **none** |
-| `/oem-services` | **none** |
-| `/odm-services` | **none** |
-| `/distributor-program` | **none** |
-| `/retailer-program` | **none** |
-| `/contact` | **none** |
-| `*` (NotFound) | yes — "Page Not Found" |
+> **Correction (added in Part 2):** an earlier version of this section wrongly said 10 routes had *no* H1. That was a **grep mistake** — the H1s are written as `<motion.h1>`, which my `<h1` pattern missed. **Every route has exactly one H1.** The table below is the corrected audit of the original code (the Home / About / Contact H1s were then replaced in Part 2).
 
-**10 of 14 routes have no H1 at all.** This is the single biggest on-page gap: the sheet's `On-Page SEO` column J (Main Heading) assumes an H1 that the code does not render.
+| Page | H1 today (original) |
+|---|---|
+| `/` Home | "Smart, Eco-Friendly Learning Kits and Classroom Solutions" |
+| `/about` | "Building Minds, Sustaining Earth" |
+| `/products` | "Educational Kits" |
+| `/products/:slug` | product name (plus a second H1 "Product Not Found" in the not-found branch) |
+| `/catalog/:id` | product name, or "Educational Kit Tutorial" |
+| `/workshops` | "Interactive Workshops" |
+| `/home-tuition` | "Find the Perfect Home Tutor" |
+| `/for-schools` | "Partner With Builds Your Mind" |
+| `/oem-services` | "OEM Services" |
+| `/odm-services` | "ODM Services" |
+| `/distributor-program` | "Distributor Program" |
+| `/retailer-program` | "Retailer Program" |
+| `/contact` | "Contact Us" |
+| `*` (NotFound) | "Page Not Found" |
+
+The real H1 gap is not absence — it is that the headings do not carry the sheet's target keywords, and several are generic ("OEM Services", "ODM Services").
 
 ---
 
@@ -182,9 +184,9 @@ Issues to fix:
 
 **Step 3 — Decide each existing URL's fate.** For every sheet URL that differs from a live URL (`/workshops` vs `/stem-workshops-schools-indore`, etc.), choose: **keep the live URL and edit the sheet**, or **build the new URL and 301-redirect the old one**. Editing the sheet to match live URLs is usually cheaper and safer.
 
-**Step 4 — Fix head tags on pages that exist (3 pages + 9 unlisted).** Get every title ≤ 60 and every H1 present and unique.
+**Step 4 — Fix head tags on pages that exist.** Get every title ≤ 60, and align each H1 with its target keyword (see §3 correction — every page already has one H1, but several are generic).
 - Shorten the 7 over-60 titles (§2).
-- Add the 10 missing H1s (§3).
+- Rewrite the generic H1s (§3).
 - Write titles/metas/H1s for the **9 live routes with no sheet row**.
 
 **Step 5 — Then build missing pages.** Only after Steps 1–4: P04–P08, P10, P12–P14, each as a real page with real content and real photos — no thin pages.

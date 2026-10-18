@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
@@ -58,7 +59,7 @@ const Contact = () => {
     {
       icon: FiMail,
       title: "Email",
-      value: " buildsyourmind@gmail.com",
+      value: "buildsyourmind@gmail.com",
       href: "mailto:buildsyourmind@gmail.com",
     },
     {
@@ -73,21 +74,17 @@ const Contact = () => {
       value: "+91 91097 11321",
       href: "https://wa.me/919109711321",
     },
-    {
-      icon: FaMapMarkerAlt,
-      title: "Address",
-      value: "Harmono Pvt. Ltd., Indore, India",
-      href: "#",
-    },
   ];
+
+  const officeAddress = "Harmono Pvt. Ltd., Indore, India";
 
   return (
     <>
       <Helmet>
-        <title>Contact Us | Builds Your Mind - Get in Touch</title>
+        <title>Workshop Enquiry & Contact | Builds Your Mind Indore</title>
         <meta
           name="description"
-          content="Contact Builds Your Mind for OEM, ODM, bulk orders, distributor or retailer enquiries. Get in touch via email, phone, or WhatsApp."
+          content="Contact Builds Your Mind for STEM, robotics, AI, IoT and coding workshops, STEM labs and partnerships. Share your institution details."
         />
       </Helmet>
 
@@ -113,14 +110,14 @@ const Contact = () => {
               variants={fadeInUp}
               className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6"
             >
-              Contact Us
+              Workshop Enquiry & Contact
             </motion.h1>
             <motion.p
               variants={fadeInUp}
               className="text-lg md:text-xl text-blue-100/90"
             >
-              Have a question or want to work with us? We'd love to hear from
-              you!
+              Planning a workshop, a STEM lab or a programme at your school or
+              college? Share a few details and our team will get back to you.
             </motion.p>
           </motion.div>
         </div>
@@ -146,11 +143,12 @@ const Contact = () => {
             {/* Contact Info */}
             <div className="lg:col-span-1">
               <h2 className="text-2xl font-display font-bold text-brand-blue mb-6">
-                Contact Information
+                Phone, Email, WhatsApp
               </h2>
               <p className="text-gray-600 mb-8">
-                For OEM, ODM, bulk orders, distributor or retailer enquiries,
-                please reach out to us through any of the following channels.
+                Reach us directly on any of these. For workshop, STEM lab,
+                partnership, OEM, ODM, bulk order, distributor, retailer or home
+                tuition enquiries, the same team handles every message.
               </p>
 
               <div className="space-y-6">
@@ -197,8 +195,13 @@ const Contact = () => {
             <div className="lg:col-span-2">
               <div className="bg-white rounded-3xl p-8 shadow-xl">
                 <h2 className="text-2xl font-display font-bold text-brand-blue mb-6">
-                  Send Us a Message
+                  Enquiry Form
                 </h2>
+
+                <p className="text-gray-600 mb-6">
+                  Tell us your institution, city and what you are planning. All
+                  fields marked * are required.
+                </p>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   {/* Enquiry Type */}
@@ -356,7 +359,7 @@ const Contact = () => {
                       "Sending..."
                     ) : (
                       <>
-                        Send Message <FiSend className="ml-2" />
+                        Send Enquiry <FiSend className="ml-2" />
                       </>
                     )}
                   </button>
@@ -367,15 +370,39 @@ const Contact = () => {
         </div>
       </section>
 
+      {/* Address and Map */}
+      <section className="py-20 bg-white">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="section-title mb-4">Address and Map</h2>
+            <p className="section-subtitle mx-auto mb-8">
+              Our office is in Indore, Madhya Pradesh.
+            </p>
+            <div className="inline-flex items-start gap-3 text-left">
+              <FaMapMarkerAlt className="text-2xl text-brand-blue mt-1 flex-shrink-0" />
+              <p className="text-gray-700 text-lg">{officeAddress}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Quick Section */}
       <section className="py-20 bg-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="section-title mb-4">Got More Questions?</h2>
+            <h2 className="section-title mb-4">
+              What Happens After You Contact Us
+            </h2>
             <p className="section-subtitle mx-auto mb-8">
-              Talk to our team, our program advisor will reach out to you.
+              Your enquiry goes to our programme team. A programme advisor reads
+              it and gets back to you to discuss dates, class groups and what the
+              session or programme would cover. If you would like to see what we
+              run first, you can review our workshops or reach us directly.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
+              <Link to="/workshops" className="btn-secondary">
+                See Our Workshops
+              </Link>
               <a href="tel:+919109711321" className="btn-primary">
                 <FiPhone className="mr-2" /> Call Us
               </a>

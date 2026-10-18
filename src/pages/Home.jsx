@@ -167,13 +167,10 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>
-          Builds Your Mind | Eco-Friendly Educational Kits & Home Tuition
-          Services
-        </title>
+        <title>STEM Education Company in Indore | Builds Your Mind</title>
         <meta
           name="description"
-          content="Builds Your Mind offers eco-friendly educational kits for STEM, Robotics, IoT, Science and home tuition services. By Harmono Pvt. Ltd."
+          content="Builds Your Mind is a STEM education and innovation partner in Indore for schools, colleges and universities. Robotics, AI, coding and IoT workshops."
         />
       </Helmet>
 
@@ -213,13 +210,24 @@ const Home = () => {
                 variants={fadeInUp}
                 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6"
               >
-                Smart, Eco-Friendly Learning Kits and{" "}
-                <span className="text-brand-orange">Classroom </span> Solutions
+                STEM Education & Innovation Partner for Schools, Colleges &
+                Institutions in{" "}
+                <span className="text-brand-orange">Indore</span>
               </motion.h1>
 
               <motion.p
                 variants={fadeInUp}
-                className="text-lg md:text-xl text-blue-100/90 mb-8 max-w-xl"
+                className="text-lg md:text-xl text-blue-100/90 mb-4 max-w-xl"
+              >
+                Builds Your Mind is a STEM education company in Indore. We bring
+                hands-on STEM education to schools, colleges and universities,
+                and supply eco-friendly educational kits for classrooms and
+                homes.
+              </motion.p>
+
+              <motion.p
+                variants={fadeInUp}
+                className="text-blue-200/80 mb-8 max-w-xl"
               >
                 Made in India | For Schools, Students & Future-Ready Education
               </motion.p>
@@ -351,11 +359,11 @@ const Home = () => {
               Our Two Modes
             </motion.span>
             <motion.h2 variants={fadeInUp} className="section-title mb-4">
-              What We Offer
+              What We Do
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle mx-auto">
-              Two powerful platforms designed to serve education and learning
-              needs
+              STEM education in Indore, in two parts — educational kits and
+              workshops for institutions, and home tuition services.
             </motion.p>
           </motion.div>
 
@@ -441,6 +449,130 @@ const Home = () => {
                 Apply for Tuition <FiArrowRight />
               </Link>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Workshops Section */}
+      <section className="py-20 bg-white">
+        <div className="container-custom">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="text-center mb-16"
+          >
+            <motion.span
+              variants={fadeInUp}
+              className="inline-block px-4 py-1 bg-blue-100 text-brand-blue text-sm font-medium rounded-full mb-4"
+            >
+              For Schools & Colleges
+            </motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title mb-4">
+              Workshops
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle mx-auto">
+              Hands-on STEM education sessions run at your institution. Students
+              build, test and solve real problems with robotics, AI, IoT and
+              coding, in sessions matched to your class groups.
+            </motion.p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {[
+              {
+                title: "STEM & Science",
+                desc: "Practical science and engineering activities students build themselves.",
+              },
+              {
+                title: "Robotics",
+                desc: "Build and test simple robots, then learn how the parts work together.",
+              },
+              {
+                title: "AI & Coding",
+                desc: "Introductory sessions on how AI works and how to write first programs.",
+              },
+              {
+                title: "IoT",
+                desc: "Sensors and connected devices explained through small, working projects.",
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="card p-6 text-center"
+              >
+                <h3 className="font-display font-semibold text-lg text-brand-blue mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600 text-sm">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link to="/workshops" className="btn-primary">
+              See Our Workshops <FiArrowRight className="ml-2" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* STEM Lab and Programmes Section */}
+      <section className="py-20 bg-brand-cream">
+        <div className="container-custom">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="text-center mb-16"
+          >
+            <motion.span
+              variants={fadeInUp}
+              className="inline-block px-4 py-1 bg-brand-blue text-white text-sm font-medium rounded-full mb-4"
+            >
+              Beyond a Single Session
+            </motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title mb-4">
+              STEM Lab and Programmes
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle mx-auto">
+              A single workshop is a good start. A STEM lab and a planned
+              programme keep the learning going through the year, with
+              activities matched to each class group.
+            </motion.p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto">
+            {[
+              "Planning support before you set up a lab",
+              "Activity plans matched to class groups",
+              "Guidance for the teachers running sessions",
+              "A programme that grows across the academic year",
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="card p-6 flex items-start gap-3"
+              >
+                <FiCheck className="text-brand-orange flex-shrink-0 mt-1" />
+                <p className="text-gray-700">{item}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link to="/contact" className="btn-secondary">
+              Discuss a STEM Lab <FiArrowRight className="ml-2" />
+            </Link>
           </div>
         </div>
       </section>
@@ -684,10 +816,11 @@ const Home = () => {
               Business Solutions
             </motion.span>
             <motion.h2 variants={fadeInUp} className="section-title mb-4">
-              Partner With Us
+              Partnerships and MOU
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle mx-auto">
-              OEM/ODM services, workshops, distribution, and more.
+              For institutions and businesses: OEM/ODM services, workshops,
+              distribution, and long-term partnership routes.
             </motion.p>
           </motion.div>
 
@@ -736,6 +869,35 @@ const Home = () => {
                 </div>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Case Studies Section */}
+      <section className="py-20 bg-white">
+        <div className="container-custom">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="text-center mb-16"
+          >
+            <motion.span
+              variants={fadeInUp}
+              className="inline-block px-4 py-1 bg-blue-100 text-brand-blue text-sm font-medium rounded-full mb-4"
+            >
+              Real Work Only
+            </motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title mb-4">
+              Case Studies
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle mx-auto">
+              We publish case studies only from real, completed work, with the
+              school's or institution's permission. As our workshops and
+              programmes are completed, verified case studies will appear here.
+              We do not use invented or borrowed examples.
+            </motion.p>
           </motion.div>
         </div>
       </section>
@@ -814,14 +976,17 @@ const Home = () => {
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100 rounded-full -translate-y-1/2 translate-x-1/2"></div>
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-orange-100 rounded-full translate-y-1/2 -translate-x-1/2"></div>
             <div className="relative z-10">
-              <h2 className="section-title mb-4">Ready to Get Started?</h2>
+              <h2 className="section-title mb-4">
+                Invite Us to Your Institution
+              </h2>
               <p className="section-subtitle mx-auto mb-8">
-                Whether you need educational kits, home tuition, or business
-                partnership — we're here.
+                Whether you need a workshop, a STEM lab plan, educational kits,
+                home tuition or a partnership — tell us what you need and we will
+                get back to you.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <Link to="/contact" className="btn-primary">
-                  Contact Us <FiArrowRight className="ml-2" />
+                  Book a Workshop <FiArrowRight className="ml-2" />
                 </Link>
                 <Link to="/products" className="btn-secondary">
                   Browse Products
