@@ -9,6 +9,7 @@ const Products = lazy(() => import('./pages/Products'));
 const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 const CatalogVideo = lazy(() => import('./pages/CatalogVideo'));
 const WorkshopPage = lazy(() => import('./pages/WorkshopPage'));
+const ServicePage = lazy(() => import('./pages/ServicePage'));
 const HomeTuition = lazy(() => import('./pages/HomeTuition'));
 const ForSchools = lazy(() => import('./pages/ForSchools'));
 const OEMServices = lazy(() => import('./pages/OEMServices'));
@@ -52,6 +53,27 @@ function App() {
           <Route
             path="/coding-workshops-schools"
             element={<WorkshopPage pageId="P07" />}
+          />
+          {/* P08-P12: lab, programme, college and area pages. */}
+          <Route
+            path="/stem-lab-setup-schools-indore"
+            element={<ServicePage pageId="P08" />}
+          />
+          <Route
+            path="/school-stem-programme-indore"
+            element={<ServicePage pageId="P09" />}
+          />
+          <Route
+            path="/college-university-workshops-indore"
+            element={<ServicePage pageId="P10" />}
+          />
+          <Route
+            path="/stem-partnership-mou"
+            element={<ServicePage pageId="P11" />}
+          />
+          <Route
+            path="/stem-education-madhya-pradesh"
+            element={<ServicePage pageId="P12" />}
           />
           <Route path="/home-tuition" element={<HomeTuition />} />
           <Route path="/for-schools" element={<ForSchools />} />

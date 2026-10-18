@@ -460,4 +460,22 @@ export const workshopPages = {
 
 export const workshopContact = CONTACT;
 export const workshopCaseStudies = CASE_STUDIES;
-export const workshopOrder = ["P03", "P04", "P05", "P06", "P07"];
+export const workshopOrder = ['P03', 'P04', 'P05', 'P06', 'P07'];
+
+// Extra "related" links the sheet prescribes for P03-P07. P08, P09 and P10 did
+// not exist when Part 3 was built, so the links could not be added then - they
+// are applied by WorkshopPage now that the pages exist.
+// Columns from the sheet's "Link To These Pages" (M2:M8):
+export const workshopExtraLinks = {
+  P03: [{ name: 'School STEM Programme in Indore', path: '/school-stem-programme-indore' }],
+  P04: [
+    { name: 'STEM Lab Setup & Programme for Schools in Indore', path: '/stem-lab-setup-schools-indore' },
+    { name: 'School STEM Programme in Indore', path: '/school-stem-programme-indore' },
+  ],
+  P05: [{ name: 'School STEM Programme in Indore', path: '/school-stem-programme-indore' }],
+  P06: [
+    { name: 'STEM Lab Setup & Programme for Schools in Indore', path: '/stem-lab-setup-schools-indore' },
+    { name: 'School STEM Programme in Indore', path: '/school-stem-programme-indore' },
+  ],
+  P07: [],
+};

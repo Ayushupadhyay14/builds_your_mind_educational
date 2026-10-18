@@ -120,6 +120,10 @@ const Footer = () => {
                 { name: "STEM Workshops", path: "/stem-workshops-schools-indore" },
                 { name: "Home Tuition", path: "/home-tuition" },
                 { name: "About Us", path: "/about" },
+                {
+                  name: "STEM Education in Madhya Pradesh",
+                  path: "/stem-education-madhya-pradesh",
+                },
                 { name: "Contact", path: "/contact" },
               ].map((link) => (
                 <li key={link.path}>

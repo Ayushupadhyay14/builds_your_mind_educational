@@ -38,6 +38,18 @@ const Navbar = () => {
     },
     { name: "Home Tuition", path: "/home-tuition" },
     {
+      name: "School Programmes",
+      children: [
+        { name: "STEM Lab Setup", path: "/stem-lab-setup-schools-indore" },
+        { name: "School STEM Programme", path: "/school-stem-programme-indore" },
+        {
+          name: "College & University Workshops",
+          path: "/college-university-workshops-indore",
+        },
+        { name: "Partnership & MOU", path: "/stem-partnership-mou" },
+      ],
+    },
+    {
       name: "For Schools / Partners",
       children: [
         { name: "For Schools", path: "/for-schools" },

@@ -7,6 +7,7 @@ import {
   workshopOrder,
   workshopContact,
   workshopCaseStudies,
+  workshopExtraLinks,
 } from "../data/workshopPages";
 
 const fadeInUp = {
@@ -253,6 +254,23 @@ const WorkshopPage = ({ pageId }) => {
             >
               These sessions can be run on their own or planned together.
             </motion.p>
+
+            {workshopExtraLinks[pageId] &&
+              workshopExtraLinks[pageId].length > 0 && (
+                <motion.p variants={fadeInUp} className="mb-10">
+                  {workshopExtraLinks[pageId].map((item, i) => (
+                    <span key={item.path}>
+                      <Link
+                        to={item.path}
+                        className="font-medium text-brand-blue underline underline-offset-4 hover:text-brand-orange"
+                      >
+                        {item.name}
+                      </Link>
+                      {i < workshopExtraLinks[pageId].length - 1 ? ', ' : ''}
+                    </span>
+                  ))}
+                </motion.p>
+              )}
 
             <motion.div
               variants={fadeInUp}
