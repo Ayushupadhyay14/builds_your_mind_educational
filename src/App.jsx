@@ -10,6 +10,8 @@ const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 const CatalogVideo = lazy(() => import('./pages/CatalogVideo'));
 const WorkshopPage = lazy(() => import('./pages/WorkshopPage'));
 const ServicePage = lazy(() => import('./pages/ServicePage'));
+const CaseStudies = lazy(() => import('./pages/CaseStudies'));
+const Blog = lazy(() => import('./pages/Blog'));
 const HomeTuition = lazy(() => import('./pages/HomeTuition'));
 const ForSchools = lazy(() => import('./pages/ForSchools'));
 const OEMServices = lazy(() => import('./pages/OEMServices'));
@@ -75,6 +77,9 @@ function App() {
             path="/stem-education-madhya-pradesh"
             element={<ServicePage pageId="P12" />}
           />
+          {/* P13-P14: case studies (structure only) and blog (structure only). */}
+          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/home-tuition" element={<HomeTuition />} />
           <Route path="/for-schools" element={<ForSchools />} />
           <Route path="/oem-services" element={<OEMServices />} />
