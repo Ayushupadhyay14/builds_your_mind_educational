@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import Layout from './components/Layout';
 import Loading from './components/Loading';
@@ -8,7 +8,7 @@ const About = lazy(() => import('./pages/About'));
 const Products = lazy(() => import('./pages/Products'));
 const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 const CatalogVideo = lazy(() => import('./pages/CatalogVideo'));
-const Workshops = lazy(() => import('./pages/Workshops'));
+const WorkshopPage = lazy(() => import('./pages/WorkshopPage'));
 const HomeTuition = lazy(() => import('./pages/HomeTuition'));
 const ForSchools = lazy(() => import('./pages/ForSchools'));
 const OEMServices = lazy(() => import('./pages/OEMServices'));
@@ -28,7 +28,31 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/products/:slug" element={<ProductDetail />} />
           <Route path="/catalog/:id" element={<CatalogVideo />} />
-          <Route path="/workshops" element={<Workshops />} />
+          {/* P03-P07: workshop service pages. Old /workshops URL redirects to P03. */}
+          <Route
+            path="/workshops"
+            element={<Navigate to="/stem-workshops-schools-indore" replace />}
+          />
+          <Route
+            path="/stem-workshops-schools-indore"
+            element={<WorkshopPage pageId="P03" />}
+          />
+          <Route
+            path="/robotics-workshops-schools-indore"
+            element={<WorkshopPage pageId="P04" />}
+          />
+          <Route
+            path="/ai-workshops-schools"
+            element={<WorkshopPage pageId="P05" />}
+          />
+          <Route
+            path="/iot-workshops-schools"
+            element={<WorkshopPage pageId="P06" />}
+          />
+          <Route
+            path="/coding-workshops-schools"
+            element={<WorkshopPage pageId="P07" />}
+          />
           <Route path="/home-tuition" element={<HomeTuition />} />
           <Route path="/for-schools" element={<ForSchools />} />
           <Route path="/oem-services" element={<OEMServices />} />

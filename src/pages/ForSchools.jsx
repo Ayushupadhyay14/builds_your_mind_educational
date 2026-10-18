@@ -23,7 +23,7 @@ const ForSchools = () => {
 
   const offerings = [
     { icon: FaBoxOpen, title: 'Educational Kits Supply', desc: 'STEM, Robotics, IoT and Science kits for your school labs at special institutional pricing.', link: '/products' },
-    { icon: FaChalkboardTeacher, title: 'School Workshops', desc: 'Interactive hands-on workshops conducted at your school by expert trainers.', link: '/workshops' },
+    { icon: FaChalkboardTeacher, title: 'School Workshops', desc: 'Interactive hands-on workshops conducted at your school by expert trainers.', link: '/stem-workshops-schools-indore' },
     { icon: FaGraduationCap, title: 'Home Tuition Partnership', desc: 'Partner with us to provide home tuition services to your student community.', link: '/home-tuition' },
     { icon: FaCogs, title: 'Custom Kits (OEM/ODM)', desc: 'Get custom branded educational kits made specifically for your institution.', link: '/oem-services' },
     { icon: FaHandshake, title: 'Distributor Program', desc: 'Become an area distributor for Builds Your Mind products.', link: '/distributor-program' },

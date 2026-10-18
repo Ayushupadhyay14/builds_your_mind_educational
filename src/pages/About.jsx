@@ -445,7 +445,7 @@ const About = () => {
               permission. We do not use invented numbers or borrowed examples to
               describe our work.
             </motion.p>
-            <Link to="/workshops" className="btn-primary">
+            <Link to="/stem-workshops-schools-indore" className="btn-primary">
               See Our Workshops <FiArrowRight className="ml-2" />
             </Link>
           </motion.div>

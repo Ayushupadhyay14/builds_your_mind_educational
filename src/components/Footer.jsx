@@ -117,7 +117,7 @@ const Footer = () => {
               {[
                 { name: "Home", path: "/" },
                 { name: "Products", path: "/products" },
-                { name: "Workshops", path: "/workshops" },
+                { name: "STEM Workshops", path: "/stem-workshops-schools-indore" },
                 { name: "Home Tuition", path: "/home-tuition" },
                 { name: "About Us", path: "/about" },
                 { name: "Contact", path: "/contact" },

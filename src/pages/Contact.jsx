@@ -400,7 +400,7 @@ const Contact = () => {
               run first, you can review our workshops or reach us directly.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/workshops" className="btn-secondary">
+              <Link to="/stem-workshops-schools-indore" className="btn-secondary">
                 See Our Workshops
               </Link>
               <a href="tel:+919109711321" className="btn-primary">

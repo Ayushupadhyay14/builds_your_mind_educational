@@ -99,7 +99,7 @@ const Home = () => {
       icon: FaGraduationCap,
       title: "School Workshops",
       desc: "Interactive STEM, Robotics & Science workshops for schools and colleges.",
-      link: "/workshops",
+      link: "/stem-workshops-schools-indore",
       features: ["STEM Workshops", "Robotics Sessions", "IoT Training"],
     },
     {
@@ -515,7 +515,7 @@ const Home = () => {
           </div>
 
           <div className="text-center mt-10">
-            <Link to="/workshops" className="btn-primary">
+            <Link to="/stem-workshops-schools-indore" className="btn-primary">
               See Our Workshops <FiArrowRight className="ml-2" />
             </Link>
           </div>

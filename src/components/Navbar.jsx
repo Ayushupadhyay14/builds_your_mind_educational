@@ -27,7 +27,11 @@ const Navbar = () => {
       name: "Education Kits & Workshops",
       children: [
         { name: "All Products", path: "/products" },
-        { name: "Workshops", path: "/workshops" },
+        { name: "STEM Workshops", path: "/stem-workshops-schools-indore" },
+        { name: "Robotics Workshops", path: "/robotics-workshops-schools-indore" },
+        { name: "AI Workshops", path: "/ai-workshops-schools" },
+        { name: "IoT Workshops", path: "/iot-workshops-schools" },
+        { name: "Coding Workshops", path: "/coding-workshops-schools" },
         { name: "OEM Services", path: "/oem-services" },
         { name: "ODM Services", path: "/odm-services" },
       ],
