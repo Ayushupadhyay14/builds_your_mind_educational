@@ -72,18 +72,18 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2 mb-6">
-              <img
-                src="/logo.jpg"
-                alt="Builds Your Mind Logo"
-                className="h-10 w-10 lg:h-12 lg:w-12 rounded-full object-cover"
-              />
-              <div>
-                <span className="font-display font-bold text-2xl">
-                  Builds Your Mind
-                </span>
-                <p className="text-sm text-blue-200/80">by Harmono Pvt. Ltd.</p>
-              </div>
+            <Link
+              to="/"
+              aria-label="Builds Your Mind, go to home page"
+              className="flex items-center gap-3 mb-6"
+            >
+              <span className="flex items-center justify-center h-14 w-14 rounded-full bg-white flex-shrink-0">
+                <img src="/logo-mark.png" alt="" width="32" height="38" className="h-9 w-auto" />
+              </span>
+              <span className="flex flex-col justify-center leading-tight">
+                <span className="font-display font-bold text-2xl">Builds Your Mind</span>
+                <span className="text-sm text-blue-200/80">by Harmono Pvt. Ltd.</span>
+              </span>
             </Link>
             <p className="text-blue-200/80 mb-6 max-w-sm">
               Sustainable learning kits for Schools & Homes, plus trusted home

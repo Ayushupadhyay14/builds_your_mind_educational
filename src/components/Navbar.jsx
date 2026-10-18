@@ -133,21 +133,31 @@ const Navbar = () => {
     >
       <div className="container-custom">
         <div className="flex items-center justify-between gap-4 h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 flex-shrink-0">
+          {/* Logo: mark + name, one link back to the home page */}
+          <Link
+            to="/"
+            aria-label="Builds Your Mind, go to home page"
+            onClick={() => {
+              // Already on the home page: scroll back to the top instead of doing nothing
+              if (location.pathname === "/") window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="flex items-center gap-3 flex-shrink-0"
+          >
             <img
-              src="/logo.jpg"
-              alt="Builds Your Mind Logo"
-              className="h-12 w-12 rounded-full object-cover"
+              src="/logo-mark.png"
+              alt=""
+              width="39"
+              height="48"
+              className="h-12 w-auto"
             />
-            <div className="hidden md:block leading-tight">
-              <span className="block font-display font-bold text-xl text-brand-blue">
+            <span className="flex flex-col justify-center leading-tight">
+              <span className="font-display font-bold text-xl text-brand-blue whitespace-nowrap">
                 Builds Your Mind
               </span>
-              <span className="block text-sm text-brand-gray-light">
+              <span className="text-sm text-brand-gray-light whitespace-nowrap">
                 by Harmono Pvt. Ltd.
               </span>
-            </div>
+            </span>
           </Link>
 
           {/* Desktop pill menu */}
