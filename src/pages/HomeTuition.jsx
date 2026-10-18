@@ -635,7 +635,7 @@ const HomeTuition = () => {
       </section>
 
       {/* WhatsApp CTA */}
-      <section className="py-16 bg-white">
+      <section className="py-20 bg-white">
         <div className="container-custom text-center">
           <h2 className="section-title mb-4">Need Help?</h2>
           <p className="section-subtitle mx-auto mb-8">
@@ -645,7 +645,7 @@ const HomeTuition = () => {
             href="https://wa.me/919109711321"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-all shadow-lg"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-brand-orange text-white font-semibold rounded-full hover:bg-brand-orange-dark transition-all shadow-lg"
           >
             <FaWhatsapp size={24} /> Chat on WhatsApp
           </a>

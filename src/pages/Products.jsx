@@ -115,7 +115,7 @@ const Products = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
+      <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 gradient-brand opacity-95"></div>
         <div className="absolute inset-0 brand-pattern"></div>
 
@@ -159,14 +159,14 @@ const Products = () => {
           >
             <path
               d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V120Z"
-              fill="#F8FDF5"
+              fill="#F8FAFC"
             />
           </svg>
         </div>
       </section>
 
       {/* Products Section */}
-      <section className="py-12 bg-brand-cream">
+      <section className="py-20 bg-brand-cream">
         <div className="container-custom">
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Sidebar Filters - Desktop */}
@@ -402,7 +402,7 @@ const Products = () => {
       </section>
 
       {/* B2B CTA Section */}
-      <section className="py-16 bg-white">
+      <section className="py-20 bg-white">
         <div className="container-custom">
           <div className="bg-brand-blue rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand-orange/20 rounded-full -translate-y-1/2 translate-x-1/2"></div>

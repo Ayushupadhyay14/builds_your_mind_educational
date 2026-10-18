@@ -194,7 +194,7 @@ const Workshops = () => {
           )}
 
           {w.max_students && (
-            <span className="text-xs bg-green-100/30 text-green-700 px-2 py-1 rounded">
+            <span className="text-xs bg-blue-100 text-brand-blue px-2 py-1 rounded">
               Max {w.max_students} students
             </span>
           )}
@@ -255,7 +255,7 @@ const Workshops = () => {
                 href="https://wa.me/919109711321"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors"
+                className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-brand-orange text-white rounded-full hover:bg-brand-orange-dark transition-colors"
               >
                 <FaWhatsapp size={20} /> Quick Enquiry on WhatsApp
               </a>

@@ -127,7 +127,7 @@ const ForSchools = () => {
                 ))}
               </ul>
               <a href="https://wa.me/919109711321" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors">
+                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange text-white rounded-full hover:bg-brand-orange-dark transition-colors">
                 <FaWhatsapp size={20} /> Chat on WhatsApp
               </a>
             </div>

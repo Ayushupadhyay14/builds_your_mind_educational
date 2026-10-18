@@ -40,14 +40,14 @@ const CatalogVideo = () => {
         <meta name="description" content="Watch the dynamic step-by-step video tutorial for this educational kit." />
       </Helmet>
 
-      <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between select-none">
+      <div className="min-h-screen bg-brand-blue-dark text-white flex flex-col justify-between select-none">
         
         {/* Floating Header */}
-        <header className="w-full bg-slate-900/60 backdrop-blur-md border-b border-slate-800/80 sticky top-0 z-50 px-4 py-4 sm:px-6">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <header className="w-full bg-brand-blue-dark/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50 px-4 py-4 sm:px-6">
+          <div className="container-custom flex items-center justify-between">
             <Link 
               to="/products"
-              className="flex items-center gap-2 text-slate-400 hover:text-white transition duration-200 group text-sm font-semibold"
+              className="flex items-center gap-2 text-blue-200 hover:text-white transition duration-200 group text-sm font-semibold"
             >
               <FiArrowLeft className="group-hover:-translate-x-1 transition-transform" size={18} />
               <span>Catalog</span>
@@ -57,7 +57,7 @@ const CatalogVideo = () => {
               <span className="w-8 h-8 rounded-full bg-brand-blue/30 border border-brand-blue/50 flex items-center justify-center">
                 <FaGraduationCap className="text-brand-orange text-sm" />
               </span>
-              <h1 className="font-display font-semibold text-base sm:text-lg text-slate-200 tracking-wide truncate max-w-[200px] sm:max-w-sm">
+              <h1 className="font-display font-semibold text-base sm:text-lg text-white tracking-wide truncate max-w-[200px] sm:max-w-sm">
                 {product ? product.name : 'Educational Kit Tutorial'}
               </h1>
             </div>
@@ -78,19 +78,19 @@ const CatalogVideo = () => {
 
         {/* Video Workspace */}
         <main className="flex-1 flex flex-col items-center justify-center p-4 sm:p-8 max-w-5xl mx-auto w-full">
-          <div className="w-full relative aspect-video bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl shadow-black/80">
+          <div className="w-full relative aspect-video bg-brand-blue-dark rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-black/80">
             
             {error ? (
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-slate-900/90 backdrop-blur-sm">
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-brand-blue-dark/90 backdrop-blur-sm">
                 <FiAlertCircle className="text-brand-orange text-5xl mb-4 animate-bounce" />
-                <h3 className="text-xl font-bold text-slate-100 mb-2">Tutorial Video Not Loaded</h3>
-                <p className="text-slate-400 text-sm max-w-md mb-6">
-                  We couldn't load the tutorial video. If you are developing locally, please verify that you placed the video file inside the <code className="bg-slate-950 px-2 py-1 rounded text-brand-orange text-xs">public/videos/</code> folder as <code className="bg-slate-950 px-2 py-1 rounded text-brand-orange text-xs">{id}.mp4</code>.
+                <h3 className="text-xl font-bold text-white mb-2">Tutorial Video Not Loaded</h3>
+                <p className="text-blue-200 text-sm max-w-md mb-6">
+                  We couldn't load the tutorial video. If you are developing locally, please verify that you placed the video file inside the <code className="bg-brand-blue-dark px-2 py-1 rounded text-brand-orange text-xs">public/videos/</code> folder as <code className="bg-brand-blue-dark px-2 py-1 rounded text-brand-orange text-xs">{id}.mp4</code>.
                 </p>
                 <div className="flex gap-4">
                   <button 
                     onClick={() => { setError(false); }}
-                    className="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 font-semibold rounded-full text-sm transition"
+                    className="px-5 py-2.5 bg-brand-blue hover:bg-brand-blue-light font-semibold rounded-full text-sm transition"
                   >
                     Try Again
                   </button>
@@ -121,14 +121,14 @@ const CatalogVideo = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="w-full mt-6 bg-slate-900/40 border border-slate-800/60 rounded-2xl p-5 backdrop-blur-sm"
+              className="w-full mt-6 bg-white/5 border border-white/10 rounded-2xl p-5 backdrop-blur-sm"
             >
               <div className="flex items-center gap-2 mb-3">
                 <FiInfo className="text-brand-orange" />
-                <span className="text-xs uppercase tracking-wider text-slate-400 font-bold">About the Kit</span>
+                <span className="text-xs uppercase tracking-wider text-blue-200 font-bold">About the Kit</span>
               </div>
-              <h2 className="text-lg font-bold text-slate-100 mb-2">{product.name}</h2>
-              <p className="text-slate-400 text-sm leading-relaxed">
+              <h2 className="text-lg font-bold text-white mb-2">{product.name}</h2>
+              <p className="text-blue-200 text-sm leading-relaxed">
                 {product.short_description || product.shortDescription || 'This educational kit is designed to build minds and explore new concepts through hand-on building blocks.'}
               </p>
             </motion.div>
@@ -136,7 +136,7 @@ const CatalogVideo = () => {
         </main>
 
         {/* Cinematic Footer */}
-        <footer className="w-full py-6 px-4 text-center text-xs text-slate-600 border-t border-slate-900 bg-slate-950">
+        <footer className="w-full py-6 px-4 text-center text-xs text-blue-200 border-t border-white/10 bg-brand-blue-dark">
           <p>© {new Date().getFullYear()} Builds Your Mind - Premium Educational Video Portal</p>
         </footer>
       </div>

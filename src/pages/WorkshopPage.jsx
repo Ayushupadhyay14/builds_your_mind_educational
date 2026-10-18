@@ -131,14 +131,14 @@ const WorkshopPage = ({ pageId }) => {
           <svg viewBox="0 0 1440 120" fill="none" className="w-full">
             <path
               d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H0V120Z"
-              fill="#F8FDF5"
+              fill="#F8FAFC"
             />
           </svg>
         </div>
       </section>
 
       {/* Photo spots (hero) */}
-      <section className="py-12 bg-white">
+      <section className="py-20 bg-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto grid gap-6">
             {page.photoSpots.map((spot, index) => (

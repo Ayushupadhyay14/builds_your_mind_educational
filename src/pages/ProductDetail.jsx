@@ -160,7 +160,7 @@ const ProductDetail = () => {
         <meta name="description" content={product.shortDescription} />
       </Helmet>
 
-      <section className="pt-28 pb-20 bg-brand-cream">
+      <section className="pt-32 pb-20 bg-brand-cream">
         <div className="container-custom">
           {/* Breadcrumb */}
           <nav className="mb-8">
@@ -237,7 +237,7 @@ const ProductDetail = () => {
                 </span>
                 <span className={`text-sm px-3 py-1 rounded-full ${
                   product.stockStatus === 'in_stock' 
-                    ? 'bg-green-100 text-green-700' 
+                    ? 'bg-blue-100 text-brand-blue' 
                     : 'bg-red-100 text-red-700'
                 }`}>
                   {product.stockStatus === 'in_stock' ? 'In Stock' : 'Out of Stock'}
@@ -284,7 +284,7 @@ const ProductDetail = () => {
                 href={`https://wa.me/919876543210?text=Hi, I'm interested in ${product.name}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full py-3 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors font-semibold"
+                className="flex items-center justify-center gap-2 w-full py-3 bg-brand-orange text-white rounded-full hover:bg-brand-orange-dark transition-colors font-semibold"
               >
                 <FaWhatsapp size={20} />
                 Chat on WhatsApp

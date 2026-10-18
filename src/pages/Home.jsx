@@ -69,21 +69,21 @@ const Home = () => {
       desc: "Build and program your own robots",
       image:
         "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400",
-      color: "from-brand-orange to-amber-500",
+      color: "from-brand-orange to-brand-orange-light",
     },
     {
       name: "IoT & Electronics Kits",
       desc: "Learn electronics through practical experiments",
       image:
         "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400",
-      color: "from-purple-500 to-indigo-500",
+      color: "from-brand-blue-light to-primary-500",
     },
     {
       name: "Science & Creative Kits",
       desc: "Creative kits for cognitive development",
       image:
         "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400",
-      color: "from-teal-500 to-cyan-500",
+      color: "from-primary-600 to-primary-400",
     },
   ];
 
@@ -780,8 +780,8 @@ const Home = () => {
                 />
                 <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-xl">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                      <FiCheck className="text-green-600 text-xl" />
+                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                      <FiCheck className="text-brand-blue text-xl" />
                     </div>
                     <div>
                       <div className="font-semibold text-gray-800">
