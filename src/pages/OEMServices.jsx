@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { FaCogs, FaBox, FaCheckCircle, FaIndustry, FaTruck, FaHeadset } from 'react-icons/fa';
+import BrandPanel from '../components/BrandPanel';
 import { FiCheck, FiArrowRight } from 'react-icons/fi';
 
 const fadeInUp = {
@@ -178,11 +179,7 @@ const OEMServices = () => {
               </ul>
             </div>
             <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600"
-                alt="OEM Manufacturing"
-                className="rounded-2xl shadow-2xl"
-              />
+              <BrandPanel icon={FaIndustry} />
             </div>
           </div>
         </div>

@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { FaLightbulb, FaPencilRuler, FaGraduationCap, FaCubes, FaPalette, FaBox, FaIndustry } from 'react-icons/fa';
+import { FaLightbulb, FaPencilRuler, FaGraduationCap, FaCubes, FaPalette, FaBox, FaIndustry, FaCogs } from 'react-icons/fa';
+import BrandPanel from '../components/BrandPanel';
 import { FiCheck, FiArrowRight } from 'react-icons/fi';
 
 const fadeInUp = {
@@ -160,11 +161,7 @@ const ODMServices = () => {
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600"
-                alt="ODM Development"
-                className="rounded-2xl shadow-2xl"
-              />
+              <BrandPanel icon={FaCogs} />
             </div>
             <div>
               <h2 className="section-title mb-6">

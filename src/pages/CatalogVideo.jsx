@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { FiArrowLeft, FiInfo, FiExternalLink, FiAlertCircle } from 'react-icons/fi';
+import { FiArrowLeft, FiInfo, FiExternalLink, FiAlertCircle, FiPlay } from 'react-icons/fi';
 import { FaGraduationCap } from 'react-icons/fa';
 
 import Loading from '../components/Loading';
@@ -14,6 +14,8 @@ const CatalogVideo = () => {
   const [loading, setLoading] = useState(true);
   const [videoUrl, setVideoUrl] = useState('');
   const [error, setError] = useState(false);
+  // The video file is large, so it is only requested after the visitor presses play.
+  const [playing, setPlaying] = useState(false);
 
 
   useEffect(() => {
@@ -102,7 +104,7 @@ const CatalogVideo = () => {
                   </Link>
                 </div>
               </div>
-            ) : (
+            ) : playing ? (
               <video
                 key={videoUrl}
                 className="w-full h-full object-contain"
@@ -110,8 +112,20 @@ const CatalogVideo = () => {
                 controls
                 autoPlay
                 playsInline
+                preload="none"
                 onError={handleVideoError}
               />
+            ) : (
+              <button
+                type="button"
+                onClick={() => setPlaying(true)}
+                aria-label="Play tutorial video"
+                className="absolute inset-0 w-full h-full flex items-center justify-center bg-brand-blue-dark hover:bg-brand-blue transition-colors"
+              >
+                <span className="flex items-center justify-center h-20 w-20 rounded-full bg-brand-orange-deep text-white">
+                  <FiPlay size={32} className="ml-1" />
+                </span>
+              </button>
             )}
           </div>
 

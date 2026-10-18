@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { FaGraduationCap, FaRecycle, FaChild, FaBox, FaCogs, FaAward, FaUsers, FaGlobe } from 'react-icons/fa';
+import BrandPanel from '../components/BrandPanel';
 import { FiCheck, FiArrowRight } from 'react-icons/fi';
 
 const fadeInUp = {
@@ -104,11 +105,7 @@ const About = () => {
               className="relative"
             >
               <div className="absolute -inset-4 bg-blue-100/20 rounded-3xl rotate-3"></div>
-              <img
-                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600"
-                alt="Our Story"
-                className="relative rounded-2xl shadow-xl w-full"
-              />
+              <BrandPanel icon={FaGraduationCap} />
             </motion.div>
 
             <motion.div
@@ -409,11 +406,7 @@ const About = () => {
               className="relative"
             >
               <div className="absolute -inset-4 bg-blue-100/20 rounded-3xl -rotate-3"></div>
-              <img
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600"
-                alt="Harmono Manufacturing"
-                className="relative rounded-2xl shadow-xl w-full"
-              />
+              <BrandPanel icon={FaCogs} />
             </motion.div>
           </div>
         </div>

@@ -16,6 +16,9 @@ import {
   caseStudyLinks,
 } from '../data/caseStudies';
 
+// Dev-only scaffolding. Placeholder blocks never ship in the production build.
+const showPlaceholders = import.meta.env.DEV;
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -132,7 +135,8 @@ const CaseStudies = () => {
                 written permission.
               </p>
             </div>
-            {/* Template card — structure the user fills in */}
+            {/* Template card — dev only */}
+            {showPlaceholders && (
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -204,6 +208,7 @@ const CaseStudies = () => {
                 </div>
               </div>
             </motion.div>
+            )}
           </div>
         </section>
       ) : (
@@ -243,12 +248,12 @@ const CaseStudies = () => {
                     ))}
                   </div>
                 ) : (
-                  <div className="mt-6">
+                  showPlaceholders && (<div className="mt-6">
                     <PhotoSpot
                       label="Real photo needed"
                       detail="Add the real photos from this session in src/data/caseStudies.js. Do not use a stock image here."
                     />
-                  </div>
+                  </div>)
                 )}
                 {cs.feedback && (
                   <div className="mt-6 border-l-4 border-brand-orange pl-4 italic text-gray-700">

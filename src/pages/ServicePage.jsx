@@ -18,6 +18,9 @@ const programmeByPage = {
   P12: 'School STEM Programme',
 };
 
+// Dev-only scaffolding. Placeholder blocks never ship in the production build.
+const showPlaceholders = import.meta.env.DEV;
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -156,6 +159,7 @@ const ServicePage = ({ pageId }) => {
       </section>
 
       {/* Photo spots */}
+      {showPlaceholders && (
       <section className="py-20 bg-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto grid gap-6">
@@ -165,6 +169,7 @@ const ServicePage = ({ pageId }) => {
           </div>
         </div>
       </section>
+      )}
 
       {/* Content sections */}
       {page.sections.map((section, index) => (
@@ -230,7 +235,7 @@ const ServicePage = ({ pageId }) => {
                 </div>
               )}
 
-              {section.photoSlots && (
+              {showPlaceholders && section.photoSlots && (
                 <div className="grid md:grid-cols-2 gap-6 mt-4">
                   {page.photoSpots
                     .slice(0, section.photoSlots)

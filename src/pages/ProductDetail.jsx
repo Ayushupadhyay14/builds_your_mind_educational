@@ -37,11 +37,11 @@ Perfect for home learning, classroom experiments, or science fairs, this kit pro
     'Problem-solving abilities',
     'Scientific thinking and experimentation'
   ],
-  image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800',
+  image: '/placeholder.jpg',
   galleryImages: [
-    'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800',
-    'https://images.unsplash.com/photo-1553406830-ef2513450d76?w=800',
-    'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800',
+    '/placeholder.jpg',
+    '/placeholder.jpg',
+    '/placeholder.jpg',
   ],
   isEcoFriendly: true,
   stockStatus: 'in_stock',
@@ -126,14 +126,14 @@ const ProductDetail = () => {
       name: 'Arduino Learning Kit',
       slug: 'arduino-learning-kit',
       price: 3499,
-      image: 'https://images.unsplash.com/photo-1553406830-ef2513450d76?w=400',
+      image: '/placeholder.jpg',
     },
     {
       id: 3,
       name: 'Robotics Starter Kit',
       slug: 'robotics-starter-kit',
       price: 2999,
-      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400',
+      image: '/placeholder.jpg',
     },
   ];
 

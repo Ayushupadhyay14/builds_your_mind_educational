@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { FaHandshake, FaMapMarkerAlt, FaBullhorn, FaTruck, FaChartLine, FaUsers } from 'react-icons/fa';
+import BrandPanel from '../components/BrandPanel';
 import { FiCheck, FiArrowRight } from 'react-icons/fi';
 
 const fadeInUp = {
@@ -140,11 +141,7 @@ const DistributorProgram = () => {
               </div>
             </div>
             <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600"
-                alt="Distributor Partnership"
-                className="rounded-2xl shadow-2xl"
-              />
+              <BrandPanel icon={FaHandshake} />
             </div>
           </div>
         </div>

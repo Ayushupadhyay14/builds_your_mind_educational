@@ -9,6 +9,9 @@ import {
   blogLinks,
 } from '../data/blogPosts';
 
+// Dev-only scaffolding. Placeholder blocks never ship in the production build.
+const showPlaceholders = import.meta.env.DEV;
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -150,7 +153,7 @@ const Blog = () => {
                   </motion.div>
                 ))}
               </div>
-            ) : (
+            ) : showPlaceholders ? (
               <div className="grid md:grid-cols-3 gap-6">
                 {Array.from({ length: RESERVED_OUTLINE_SLOTS }).map((_, i) => (
                   <motion.div key={i} variants={fadeInUp}>
@@ -158,7 +161,7 @@ const Blog = () => {
                   </motion.div>
                 ))}
               </div>
-            )}
+            ) : null}
           </motion.div>
         </div>
       </section>

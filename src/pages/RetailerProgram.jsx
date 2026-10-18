@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { FaStore, FaBoxOpen, FaPercent, FaHeadset, FaShoppingBag, FaAward } from 'react-icons/fa';
+import { FaStore, FaBoxOpen, FaPercent, FaHeadset, FaShoppingBag, FaAward, FaPuzzlePiece, FaFlask, FaMicrochip, FaPalette } from 'react-icons/fa';
+import BrandPanel from '../components/BrandPanel';
 import { FiCheck, FiArrowRight } from 'react-icons/fi';
 
 const fadeInUp = {
@@ -118,11 +119,7 @@ const RetailerProgram = () => {
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=600"
-                alt="Retail Store"
-                className="rounded-2xl shadow-2xl"
-              />
+              <BrandPanel icon={FaStore} />
             </div>
             <div>
               <h2 className="section-title mb-6">Ideal For</h2>
@@ -198,10 +195,10 @@ const RetailerProgram = () => {
           </div>
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { name: 'STEM Learning Kits', image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=300' },
-              { name: 'DIY Science Kits', image: 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=300' },
-              { name: 'Electronics Kits', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=300' },
-              { name: 'Creative Kits', image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=300' },
+              { name: 'STEM Learning Kits', icon: FaPuzzlePiece },
+              { name: 'DIY Science Kits', icon: FaFlask },
+              { name: 'Electronics Kits', icon: FaMicrochip },
+              { name: 'Creative Kits', icon: FaPalette },
             ].map((product, index) => (
               <motion.div
                 key={index}
@@ -211,7 +208,9 @@ const RetailerProgram = () => {
                 transition={{ delay: index * 0.1 }}
                 className="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden"
               >
-                <img src={product.image} alt={product.name} className="w-full aspect-square object-cover" />
+                <div className="w-full aspect-square flex items-center justify-center bg-white/10" aria-hidden="true">
+                  <product.icon className="text-5xl text-white/90" />
+                </div>
                 <div className="p-4 text-center">
                   <h3 className="text-white font-medium">{product.name}</h3>
                 </div>
