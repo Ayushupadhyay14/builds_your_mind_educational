@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { FaWhatsapp, FaMapMarkerAlt } from "react-icons/fa";
 import { FiMail, FiPhone, FiSend } from "react-icons/fi";
 import { submitEnquiry } from "../services/api";
+import { ParallaxLayer } from '../components/Parallax';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -91,7 +92,7 @@ const Contact = () => {
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 gradient-brand opacity-95"></div>
-        <div className="absolute inset-0 brand-pattern"></div>
+        <ParallaxLayer className="brand-pattern" />
 
         <div className="container-custom relative z-10">
           <motion.div

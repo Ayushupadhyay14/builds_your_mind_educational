@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { FaLightbulb, FaPencilRuler, FaGraduationCap, FaCubes, FaPalette, FaBox, FaIndustry, FaCogs } from 'react-icons/fa';
 import BrandPanel from '../components/BrandPanel';
 import { FiCheck, FiArrowRight } from 'react-icons/fi';
+import { ParallaxLayer } from '../components/Parallax';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -44,7 +45,7 @@ const ODMServices = () => {
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 gradient-brand opacity-95"></div>
-        <div className="absolute inset-0 brand-pattern"></div>
+        <ParallaxLayer className="brand-pattern" />
         
         <div className="container-custom relative z-10">
           <motion.div

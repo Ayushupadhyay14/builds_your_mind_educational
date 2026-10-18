@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 import { FiArrowRight } from "react-icons/fi";
 import EnquiryForm from "../components/EnquiryForm";
+import { ParallaxLayer } from '../components/Parallax';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 24 },
@@ -139,7 +140,7 @@ const Home = () => (
     {/* Hero */}
     <section className="relative overflow-hidden pt-32 pb-20 lg:pt-44 lg:pb-32">
       <div className="absolute inset-0 gradient-brand"></div>
-      <div className="absolute inset-0 brand-pattern"></div>
+      <ParallaxLayer className="brand-pattern" />
       <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           <motion.div

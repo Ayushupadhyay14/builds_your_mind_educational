@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { FaGraduationCap, FaBoxOpen, FaChalkboardTeacher, FaHandshake, FaStore, FaCogs, FaWhatsapp } from 'react-icons/fa';
 import { FiCheck, FiArrowRight, FiSend } from 'react-icons/fi';
 import { submitSchoolInquiry } from '../services/api';
+import { ParallaxLayer } from '../components/Parallax';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -70,7 +71,7 @@ const ForSchools = () => {
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 gradient-brand opacity-95"></div>
-        <div className="absolute inset-0 brand-pattern"></div>
+        <ParallaxLayer className="brand-pattern" />
         <div className="container-custom relative z-10">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-3xl mx-auto text-center">
             <motion.span variants={fadeInUp} className="inline-block px-4 py-1 bg-white/10 text-blue-100 text-sm font-medium rounded-full mb-6">For Schools & Partners</motion.span>
