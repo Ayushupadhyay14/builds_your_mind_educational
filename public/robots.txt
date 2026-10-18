@@ -1,0 +1,7 @@
+# Builds Your Mind - https://buildsyourmind.in/
+# All pages are open to crawlers; no important page is blocked.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://buildsyourmind.in/sitemap.xml
