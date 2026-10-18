@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { captureUtm } from '../utils/utm';
 
 const SITE_URL = 'https://buildsyourmind.in';
 
@@ -34,7 +36,8 @@ const organizationSchema = {
 };
 
 const Layout = ({ children }) => {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
+  useEffect(() => { captureUtm(); }, [search]);
 
   return (
     <div className="min-h-screen flex flex-col">

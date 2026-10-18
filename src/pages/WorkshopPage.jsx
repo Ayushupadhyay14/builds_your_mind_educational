@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+import EnquiryForm from "../components/EnquiryForm";
 import { FiCheck, FiArrowRight, FiImage } from "react-icons/fi";
 import {
   workshopPages,
@@ -9,6 +10,14 @@ import {
   workshopCaseStudies,
   workshopExtraLinks,
 } from "../data/workshopPages";
+
+const programmeByPage = {
+  P03: 'STEM Workshop',
+  P04: 'Robotics Workshop',
+  P05: 'AI Workshop',
+  P06: 'IoT Workshop',
+  P07: 'Coding Workshop',
+};
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -104,9 +113,9 @@ const WorkshopPage = ({ pageId }) => {
               variants={fadeInUp}
               className="flex flex-col sm:flex-row justify-center gap-4 mt-6"
             >
-              <Link to={workshopContact} className="btn-primary">
+              <a href="#enquiry" className="btn-primary">
                 {page.button} <FiArrowRight className="ml-2" />
-              </Link>
+              </a>
               {page.altAction && (
                 <a
                   href={page.altAction.to}
@@ -291,14 +300,29 @@ const WorkshopPage = ({ pageId }) => {
               variants={fadeInUp}
               className="flex flex-wrap justify-center gap-4"
             >
-              <Link to={workshopContact} className="btn-primary">
+              <a href="#enquiry" className="btn-primary">
                 {page.button}
-              </Link>
+              </a>
               <Link to={workshopCaseStudies} className="btn-secondary">
                 Case Studies <FiArrowRight className="ml-2" />
               </Link>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+
+      {/* Enquiry form (Technical Checklist #20-22) */}
+      <section id="enquiry" className="py-20 bg-brand-cream">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="section-title mb-4 text-center">Send an Enquiry</h2>
+            <p className="section-subtitle mx-auto text-center mb-10">
+              Share your institution details and a programme advisor will get back
+              to you. You can also reach us on WhatsApp.
+            </p>
+            <EnquiryForm defaultProgramme={programmeByPage[pageId]} source={page.path} />
+          </div>
         </div>
       </section>
 
@@ -318,9 +342,9 @@ const WorkshopPage = ({ pageId }) => {
               advisor will get back to you to plan the session.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link to={workshopContact} className="btn-primary">
+              <a href="#enquiry" className="btn-primary">
                 {page.button} <FiArrowRight className="ml-2" />
-              </Link>
+              </a>
               <Link to={workshopCaseStudies} className="btn-secondary">
                 Case Studies
               </Link>

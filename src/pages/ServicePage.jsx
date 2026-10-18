@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
+import EnquiryForm from '../components/EnquiryForm';
 import { FiCheck, FiArrowRight, FiImage, FiMapPin } from 'react-icons/fi';
 import {
   servicePages,
@@ -8,6 +9,14 @@ import {
   serviceCaseStudies,
 } from '../data/servicePages';
 import { workshopPages } from '../data/workshopPages';
+
+const programmeByPage = {
+  P08: 'STEM Lab Setup & Programme',
+  P09: 'School STEM Programme',
+  P10: 'College / University Workshop',
+  P11: 'STEM Partnership / MoU',
+  P12: 'School STEM Programme',
+};
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -122,9 +131,9 @@ const ServicePage = ({ pageId }) => {
               variants={fadeInUp}
               className="flex flex-col sm:flex-row justify-center gap-4 mt-6"
             >
-              <Link to={serviceContact} className="btn-primary">
+              <a href="#enquiry" className="btn-primary">
                 {page.button} <FiArrowRight className="ml-2" />
-              </Link>
+              </a>
               {page.altAction && (
                 <a
                   href={page.altAction.to}
@@ -315,9 +324,9 @@ const ServicePage = ({ pageId }) => {
               variants={fadeInUp}
               className="flex flex-wrap justify-center gap-4"
             >
-              <Link to={serviceContact} className="btn-primary">
+              <a href="#enquiry" className="btn-primary">
                 {page.button}
-              </Link>
+              </a>
               <a
                 href={serviceCaseStudies}
                 className="btn-secondary"
@@ -326,6 +335,21 @@ const ServicePage = ({ pageId }) => {
               </a>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+
+      {/* Enquiry form (Technical Checklist #20-22) */}
+      <section id="enquiry" className="py-20 bg-brand-cream">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="section-title mb-4 text-center">Send an Enquiry</h2>
+            <p className="section-subtitle mx-auto text-center mb-10">
+              Share your institution details and a programme advisor will get back
+              to you. You can also reach us on WhatsApp.
+            </p>
+            <EnquiryForm defaultProgramme={programmeByPage[pageId]} source={page.path} />
+          </div>
         </div>
       </section>
 
@@ -345,9 +369,9 @@ const ServicePage = ({ pageId }) => {
               for. A programme advisor will get back to you.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link to={serviceContact} className="btn-primary">
+              <a href="#enquiry" className="btn-primary">
                 {page.button} <FiArrowRight className="ml-2" />
-              </Link>
+              </a>
               <a href={serviceCaseStudies} className="btn-secondary">
                 Case Studies
               </a>
