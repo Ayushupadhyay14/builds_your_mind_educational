@@ -1,9 +1,12 @@
 // UTM helpers. No third-party service: values are read from the landing URL,
 // kept in sessionStorage for the visit, and attached to enquiries/WhatsApp text.
+import { WHATSAPP_NUMBER } from '../config/contact';
+
 const KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 const STORE = 'bym_utm';
 
-export const WHATSAPP_NUMBER = '919109711321';
+// Re-exported for existing imports; the number itself lives in config/contact.js.
+export { WHATSAPP_NUMBER };
 
 export const captureUtm = () => {
   try {

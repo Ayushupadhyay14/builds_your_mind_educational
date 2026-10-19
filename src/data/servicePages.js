@@ -3,8 +3,8 @@
 // from Builds_Your_Mind_Website_SEO_Sheet.xlsx -> "On-Page SEO" rows 9-13.
 // Keywords placed come from the "Keyword Map" sheet, mapped to these pages only.
 // No invented statistics, no invented partner names, no copied copy.
-// Contact details used site-wide: buildsyourmind@gmail.com / +91 91097 11321
-// WhatsApp wa.me/919109711321 / Harmono Pvt. Ltd., Indore, India.
+// Contact details used site-wide: buildsyourmind@gmail.com, Harmono Pvt. Ltd., Indore, India.
+// The official phone / WhatsApp number lives in src/config/contact.js — import it, don't hard-code it.
 
 const CONTACT = '/contact'; // P15 - Workshop Enquiry & Contact
 const CASE_STUDIES = '/case-studies'; // P13 - Case Studies

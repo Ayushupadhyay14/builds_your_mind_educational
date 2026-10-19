@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { FaWhatsapp, FaMapMarkerAlt } from "react-icons/fa";
 import { FiMail, FiPhone, FiSend } from "react-icons/fi";
 import { submitEnquiry } from "../services/api";
+import { PHONE_DISPLAY, PHONE_HREF, WHATSAPP_HREF } from "../config/contact";
 import { ParallaxLayer } from '../components/Parallax';
 
 const fadeInUp = {
@@ -66,14 +67,14 @@ const Contact = () => {
     {
       icon: FiPhone,
       title: "Phone",
-      value: "+91 91097 11321",
-      href: "tel:+919109711321",
+      value: PHONE_DISPLAY,
+      href: PHONE_HREF,
     },
     {
       icon: FaWhatsapp,
       title: "WhatsApp",
-      value: "+91 91097 11321",
-      href: "https://wa.me/919109711321",
+      value: PHONE_DISPLAY,
+      href: WHATSAPP_HREF,
     },
   ];
 
@@ -182,7 +183,7 @@ const Contact = () => {
 
               {/* Quick WhatsApp CTA */}
               <a
-                href="https://wa.me/919109711321"
+                href={WHATSAPP_HREF}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 flex items-center justify-center gap-2 w-full py-4 bg-brand-orange-deep text-white rounded-xl hover:bg-brand-orange-dark transition-colors"
@@ -283,7 +284,7 @@ const Contact = () => {
                           required: "Phone number is required",
                         })}
                         className="input-field"
-                        placeholder="+91 9876543210"
+                        placeholder="+91 XXXXX XXXXX"
                       />
                       {errors.phone && (
                         <p className="text-red-500 text-sm mt-1">
@@ -404,11 +405,11 @@ const Contact = () => {
               <Link to="/stem-workshops-schools-indore" className="btn-secondary">
                 See Our Workshops
               </Link>
-              <a href="tel:+919109711321" className="btn-primary">
+              <a href={PHONE_HREF} className="btn-primary">
                 <FiPhone className="mr-2" /> Call Us
               </a>
               <a
-                href="https://wa.me/919109711321"
+                href={WHATSAPP_HREF}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary"

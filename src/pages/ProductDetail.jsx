@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { FaGraduationCap, FaWhatsapp } from 'react-icons/fa';
 import { FiCheck, FiArrowRight, FiMinus, FiPlus, FiArrowLeft } from 'react-icons/fi';
 import { getProductBySlug } from '../services/api';
+import { whatsappLink } from '../utils/utm';
 import toast from 'react-hot-toast';
 import Loading from '../components/Loading';
 
@@ -281,7 +282,7 @@ const ProductDetail = () => {
 
               {/* WhatsApp */}
               <a
-                href={`https://wa.me/919876543210?text=Hi, I'm interested in ${product.name}`}
+                href={whatsappLink(`Hi, I'm interested in ${product.name}`)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full py-3 bg-brand-orange-deep text-white rounded-full hover:bg-brand-orange-dark transition-colors font-semibold"

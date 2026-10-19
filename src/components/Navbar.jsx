@@ -1,9 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-
-const PHONE_DISPLAY = "+91 91097 11321";
-const PHONE_HREF = "tel:+919109711321";
+import { PHONE_DISPLAY, PHONE_HREF } from "../config/contact";
 
 // Inline SVG icon set (24x24, stroke). Keeps the header free of icon-font/image requests.
 const ICONS = {

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
+import { WHATSAPP_HREF } from '../config/contact';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { FaGraduationCap, FaBoxOpen, FaChalkboardTeacher, FaHandshake, FaStore, FaCogs, FaWhatsapp } from 'react-icons/fa';
@@ -127,7 +128,7 @@ const ForSchools = () => {
                   </li>
                 ))}
               </ul>
-              <a href="https://wa.me/919109711321" target="_blank" rel="noopener noreferrer"
+              <a href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange-deep text-white rounded-full hover:bg-brand-orange-dark transition-colors">
                 <FaWhatsapp size={20} /> Chat on WhatsApp
               </a>
@@ -163,7 +164,7 @@ const ForSchools = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1.5">Phone *</label>
-                      <input type="tel" {...register('phone', { required: true })} className="input-field" placeholder="+91 9876543210" />
+                      <input type="tel" {...register('phone', { required: true })} className="input-field" placeholder="+91 XXXXX XXXXX" />
                     </div>
                   </div>
                   <div className="grid md:grid-cols-2 gap-5">

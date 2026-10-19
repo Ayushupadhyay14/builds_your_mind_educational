@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+import { WHATSAPP_HREF } from "../config/contact";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import {
@@ -253,7 +254,7 @@ const Workshops = () => {
                 ))}
               </div>
               <a
-                href="https://wa.me/919109711321"
+                href={WHATSAPP_HREF}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-brand-orange-deep text-white rounded-full hover:bg-brand-orange-dark transition-colors"
@@ -307,7 +308,7 @@ const Workshops = () => {
                         type="tel"
                         {...register("phone", { required: true })}
                         className="input-field"
-                        placeholder="+91 9876543210"
+                        placeholder="+91 XXXXX XXXXX"
                       />
                     </div>
                   </div>

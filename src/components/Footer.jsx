@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
 import { subscribeNewsletter } from "../services/api";
+import { PHONE_DISPLAY, PHONE_HREF, WHATSAPP_HREF } from "../config/contact";
 import toast from "react-hot-toast";
 
 const Footer = () => {
@@ -181,16 +182,16 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <FiPhone className="text-brand-orange mt-1 flex-shrink-0" />
                 <a
-                  href="tel:+919109711321"
+                  href={PHONE_HREF}
                   className="text-blue-200/80 hover:text-brand-orange transition-colors"
                 >
-                  +91 8349260769
+                  {PHONE_DISPLAY}
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <FaWhatsapp className="text-brand-orange mt-1 flex-shrink-0" />
                 <a
-                  href="https://wa.me/919109711321"
+                  href={WHATSAPP_HREF}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-200/80 hover:text-brand-orange transition-colors"

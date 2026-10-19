@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { captureUtm } from '../utils/utm';
+import { PHONE_E164 } from '../config/contact';
 
 const SITE_URL = 'https://buildsyourmind.in';
 
@@ -19,7 +20,7 @@ const organizationSchema = {
   url: `${SITE_URL}/`,
   logo: `${SITE_URL}/logo.jpg`,
   email: 'buildsyourmind@gmail.com',
-  telephone: '+919109711321',
+  telephone: PHONE_E164,
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Indore',
@@ -29,7 +30,7 @@ const organizationSchema = {
   areaServed: ['Indore', 'Dewas', 'Ujjain', 'Dhar'],
   contactPoint: {
     '@type': 'ContactPoint',
-    telephone: '+919109711321',
+    telephone: PHONE_E164,
     email: 'buildsyourmind@gmail.com',
     contactType: 'customer support',
   },
