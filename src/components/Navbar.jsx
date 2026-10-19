@@ -131,14 +131,12 @@ const Navbar = () => {
     >
       <div className="container-custom">
         <div className="flex items-center justify-between gap-4 h-20">
-          {/* Logo: mark + name, one link back to the home page */}
+          {/* Logo: mark + name, one link back to the home page.
+              A same-page click is still a navigation, so the layout's
+              scroll handling returns to the top. */}
           <Link
             to="/"
             aria-label="Builds Your Mind, go to home page"
-            onClick={() => {
-              // Already on the home page: scroll back to the top instead of doing nothing
-              if (location.pathname === "/") window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
             className="flex items-center gap-3 flex-shrink-0"
           >
             <img

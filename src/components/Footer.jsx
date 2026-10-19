@@ -40,11 +40,11 @@ const Footer = () => {
         <div className="container-custom py-12">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
             <div>
-              <h3 className="text-2xl font-display font-bold mb-2">
+              <h3 className="text-2xl font-body font-bold mb-2">
                 Subscribe to Our Newsletter
               </h3>
               <p className="text-blue-200/80">
-                Get updates on new products, workshops, and tuition services.
+                Get updates on new products, workshops and STEM programmes.
               </p>
             </div>
             <form onSubmit={handleNewsletter} className="flex w-full max-w-md">
@@ -87,8 +87,8 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-blue-200/80 mb-6 max-w-sm">
-              Sustainable learning kits for Schools & Homes, plus trusted home
-              tuition services. Made in India.
+              STEM education for schools and colleges — hands-on robotics, AI,
+              coding and IoT workshops, and STEM lab setup.
             </p>
             <div className="flex flex-wrap gap-3">
               {[
@@ -111,7 +111,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display font-semibold text-lg mb-6">
+            <h4 className="font-body font-semibold text-lg mb-6">
               Quick Links
             </h4>
             <ul className="space-y-0">
@@ -119,7 +119,6 @@ const Footer = () => {
                 { name: "Home", path: "/" },
                 { name: "Products", path: "/products" },
                 { name: "STEM Workshops", path: "/stem-workshops-schools-indore" },
-                { name: "Home Tuition", path: "/home-tuition" },
                 { name: "About Us", path: "/about" },
                 {
                   name: "STEM Education in Madhya Pradesh",
@@ -141,7 +140,7 @@ const Footer = () => {
 
           {/* For Business */}
           <div>
-            <h4 className="font-display font-semibold text-lg mb-6">
+            <h4 className="font-body font-semibold text-lg mb-6">
               For Business
             </h4>
             <ul className="space-y-0">
@@ -166,7 +165,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-display font-semibold text-lg mb-6">
+            <h4 className="font-body font-semibold text-lg mb-6">
               Contact Us
             </h4>
             <ul className="space-y-1">

@@ -37,8 +37,47 @@ const organizationSchema = {
 };
 
 const Layout = ({ children }) => {
-  const { pathname, search } = useLocation();
+  const { pathname, search, hash, key } = useLocation();
   useEffect(() => { captureUtm(); }, [search]);
+
+  // The router owns scrolling now, so stop the browser from restoring an old
+  // scroll position on back/forward and fighting the effect below.
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  // Every page change opens at the top of the new page. A link that carries a
+  // #hash (e.g. "#enquiry" on a workshop page) scrolls to that section instead.
+  // Pages are code-split, so keep looking for the anchor target for a moment.
+  useEffect(() => {
+    if (!hash) {
+      // Instant, even though html sets scroll-behavior: smooth.
+      const root = document.documentElement;
+      const previous = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';
+      window.scrollTo(0, 0);
+      root.style.scrollBehavior = previous;
+      return;
+    }
+
+    const id = decodeURIComponent(hash.slice(1));
+    let frame = 0;
+    let tries = 0;
+    const findTarget = () => {
+      const target = document.getElementById(id);
+      if (target) {
+        // scroll-padding-top keeps the section clear of the fixed header.
+        target.scrollIntoView();
+        return;
+      }
+      if (++tries < 30) frame = requestAnimationFrame(findTarget);
+      else window.scrollTo(0, 0);
+    };
+    frame = requestAnimationFrame(findTarget);
+    return () => cancelAnimationFrame(frame);
+  }, [pathname, hash, key]);
 
   return (
     <div className="min-h-screen flex flex-col">
