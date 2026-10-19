@@ -7,13 +7,13 @@ import {
   FaLayerGroup,
   FaHandshake,
   FaRobot,
-  FaMicrochip,
   FaWifi,
   FaCode,
   FaClipboardCheck,
 } from "react-icons/fa";
 import { FiArrowRight } from "react-icons/fi";
 import EnquiryForm from "../components/EnquiryForm";
+import HeroVisual from "../components/HeroVisual";
 import { ParallaxLayer } from '../components/Parallax';
 
 const fadeInUp = {
@@ -138,11 +138,14 @@ const Home = () => (
     </Helmet>
 
     {/* Hero */}
-    <section className="relative overflow-hidden pt-32 pb-20 lg:pt-44 lg:pb-32">
+    <section className="relative overflow-hidden pt-32 pb-16 lg:pt-40 lg:pb-28">
       <div className="absolute inset-0 gradient-brand"></div>
+      {/* dark-blue overlay + faint circuit traces behind the content */}
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-blue-dark/70 via-brand-blue-dark/20 to-brand-blue-dark/50"></div>
+      <div aria-hidden="true" className="absolute inset-0 circuit-pattern opacity-40"></div>
       <ParallaxLayer className="brand-pattern" />
       <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -180,19 +183,8 @@ const Home = () => (
             </motion.div>
           </motion.div>
 
-          {/* Decorative icon panel (no text, no invented content) */}
-          <div
-            className="hidden lg:grid lg:col-span-5 grid-cols-2 gap-6"
-            aria-hidden="true"
-          >
-            {[FaRobot, FaMicrochip, FaWifi, FaCode].map((Icon, i) => (
-              <div
-                key={i}
-                className="aspect-square rounded-3xl bg-white/10 border border-white/20 flex items-center justify-center"
-              >
-                <Icon className="text-5xl text-white/90" />
-              </div>
-            ))}
+          <div className="lg:col-span-5">
+            <HeroVisual />
           </div>
         </div>
       </div>

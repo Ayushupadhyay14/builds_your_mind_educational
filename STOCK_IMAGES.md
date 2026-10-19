@@ -1,6 +1,6 @@
 # Stock images
 
-These are **illustrative stock photographs**, used only where we do not yet have our own photos. Each is labelled on the page as "Illustrative stock photograph, not one of our sessions."
+These are **illustrative stock photographs**, used only where we do not yet have our own photos. Each service-page photo is labelled on the page as "Illustrative stock photograph, not one of our sessions."
 
 - **Licence:** all are from [Pexels](https://www.pexels.com/license/), free to use, attribution not required (credited here anyway).
 - **Not used** in case studies or testimonials. Those stay empty until real, permitted material exists.
@@ -20,5 +20,6 @@ These are **illustrative stock photographs**, used only where we do not yet have
 | College & University (`/college-university-workshops-indore`) | `college-computer-lab.jpg` | Peter Kambey | [Pexels 16007661](https://www.pexels.com/photo/young-woman-sitting-in-a-computer-classroom-and-using-a-laptop-16007661/) |
 | Partnership & MOU (`/stem-partnership-mou`) | `partnership-handshake-chalkboard.jpg` | Yan Krukau | [Pexels 8197543](https://www.pexels.com/photo/professor-and-a-student-shaking-hands-8197543/) |
 | STEM in Madhya Pradesh (`/stem-education-madhya-pradesh`) | `region-school-computer-room.jpg` | Thành Đỗ | [Pexels 5539290](https://www.pexels.com/photo/children-using-computers-in-a-classroom-5539290/) |
+| Home page hero (`/`) | `hero-children-building-robots.jpg` | Vanessa Loring | [Pexels 7869239](https://www.pexels.com/photo/focused-group-of-kids-working-on-table-together-7869239/) |
 
 Photographer names are as shown on each Pexels page when it was checked (19 Oct 2026). People in these photos are not our students, staff or clients.

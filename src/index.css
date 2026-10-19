@@ -85,6 +85,11 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-blue via-primary-600 to-brand-orange;
   }
   
+  /* Faint circuit-board traces (decorative) */
+  .circuit-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.14' stroke-width='1.5'%3E%3Cpath d='M0 30h40l12 12h38M0 90h28l14-14h30l10 10h58M70 0v28l14 14M110 140v-34l-14-14h-20M30 140v-24l12-12'/%3E%3C/g%3E%3Cg fill='%23ffffff' fill-opacity='0.18'%3E%3Ccircle cx='40' cy='30' r='3'/%3E%3Ccircle cx='90' cy='42' r='3'/%3E%3Ccircle cx='72' cy='76' r='3'/%3E%3Ccircle cx='130' cy='86' r='3'/%3E%3Ccircle cx='76' cy='92' r='3'/%3E%3Ccircle cx='30' cy='104' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
   .brand-pattern {
     background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231E3A8A' fill-opacity='0.08'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
