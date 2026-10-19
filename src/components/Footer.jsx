@@ -168,18 +168,22 @@ const Footer = () => {
             <h4 className="font-body font-semibold text-lg mb-6">
               Contact Us
             </h4>
-            <ul className="space-y-1">
-              <li className="flex items-start gap-3">
-                <FiMail className="text-brand-orange mt-1 flex-shrink-0" />
+            <ul className="space-y-4">
+              <li className="flex items-center gap-3">
+                <span className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                  <FiMail className="text-brand-orange" size={18} />
+                </span>
                 <a
                   href="mailto:buildsyourmind@gmail.com"
-                  className="text-blue-200/80 hover:text-brand-orange transition-colors break-words"
+                  className="text-blue-200/80 hover:text-brand-orange transition-colors break-words min-w-0"
                 >
-                  buildsyourmind@gmail.com{" "}
+                  buildsyourmind<wbr />@gmail.com
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <FiPhone className="text-brand-orange mt-1 flex-shrink-0" />
+              <li className="flex items-center gap-3">
+                <span className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                  <FiPhone className="text-brand-orange" size={18} />
+                </span>
                 <a
                   href={PHONE_HREF}
                   className="text-blue-200/80 hover:text-brand-orange transition-colors"
@@ -187,19 +191,23 @@ const Footer = () => {
                   {PHONE_DISPLAY}
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <FaWhatsapp className="text-brand-orange mt-1 flex-shrink-0" />
+              <li className="flex items-center gap-3">
+                <span className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                  <FaWhatsapp className="text-brand-orange" size={18} />
+                </span>
                 <a
                   href={WHATSAPP_HREF}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-200/80 hover:text-brand-orange transition-colors"
                 >
-                  WhatsApp Support
+                  Chat on WhatsApp
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <FiMapPin className="text-brand-orange mt-1 flex-shrink-0" />
+              <li className="flex items-center gap-3">
+                <span className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                  <FiMapPin className="text-brand-orange" size={18} />
+                </span>
                 <span className="text-blue-200/80">
                   Harmono Pvt. Ltd., Indore, India
                 </span>
