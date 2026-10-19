@@ -147,7 +147,7 @@ const Navbar = () => {
               className="h-12 w-auto"
             />
             <span className="flex flex-col justify-center leading-tight">
-              <span className="font-display font-bold text-xl text-brand-blue whitespace-nowrap">
+              <span className="font-body font-bold text-xl text-brand-blue whitespace-nowrap">
                 Builds Your Mind
               </span>
               <span className="text-sm text-brand-gray-light whitespace-nowrap">

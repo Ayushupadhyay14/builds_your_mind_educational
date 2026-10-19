@@ -139,7 +139,7 @@ const Home = () => (
     </Helmet>
 
     {/* Hero */}
-    <section className="relative overflow-hidden pt-32 pb-16 lg:pt-40 lg:pb-28">
+    <section className="relative overflow-hidden pt-32 pb-16 lg:pt-40 lg:pb-20">
       <div className="absolute inset-0 gradient-brand"></div>
       {/* dark-blue overlay + faint circuit traces behind the content */}
       <div className="absolute inset-0 bg-gradient-to-r from-brand-blue-dark/70 via-brand-blue-dark/20 to-brand-blue-dark/50"></div>
@@ -170,7 +170,7 @@ const Home = () => (
             </motion.h1>
             <motion.p
               variants={fadeInUp}
-              className="text-base md:text-lg text-white mb-8 max-w-xl [text-wrap:balance]"
+              className="text-base md:text-lg text-white mb-8 max-w-2xl [text-wrap:balance]"
             >
               Builds Your Mind is a STEM education company in Indore for schools
               and colleges.
