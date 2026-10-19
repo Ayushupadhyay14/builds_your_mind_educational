@@ -152,20 +152,26 @@ const Home = () => (
             variants={stagger}
             className="lg:col-span-7"
           >
+            <motion.p
+              variants={fadeInUp}
+              className="mb-4 text-base md:text-lg font-semibold tracking-wide text-brand-orange-light"
+            >
+              Builds Your Mind. Builds Their Future.
+            </motion.p>
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6"
+              className="font-body font-bold text-[1.5rem] min-[380px]:text-[1.7rem] leading-tight sm:text-4xl md:text-5xl lg:text-[2.75rem] xl:text-5xl text-white mb-5 [text-wrap:balance]"
             >
-              STEM Education & Innovation Partner for Schools, Colleges &
-              Institutions in <span className="text-brand-orange">Indore</span>
+              Hands-On <span className="text-brand-orange">STEM</span> for
+              Schools & Colleges in{" "}
+              <span className="text-brand-orange">Indore</span>
             </motion.h1>
             <motion.p
               variants={fadeInUp}
-              className="text-lg md:text-xl text-blue-100/90 mb-8 max-w-xl"
+              className="text-base md:text-lg text-white mb-8 max-w-xl [text-wrap:balance]"
             >
-              Builds Your Mind is a STEM education company in Indore. We bring
-              hands-on STEM education to schools, colleges and universities, and
-              supply eco-friendly educational kits for classrooms and homes.
+              Builds Your Mind is a STEM education company in Indore for schools
+              and colleges.
             </motion.p>
             <motion.div
               variants={fadeInUp}
