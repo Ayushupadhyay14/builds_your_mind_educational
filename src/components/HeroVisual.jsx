@@ -67,6 +67,13 @@ const HeroVisual = () => {
         className="relative"
         style={tilt ? { rotateX, rotateY, transformStyle: "preserve-3d" } : undefined}
       >
+        {/* faint bulb watermark behind the photo */}
+        <img
+          src="/logo.svg"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-1/2 hidden w-full max-w-none -translate-x-1/2 -translate-y-1/2 opacity-[0.10] select-none md:block"
+        />
         {/* faint circuit pattern + glow behind the photo */}
         <div aria-hidden="true" className="absolute -inset-4 lg:-inset-8 rounded-[2.5rem] circuit-pattern opacity-70" />
         <div aria-hidden="true" className="absolute inset-6 rounded-full bg-brand-orange/20 blur-3xl" />

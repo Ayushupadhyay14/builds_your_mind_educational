@@ -124,3 +124,65 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #152C6B;
 }
+
+/* ---------------------------------------------------------------
+   Hero decorative effects (CSS/SVG only)
+   The animated layer (.hero-fx: drifting glows + dots along circuit
+   traces) is display:none on phones and for prefers-reduced-motion.
+   The curved bottom edge is a static SVG rendered by HeroEffects.jsx
+   and intentionally stays on every screen size.
+   --------------------------------------------------------------- */
+.hero-fx {
+  display: none;
+}
+
+.hero-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero-glow-orange {
+  width: 34rem;
+  height: 34rem;
+  left: -8rem;
+  top: -10rem;
+  background: radial-gradient(circle at 50% 50%, rgba(249, 115, 22, 0.30), rgba(249, 115, 22, 0) 70%);
+  animation: hero-drift-a 26s ease-in-out infinite alternate;
+}
+
+.hero-glow-blue {
+  width: 38rem;
+  height: 38rem;
+  right: -10rem;
+  bottom: -14rem;
+  background: radial-gradient(circle at 50% 50%, rgba(147, 197, 253, 0.28), rgba(147, 197, 253, 0) 70%);
+  animation: hero-drift-b 32s ease-in-out infinite alternate;
+}
+
+@keyframes hero-drift-a {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(4rem, 2.5rem, 0) scale(1.12); }
+}
+
+@keyframes hero-drift-b {
+  from { transform: translate3d(0, 0, 0) scale(1.05); }
+  to   { transform: translate3d(-4rem, -2rem, 0) scale(0.95); }
+}
+
+@media (min-width: 768px) {
+  .hero-fx {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fx {
+    display: none;
+  }
+  .hero-glow {
+    animation: none;
+  }
+}

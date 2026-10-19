@@ -14,6 +14,7 @@ import {
 import { FiArrowRight } from "react-icons/fi";
 import EnquiryForm from "../components/EnquiryForm";
 import HeroVisual from "../components/HeroVisual";
+import HeroEffects from "../components/HeroEffects";
 import { ParallaxLayer } from '../components/Parallax';
 
 const fadeInUp = {
@@ -142,8 +143,9 @@ const Home = () => (
       <div className="absolute inset-0 gradient-brand"></div>
       {/* dark-blue overlay + faint circuit traces behind the content */}
       <div className="absolute inset-0 bg-gradient-to-r from-brand-blue-dark/70 via-brand-blue-dark/20 to-brand-blue-dark/50"></div>
-      <div aria-hidden="true" className="absolute inset-0 circuit-pattern opacity-40"></div>
+      <div aria-hidden="true" className="absolute inset-0 circuit-pattern opacity-30"></div>
       <ParallaxLayer className="brand-pattern" />
+      <HeroEffects />
       <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           <motion.div
