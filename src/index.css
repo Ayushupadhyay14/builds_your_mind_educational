@@ -2,6 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===============================================================
+   Clean Display Ampersand (&) Override
+   Fixes the awkward, slanted/ornate calligraphic ampersand glyph in
+   Playfair Display. Replaces U+0026 in font-display with a clean,
+   upright, balanced serif ampersand (Georgia / Source Serif 4)
+   that aligns properly with heading typography.
+   =============================================================== */
+@font-face {
+  font-family: 'CleanAmpersand';
+  font-style: normal;
+  font-weight: 300 400;
+  font-display: swap;
+  src: local('Georgia'),
+       local('Source Serif 4'),
+       url('/fonts/source-serif-4-400.ttf') format('truetype'),
+       url('https://fonts.gstatic.com/s/sourceserif4/v15/vEFy2_tTDB4M7-auWDN0ahZJW3IX2ih5nk3AucvUHf6OAVIJmeUDygwjihdqrhw.ttf') format('truetype');
+  unicode-range: U+0026;
+}
+
+@font-face {
+  font-family: 'CleanAmpersand';
+  font-style: normal;
+  font-weight: 500 600;
+  font-display: swap;
+  src: local('Georgia'),
+       local('Source Serif 4 SemiBold'),
+       local('Source Serif 4'),
+       url('/fonts/source-serif-4-600.ttf') format('truetype'),
+       url('https://fonts.gstatic.com/s/sourceserif4/v15/vEFy2_tTDB4M7-auWDN0ahZJW3IX2ih5nk3AucvUHf6OAVIJmeUDygwjisltrhw.ttf') format('truetype');
+  unicode-range: U+0026;
+}
+
+@font-face {
+  font-family: 'CleanAmpersand';
+  font-style: normal;
+  font-weight: 700 900;
+  font-display: swap;
+  src: local('Georgia Bold'),
+       local('Georgia'),
+       local('Source Serif 4 Bold'),
+       local('Source Serif 4'),
+       url('/fonts/source-serif-4-700.ttf') format('truetype'),
+       url('https://fonts.gstatic.com/s/sourceserif4/v15/vEFy2_tTDB4M7-auWDN0ahZJW3IX2ih5nk3AucvUHf6OAVIJmeUDygwjivBtrhw.ttf') format('truetype');
+  unicode-range: U+0026;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -15,14 +61,25 @@
       scroll-behavior: auto;
     }
   }
-  
+
   body {
     @apply font-body text-brand-gray bg-white;
     overflow-x: hidden;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'CleanAmpersand', 'Playfair Display', serif;
+  }
+
+  .ampersand {
+    font-family: 'CleanAmpersand', Georgia, 'Source Serif 4', serif;
+    font-style: normal;
+    font-weight: inherit;
   }
 
   /* Readable placeholder text (Tailwind default is 2.5:1 on white) */
@@ -44,47 +101,47 @@
   .btn-primary {
     @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-brand-orange-deep rounded-full transition-all duration-300 hover:bg-brand-orange-dark hover:shadow-lg hover:shadow-brand-orange/20 transform hover:-translate-y-0.5 min-h-[44px];
   }
-  
+
   .btn-secondary {
     @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-brand-blue bg-white border-2 border-white min-h-[44px] rounded-full transition-all duration-300 hover:border-brand-blue hover:bg-brand-blue hover:text-white;
   }
-  
+
   .btn-outline {
     @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-brand-blue border-2 border-brand-blue min-h-[44px] rounded-full transition-all duration-300 hover:bg-brand-blue hover:text-white;
   }
-  
+
   .section-title {
     @apply text-3xl md:text-4xl lg:text-5xl font-display font-bold text-brand-blue;
   }
-  
+
   .section-subtitle {
     @apply text-lg md:text-xl text-brand-gray-light max-w-2xl;
   }
-  
+
   .card {
     @apply bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300;
   }
-  
+
   .input-field {
     @apply w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none transition-all duration-200;
   }
-  
+
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
-  
+
   .gradient-brand {
     background: linear-gradient(135deg, #1E3A8A 0%, #26429A 50%, #2E4A9A 100%);
   }
-  
+
   .gradient-brand-light {
     background: linear-gradient(135deg, #DBEAFE 0%, #93C5FD 50%, #60A5FA 100%);
   }
-  
+
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-blue via-primary-600 to-brand-orange;
   }
-  
+
   /* Faint circuit-board traces (decorative) */
   .circuit-pattern {
     background-image: url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.14' stroke-width='1.5'%3E%3Cpath d='M0 30h40l12 12h38M0 90h28l14-14h30l10 10h58M70 0v28l14 14M110 140v-34l-14-14h-20M30 140v-24l12-12'/%3E%3C/g%3E%3Cg fill='%23ffffff' fill-opacity='0.18'%3E%3Ccircle cx='40' cy='30' r='3'/%3E%3Ccircle cx='90' cy='42' r='3'/%3E%3Ccircle cx='72' cy='76' r='3'/%3E%3Ccircle cx='130' cy='86' r='3'/%3E%3Ccircle cx='76' cy='92' r='3'/%3E%3Ccircle cx='30' cy='104' r='3'/%3E%3C/g%3E%3C/svg%3E");
@@ -99,9 +156,11 @@
   .animation-delay-200 {
     animation-delay: 200ms;
   }
+
   .animation-delay-400 {
     animation-delay: 400ms;
   }
+
   .animation-delay-600 {
     animation-delay: 600ms;
   }
@@ -163,13 +222,23 @@
 }
 
 @keyframes hero-drift-a {
-  from { transform: translate3d(0, 0, 0) scale(1); }
-  to   { transform: translate3d(4rem, 2.5rem, 0) scale(1.12); }
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(4rem, 2.5rem, 0) scale(1.12);
+  }
 }
 
 @keyframes hero-drift-b {
-  from { transform: translate3d(0, 0, 0) scale(1.05); }
-  to   { transform: translate3d(-4rem, -2rem, 0) scale(0.95); }
+  from {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+
+  to {
+    transform: translate3d(-4rem, -2rem, 0) scale(0.95);
+  }
 }
 
 @media (min-width: 768px) {
@@ -182,6 +251,7 @@
   .hero-fx {
     display: none;
   }
+
   .hero-glow {
     animation: none;
   }
