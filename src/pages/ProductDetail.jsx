@@ -74,13 +74,13 @@ const ProductDetail = () => {
             minBulkQuantity: data.min_bulk_quantity || data.minBulkQuantity || 1,
             shortDescription: data.short_description || data.shortDescription || '',
             description: data.description || '',
-            features: Array.isArray(data.features) 
-              ? data.features 
+            features: Array.isArray(data.features)
+              ? data.features
               : (data.features ? data.features.split('\n') : []),
-            learningOutcomes: Array.isArray(data.learning_outcomes) 
-              ? data.learning_outcomes 
-              : (Array.isArray(data.learningOutcomes) 
-                ? data.learningOutcomes 
+            learningOutcomes: Array.isArray(data.learning_outcomes)
+              ? data.learning_outcomes
+              : (Array.isArray(data.learningOutcomes)
+                ? data.learningOutcomes
                 : (data.learning_outcomes ? data.learning_outcomes.split('\n') : [])),
             image: data.image || '/placeholder.jpg',
             galleryImages: Array.isArray(data.gallery_images)
@@ -204,11 +204,10 @@ const ProductDetail = () => {
                   <button
                     key={index}
                     onClick={() => setActiveImage(index)}
-                    className={`w-20 h-20 rounded-xl overflow-hidden border-2 transition-colors ${
-                      activeImage === index ? 'border-brand-blue' : 'border-transparent'
-                    }`}
+                    className={`w-20 h-20 rounded-xl overflow-hidden border-2 transition-colors ${activeImage === index ? 'border-brand-blue' : 'border-transparent'
+                      }`}
                   >
-                    <img src={img} alt={`${product.name} - image ${idx + 1}`} className="w-full h-full object-cover" />
+                    <img src={img} alt={`${product.name} - image ${index + 1}`} className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
@@ -223,11 +222,11 @@ const ProductDetail = () => {
               <span className="inline-block px-3 py-1 bg-blue-100/30 text-brand-blue text-sm font-medium rounded-full mb-4">
                 {product.category.name}
               </span>
-              
+
               <h1 className="text-3xl md:text-4xl font-display font-bold text-brand-blue mb-4">
                 {product.name}
               </h1>
-              
+
               <p className="text-gray-600 text-lg mb-6">
                 {product.shortDescription}
               </p>
@@ -236,11 +235,10 @@ const ProductDetail = () => {
                 <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
                   Age: {product.ageGroup}
                 </span>
-                <span className={`text-sm px-3 py-1 rounded-full ${
-                  product.stockStatus === 'in_stock' 
-                    ? 'bg-blue-100 text-brand-blue' 
+                <span className={`text-sm px-3 py-1 rounded-full ${product.stockStatus === 'in_stock'
+                    ? 'bg-blue-100 text-brand-blue'
                     : 'bg-red-100 text-red-700'
-                }`}>
+                  }`}>
                   {product.stockStatus === 'in_stock' ? 'In Stock' : 'Out of Stock'}
                 </span>
               </div>

@@ -34,7 +34,7 @@ export default {
         }
       },
       fontFamily: {
-        display: ['Playfair Display', 'serif'],
+        display: ['CleanAmpersand', 'Playfair Display', 'serif'],
         body: ['Source Sans Pro', 'sans-serif'],
       },
       backgroundImage: {
