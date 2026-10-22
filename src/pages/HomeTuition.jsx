@@ -97,7 +97,7 @@ const HomeTuition = () => {
   const handleParentSubmit = async (data) => {
     setLoading(true);
     try {
-      await applyTuition({ ...data, subject_ids: data.subjects ? [1] : [] });
+      await applyTuition({ ...data, area: data.area || data.city || 'Central', subject_ids: data.subjects ? [1] : [] });
       toast.success("Application submitted! We will contact you soon.");
       parentForm.reset();
     } catch {
@@ -425,10 +425,10 @@ const HomeTuition = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                        Area
+                        Area *
                       </label>
                       <input
-                        {...parentForm.register("area")}
+                        {...parentForm.register("area", { required: true })}
                         className="input-field"
                         placeholder="Your locality"
                       />
