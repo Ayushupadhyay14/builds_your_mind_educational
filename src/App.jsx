@@ -3,6 +3,7 @@ import { Suspense, createElement } from 'react';
 import { Toaster } from 'react-hot-toast';
 import Layout from './components/Layout';
 import Loading from './components/Loading';
+import FloatingQRButton from './components/FloatingQRButton';
 import { routes } from './routes';
 
 // `pages` maps a page name to its component. The browser passes lazy
@@ -29,6 +30,7 @@ function App({ pages }) {
           </Routes>
         </Suspense>
       </Layout>
+      <FloatingQRButton />
       <Toaster
         position="top-right"
         toastOptions={{

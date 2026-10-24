@@ -1,0 +1,474 @@
+/* ==========================================================================
+   Floating QR Code Button & Popup Modal Stylesheet
+   Designed for Builds Your Mind with brand harmony and mobile responsiveness.
+   ========================================================================== */
+
+/* Floating Button Container */
+.qr-floating-wrapper {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
+  right: max(1.5rem, env(safe-area-inset-right, 1.5rem));
+  z-index: 990;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Floating Trigger Button */
+.qr-floating-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.875rem 1.125rem;
+  background: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 50%, #2563EB 100%);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 9999px;
+  box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.4),
+              0 8px 10px -6px rgba(30, 58, 138, 0.2),
+              0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.qr-floating-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  background: linear-gradient(135deg, #152C6B 0%, #1E3A8A 50%, #1D4ED8 100%);
+  box-shadow: 0 18px 32px -6px rgba(30, 58, 138, 0.5),
+              0 10px 15px -5px rgba(249, 115, 22, 0.25),
+              0 0 0 2px rgba(249, 115, 22, 0.6);
+}
+
+.qr-floating-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.qr-floating-btn:focus-visible {
+  outline: 3px solid #F97316;
+  outline-offset: 3px;
+}
+
+/* Pulsing Outer Glow Aura */
+.qr-pulse-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  border: 2px solid #F97316;
+  opacity: 0;
+  animation: qrPulseRing 3.5s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes qrPulseRing {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+/* Icon Inside Button */
+.qr-btn-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  color: #FFFFFF;
+  transition: transform 0.3s ease;
+}
+
+.qr-floating-btn:hover .qr-btn-icon-wrapper {
+  transform: rotate(6deg) scale(1.1);
+  background: rgba(249, 115, 22, 0.25);
+  color: #FB923C;
+}
+
+/* Live Video Indicator Dot */
+.qr-live-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 9px;
+  height: 9px;
+  background-color: #EF4444;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  animation: qrDotBlink 2s ease-in-out infinite;
+}
+
+@keyframes qrDotBlink {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+}
+
+/* Label Inside Button */
+.qr-btn-label {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Modal Overlay & Backdrop
+   ========================================================================== */
+.qr-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: qrBackdropFade 0.25s ease-out forwards;
+}
+
+@keyframes qrBackdropFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Content Card */
+.qr-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 24rem; /* 384px */
+  background: #FFFFFF;
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.35),
+              0 0 0 1px rgba(226, 232, 240, 0.8);
+  overflow: hidden;
+  animation: qrModalScaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes qrModalScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Modal Header Bar */
+.qr-modal-header {
+  position: relative;
+  padding: 1.25rem 1.5rem 1rem;
+  background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+  border-bottom: 1px solid #F1F5F9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Modal Close Button */
+.qr-modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.qr-modal-close-btn:hover {
+  background: #FEE2E2;
+  color: #DC2626;
+  border-color: #FECACA;
+  transform: rotate(90deg);
+}
+
+.qr-modal-close-btn:focus-visible {
+  outline: 2px solid #EF4444;
+  outline-offset: 2px;
+}
+
+/* Badge in Modal */
+.qr-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #C2410C;
+  background: #FFF7ED;
+  border: 1px solid #FFEDD5;
+  border-radius: 9999px;
+  margin-bottom: 0.5rem;
+}
+
+/* Title in Modal */
+.qr-modal-title {
+  font-family: 'CleanAmpersand', 'Playfair Display', serif;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #1E3A8A;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Instructions Subtitle */
+.qr-modal-instruction {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: #475569;
+  margin-top: 0.375rem;
+  margin-bottom: 0;
+  padding: 0 0.5rem;
+}
+
+/* Modal Body */
+.qr-modal-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #FFFFFF;
+}
+
+/* QR Code Viewfinder Card */
+.qr-code-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: #FFFFFF;
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.08),
+              0 0 0 1px #E2E8F0;
+  margin-bottom: 1.25rem;
+}
+
+/* High-tech Viewfinder Corner Brackets */
+.qr-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: #F97316;
+  border-style: solid;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.qr-code-frame:hover .qr-corner {
+  border-color: #1E3A8A;
+  width: 18px;
+  height: 18px;
+}
+
+.qr-corner-tl {
+  top: 6px;
+  left: 6px;
+  border-width: 2.5px 0 0 2.5px;
+  border-top-left-radius: 4px;
+}
+
+.qr-corner-tr {
+  top: 6px;
+  right: 6px;
+  border-width: 2.5px 2.5px 0 0;
+  border-top-right-radius: 4px;
+}
+
+.qr-corner-bl {
+  bottom: 6px;
+  left: 6px;
+  border-width: 0 0 2.5px 2.5px;
+  border-bottom-left-radius: 4px;
+}
+
+.qr-corner-br {
+  bottom: 6px;
+  right: 6px;
+  border-width: 0 2.5px 2.5px 0;
+  border-bottom-right-radius: 4px;
+}
+
+/* SVG Rendering inside frame */
+.qr-code-frame svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Action Buttons Container */
+.qr-modal-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+/* Primary "Watch on YouTube" Button */
+.qr-btn-youtube {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background: #DC2626;
+  color: #FFFFFF;
+  border-radius: 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.qr-btn-youtube:hover {
+  background: #B91C1C;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(220, 38, 38, 0.35);
+  color: #FFFFFF;
+}
+
+.qr-btn-youtube:focus-visible {
+  outline: 2px solid #DC2626;
+  outline-offset: 2px;
+}
+
+/* Secondary "Copy Link" Button */
+.qr-btn-copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.625rem 1.25rem;
+  background: #F8FAFC;
+  color: #475569;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+  font-family: inherit;
+}
+
+.qr-btn-copy:hover {
+  background: #F1F5F9;
+  color: #1E3A8A;
+  border-color: #CBD5E1;
+}
+
+.qr-btn-copy:focus-visible {
+  outline: 2px solid #1E3A8A;
+  outline-offset: 2px;
+}
+
+/* Small helper hint text */
+.qr-modal-hint {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: #94A3B8;
+  text-align: center;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 640px) {
+  .qr-floating-wrapper {
+    bottom: 1rem;
+    right: 1rem;
+    bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
+    right: max(1rem, env(safe-area-inset-right, 1rem));
+  }
+
+  .qr-floating-btn {
+    padding: 0.75rem;
+    border-radius: 50%;
+  }
+
+  /* On mobile screens, hide the text label and show only the iconic QR button for clean screen real estate */
+  .qr-btn-label {
+    display: none;
+  }
+
+  .qr-btn-icon-wrapper {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .qr-modal-card {
+    max-width: 22rem;
+  }
+
+  .qr-modal-header {
+    padding: 1.125rem 1.25rem 0.875rem;
+  }
+
+  .qr-modal-title {
+    font-size: 1.25rem;
+  }
+
+  .qr-modal-body {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .qr-floating-btn,
+  .qr-modal-backdrop,
+  .qr-modal-card,
+  .qr-modal-close-btn,
+  .qr-btn-youtube,
+  .qr-corner,
+  .qr-pulse-ring {
+    animation: none !important;
+    transition: none !important;
+  }
+}
