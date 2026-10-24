@@ -7,13 +7,13 @@ import useMotionEnabled from "../hooks/useMotionEnabled";
 // Everything is transform-only (no layout), inside a fixed-aspect box, so
 // nothing shifts. Motion is off on phones and for "reduce motion" users.
 const cards = [
-  { Icon: FaRobot, color: "text-brand-blue", pos: "-left-2 top-6 lg:-left-10 lg:top-12", depth: 18, amp: 10, dur: 5, delay: 0 },
-  { Icon: FaMicrochip, color: "text-brand-orange-deep", pos: "-right-2 top-2 lg:-right-8 lg:top-2", depth: 30, amp: 12, dur: 6, delay: 0.6 },
-  { Icon: FaWifi, color: "text-brand-orange-deep", pos: "-left-1 bottom-6 lg:-left-8 lg:bottom-20", depth: 26, amp: 9, dur: 5.5, delay: 1.1 },
-  { Icon: FaCode, color: "text-brand-blue", pos: "-right-1 bottom-2 lg:-right-10 lg:bottom-6", depth: 38, amp: 11, dur: 6.5, delay: 0.3 },
+  { Icon: FaRobot, label: "Robotics", color: "text-brand-blue", pos: "-left-2 top-6 lg:-left-12 lg:top-12", depth: 18, amp: 10, dur: 5, delay: 0 },
+  { Icon: FaMicrochip, label: "AI & ML", color: "text-brand-orange-deep", pos: "-right-2 top-2 lg:-right-10 lg:top-4", depth: 30, amp: 12, dur: 6, delay: 0.6 },
+  { Icon: FaWifi, label: "IoT Sensors", color: "text-brand-orange-deep", pos: "-left-1 bottom-6 lg:-left-10 lg:bottom-16", depth: 26, amp: 9, dur: 5.5, delay: 1.1 },
+  { Icon: FaCode, label: "Coding", color: "text-brand-blue", pos: "-right-1 bottom-2 lg:-right-12 lg:bottom-6", depth: 38, amp: 11, dur: 6.5, delay: 0.3 },
 ];
 
-const FloatCard = ({ Icon, color, pos, depth, amp, dur, delay, sx, sy, float, tilt }) => {
+const FloatCard = ({ Icon, label, color, pos, depth, amp, dur, delay, sx, sy, float, tilt }) => {
   // Cards shift a little against the tilt so they appear to hover in front.
   const x = useTransform(sx, [-0.5, 0.5], [depth, -depth]);
   const y = useTransform(sy, [-0.5, 0.5], [depth * 0.6, -depth * 0.6]);
@@ -25,9 +25,14 @@ const FloatCard = ({ Icon, color, pos, depth, amp, dur, delay, sx, sy, float, ti
       <motion.div
         animate={float ? { y: [0, -amp, 0] } : undefined}
         transition={float ? { duration: dur, delay, repeat: Infinity, ease: "easeInOut" } : undefined}
-        className="flex items-center justify-center h-14 w-14 lg:h-20 lg:w-20 rounded-2xl bg-white shadow-[0_22px_40px_-14px_rgba(8,20,60,0.6)] ring-1 ring-white/60"
+        className="flex items-center gap-2.5 px-3 py-2 lg:px-4 lg:py-2.5 rounded-2xl bg-white/95 backdrop-blur-md shadow-[0_20px_45px_-12px_rgba(8,20,60,0.5)] ring-1 ring-white/80"
       >
-        <Icon className={`text-2xl lg:text-4xl ${color}`} />
+        <span className="flex items-center justify-center h-8 w-8 lg:h-10 lg:w-10 rounded-xl bg-blue-50/80">
+          <Icon className={`text-lg lg:text-2xl ${color}`} />
+        </span>
+        <span className="text-xs lg:text-sm font-bold text-brand-blue whitespace-nowrap">
+          {label}
+        </span>
       </motion.div>
     </motion.div>
   );

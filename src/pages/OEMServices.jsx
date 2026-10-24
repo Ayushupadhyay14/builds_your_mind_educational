@@ -38,8 +38,8 @@ const OEMServices = () => {
   return (
     <>
       <Helmet>
-        <title>OEM Services | Builds Your Mind - Educational Kit Manufacturing</title>
-        <meta name="description" content="Launch educational kits under your own brand with our OEM manufacturing services. Bulk manufacturing, assembly, testing and packaging by Harmono Pvt. Ltd." />
+        <title>OEM Educational Kit Manufacturing | Builds Your Mind</title>
+        <meta name="description" content="Launch educational kits under your own brand with OEM manufacturing, assembly, testing and packaging by Harmono Pvt. Ltd." />
       </Helmet>
 
       {/* Hero Section */}

@@ -38,8 +38,8 @@ const ODMServices = () => {
   return (
     <>
       <Helmet>
-        <title>ODM Services | Builds Your Mind - Product Design & Development</title>
-        <meta name="description" content="End-to-end ODM services including product ideation, curriculum-based design, eco-material selection, prototyping, branding, packaging and mass production." />
+        <title>ODM Product Design & Development | Builds Your Mind</title>
+        <meta name="description" content="End-to-end ODM services: product ideation, curriculum-based design, eco-material selection, prototyping, branding, packaging and production." />
       </Helmet>
 
       {/* Hero Section */}

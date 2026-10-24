@@ -3,50 +3,44 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { FaGraduationCap, FaWhatsapp } from 'react-icons/fa';
-import { FiCheck, FiArrowRight, FiMinus, FiPlus, FiArrowLeft } from 'react-icons/fi';
+import {
+  FiCheck,
+  FiArrowRight,
+  FiMinus,
+  FiPlus,
+  FiArrowLeft,
+  FiShield,
+  FiTruck,
+  FiFileText,
+} from 'react-icons/fi';
 import { getProductBySlug } from '../services/api';
 import { whatsappLink } from '../utils/utm';
-import toast from 'react-hot-toast';
+import { SITE_URL } from '../config/site';
 import Loading from '../components/Loading';
 
-// Sample product data fallback
-const sampleProduct = {
-  id: 1,
-  name: 'Basic Electronics Kit',
-  slug: 'basic-electronics-kit',
-  category: { name: 'Electronics Kits', slug: 'electronics' },
-  ageGroup: '8-12 Years',
-  price: 1499,
-  bulkPrice: 1199,
-  minBulkQuantity: 10,
-  shortDescription: 'Learn basic electronics with hands-on experiments',
-  description: `The Basic Electronics Kit is designed to introduce young learners to the fascinating world of electronics through hands-on experiments and projects. This comprehensive kit includes all the components needed to build circuits and understand fundamental electronic concepts.
+const asList = (value) => {
+  if (Array.isArray(value)) return value.filter(Boolean);
+  if (typeof value === 'string') {
+    return value
+      .split('\n')
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+  return [];
+};
 
-Perfect for home learning, classroom experiments, or science fairs, this kit provides a safe and engaging way to explore electronics while developing problem-solving and critical thinking skills.`,
-  features: [
-    'Complete kit with all components included',
-    'Step-by-step instruction manual',
-    'Safe, child-friendly components',
-    'Multiple experiment projects',
-    'Reusable components for extended learning',
-    'QR codes for video tutorials'
-  ],
-  learningOutcomes: [
-    'Understanding of basic circuit concepts',
-    'Knowledge of electronic components',
-    'Hands-on soldering skills',
-    'Problem-solving abilities',
-    'Scientific thinking and experimentation'
-  ],
-  image: '/placeholder.jpg',
-  galleryImages: [
-    '/placeholder.jpg',
-    '/placeholder.jpg',
-    '/placeholder.jpg',
-  ],
-  isEcoFriendly: true,
-  stockStatus: 'in_stock',
-  videoUrl: '',
+const normaliseStock = (status) => {
+  const key = String(status || '').toLowerCase();
+  if (key === 'in_stock' || key === 'in stock') {
+    return { label: 'In Stock', className: 'bg-blue-100 text-brand-blue' };
+  }
+  if (key === 'out_of_stock' || key === 'out of stock') {
+    return { label: 'Out of Stock', className: 'bg-red-100 text-red-700' };
+  }
+  if (key === 'made_to_order' || key === 'made to order') {
+    return { label: 'Made to Order', className: 'bg-amber-100 text-amber-800' };
+  }
+  return { label: 'Ask for Availability', className: 'bg-slate-100 text-slate-700' };
 };
 
 const ProductDetail = () => {
@@ -57,62 +51,67 @@ const ProductDetail = () => {
   const [activeImage, setActiveImage] = useState(0);
 
   useEffect(() => {
+    let cancelled = false;
+
     const fetchProduct = async () => {
+      if (!slug) {
+        setLoading(false);
+        return;
+      }
+
       try {
         setLoading(true);
         const res = await getProductBySlug(slug);
-        if (res?.data) {
-          const data = res.data;
-          setProduct({
-            id: data.id || data._id || 1,
-            name: data.name || '',
-            slug: data.slug || slug || '',
-            category: data.category || { name: 'Educational Kit', slug: 'kits' },
-            ageGroup: data.age_group || data.ageGroup || 'All Ages',
-            price: data.price || 0,
-            bulkPrice: data.bulk_price || data.bulkPrice || 0,
-            minBulkQuantity: data.min_bulk_quantity || data.minBulkQuantity || 1,
-            shortDescription: data.short_description || data.shortDescription || '',
-            description: data.description || '',
-            features: Array.isArray(data.features)
-              ? data.features
-              : (data.features ? data.features.split('\n') : []),
-            learningOutcomes: Array.isArray(data.learning_outcomes)
-              ? data.learning_outcomes
-              : (Array.isArray(data.learningOutcomes)
-                ? data.learningOutcomes
-                : (data.learning_outcomes ? data.learning_outcomes.split('\n') : [])),
-            image: data.image || '/placeholder.jpg',
-            galleryImages: Array.isArray(data.gallery_images)
-              ? data.gallery_images
-              : (Array.isArray(data.galleryImages)
-                ? data.galleryImages
-                : [data.image || '/placeholder.jpg']),
-            isEcoFriendly: data.is_eco_friendly !== undefined ? data.is_eco_friendly : (data.isEcoFriendly !== undefined ? data.isEcoFriendly : true),
-            stockStatus: data.stock_status || data.stockStatus || 'in_stock',
-            videoUrl: data.video_url || data.videoUrl || '',
-          });
-        } else {
-          if (slug === 'basic-electronics-kit') {
-            setProduct(sampleProduct);
-          } else {
-            setProduct(null);
-          }
+        const data = res?.data;
+
+        // Do not fall back to invented sample products or prices. If the API
+        // does not return a product, the page says so honestly.
+        if (!data || cancelled) {
+          if (!cancelled) setProduct(null);
+          return;
         }
+
+        const gallery = asList(data.gallery_images || data.galleryImages);
+        const mainImage = data.image || gallery[0] || '/placeholder.jpg';
+
+        setProduct({
+          id: data.id || data._id || slug,
+          name: data.name || '',
+          slug: data.slug || slug || '',
+          category: data.category || null,
+          ageGroup: data.age_group || data.ageGroup || '',
+          price: Number(data.price) || 0,
+          bulkPrice: Number(data.bulk_price || data.bulkPrice) || 0,
+          minBulkQuantity:
+            Number(data.min_bulk_quantity || data.minBulkQuantity) || 0,
+          shortDescription:
+            data.short_description || data.shortDescription || '',
+          description: data.description || '',
+          features: asList(data.features),
+          learningOutcomes: asList(
+            data.learning_outcomes || data.learningOutcomes
+          ),
+          image: mainImage,
+          galleryImages: gallery.length ? gallery : [mainImage],
+          isEcoFriendly:
+            data.is_eco_friendly !== undefined
+              ? data.is_eco_friendly
+              : data.isEcoFriendly === true,
+          stockStatus: data.stock_status || data.stockStatus || '',
+          videoUrl: data.video_url || data.videoUrl || '',
+        });
       } catch (err) {
         console.error('Error fetching product:', err);
-        if (slug === 'basic-electronics-kit') {
-          setProduct(sampleProduct);
-        } else {
-          setProduct(null);
-        }
+        if (!cancelled) setProduct(null);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     };
-    if (slug) {
-      fetchProduct();
-    }
+
+    fetchProduct();
+    return () => {
+      cancelled = true;
+    };
   }, [slug]);
 
   useEffect(() => {
@@ -121,60 +120,132 @@ const ProductDetail = () => {
     }
   }, [product, activeImage]);
 
-  const relatedProducts = [
-    {
-      id: 2,
-      name: 'Arduino Learning Kit',
-      slug: 'arduino-learning-kit',
-      price: 3499,
-      image: '/placeholder.jpg',
-    },
-    {
-      id: 3,
-      name: 'Robotics Starter Kit',
-      slug: 'robotics-starter-kit',
-      price: 2999,
-      image: '/placeholder.jpg',
-    },
-  ];
-
   if (loading) {
     return <Loading />;
   }
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-brand-cream flex items-center justify-center px-4 py-20">
-        <div className="text-center">
-          <h1 className="text-2xl font-display font-bold text-brand-blue mb-4">Product Not Found</h1>
-          <p className="text-gray-600 mb-6 max-w-sm mx-auto">The product you are looking for does not exist or has been removed.</p>
-          <Link to="/products" className="btn-primary">Browse All Products</Link>
+      <>
+        <Helmet>
+          <title>Product Not Available | Builds Your Mind</title>
+          <meta name="robots" content="noindex,follow" />
+        </Helmet>
+        <div className="min-h-screen bg-brand-cream flex items-center justify-center px-4 py-20">
+          <div className="text-center max-w-lg">
+            <h1 className="text-2xl font-display font-bold text-brand-blue mb-4">
+              Product Not Available
+            </h1>
+            <p className="text-gray-600 mb-6">
+              This product is not in the current catalogue, or the catalogue is
+              temporarily unavailable. Our team can send you the current kit
+              list, prices and availability directly.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Link to="/products" className="btn-primary">
+                Browse All Products
+              </Link>
+              <Link to="/contact?type=quote" className="btn-secondary">
+                Request a Quote
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
+
+  const stock = normaliseStock(product.stockStatus);
+  const hasPrice = product.price > 0;
+  const hasBulkPrice =
+    product.bulkPrice > 0 && product.minBulkQuantity > 1;
+  const isEcoFriendly = product.isEcoFriendly === true;
+  const productPath = `/products/${product.slug || product.id}`;
+  const quotePath = `/contact?type=product&product=${encodeURIComponent(
+    product.name || 'Educational kit'
+  )}&qty=${quantity}`;
+
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description:
+      product.shortDescription ||
+      product.description ||
+      'Educational kit by Builds Your Mind.',
+    image: product.galleryImages.map((img) =>
+      String(img).startsWith('http') ? img : `${SITE_URL}${img}`
+    ),
+    brand: {
+      '@type': 'Brand',
+      name: 'Builds Your Mind',
+    },
+    category: product.category?.name || 'Educational Kit',
+    ...(product.slug ? { sku: product.slug } : {}),
+    ...(hasPrice
+      ? {
+          offers: {
+            '@type': 'Offer',
+            price: product.price,
+            priceCurrency: 'INR',
+            availability:
+              product.stockStatus === 'out_of_stock'
+                ? 'https://schema.org/OutOfStock'
+                : 'https://schema.org/InStock',
+            url: `${SITE_URL}${productPath}`,
+          },
+        }
+      : {}),
+  };
 
   return (
     <>
       <Helmet>
-        <title>{product.name} | Builds Your Mind - Eco-Friendly Educational Kits</title>
-        <meta name="description" content={product.shortDescription} />
+        <title>{`${product.name} | Builds Your Mind`}</title>
+        <meta
+          name="description"
+          content={
+            product.shortDescription ||
+            `${product.name} from Builds Your Mind. Ask for current kit contents, price, delivery and warranty terms.`
+          }
+        />
+        <script type="application/ld+json">
+          {JSON.stringify(productSchema)}
+        </script>
       </Helmet>
 
       <section className="pt-32 pb-20 bg-brand-cream">
         <div className="container-custom">
           {/* Breadcrumb */}
-          <nav className="mb-8">
-            <ol className="flex items-center gap-2 text-sm">
-              <li><Link to="/" className="text-gray-500 hover:text-brand-blue">Home</Link></li>
-              <li className="text-gray-500">/</li>
-              <li><Link to="/products" className="text-gray-500 hover:text-brand-blue">Products</Link></li>
-              <li className="text-gray-500">/</li>
+          <nav aria-label="Breadcrumb" className="mb-8">
+            <ol className="flex flex-wrap items-center gap-2 text-sm">
+              <li>
+                <Link to="/" className="text-gray-500 hover:text-brand-blue">
+                  Home
+                </Link>
+              </li>
+              <li className="text-gray-400" aria-hidden="true">
+                /
+              </li>
+              <li>
+                <Link
+                  to="/products"
+                  className="text-gray-500 hover:text-brand-blue"
+                >
+                  Products
+                </Link>
+              </li>
+              <li className="text-gray-400" aria-hidden="true">
+                /
+              </li>
               <li className="text-brand-blue font-medium">{product.name}</li>
             </ol>
           </nav>
 
-          <Link to="/products" className="inline-flex items-center gap-2 text-brand-blue hover:gap-3 transition-all mb-8">
+          <Link
+            to="/products"
+            className="inline-flex items-center gap-2 text-brand-blue hover:gap-3 transition-all mb-8"
+          >
             <FiArrowLeft />
             Back to Products
           </Link>
@@ -192,25 +263,42 @@ const ProductDetail = () => {
                   alt={product.name}
                   className="w-full h-full object-cover"
                 />
-                {product.isEcoFriendly && (
+                {isEcoFriendly && (
                   <span className="absolute top-4 right-4 flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-lg">
                     <FaGraduationCap className="text-brand-blue" />
-                    <span className="text-sm font-medium text-brand-blue">Eco-Friendly</span>
+                    <span className="text-sm font-medium text-brand-blue">
+                      Eco-Friendly
+                    </span>
                   </span>
                 )}
               </div>
-              <div className="flex gap-3">
-                {product.galleryImages.map((img, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveImage(index)}
-                    className={`w-20 h-20 rounded-xl overflow-hidden border-2 transition-colors ${activeImage === index ? 'border-brand-blue' : 'border-transparent'
+
+              {product.galleryImages.length > 1 && (
+                <div className="flex flex-wrap gap-3">
+                  {product.galleryImages.map((img, index) => (
+                    <button
+                      key={`${img}-${index}`}
+                      type="button"
+                      onClick={() => setActiveImage(index)}
+                      aria-label={`Show image ${index + 1} of ${product.name}`}
+                      aria-pressed={activeImage === index}
+                      className={`w-20 h-20 rounded-xl overflow-hidden border-2 transition-colors ${
+                        activeImage === index
+                          ? 'border-brand-blue'
+                          : 'border-transparent'
                       }`}
-                  >
-                    <img src={img} alt={`${product.name} - image ${index + 1}`} className="w-full h-full object-cover" />
-                  </button>
-                ))}
-              </div>
+                    >
+                      <img
+                        src={img}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
             </motion.div>
 
             {/* Product Info */}
@@ -219,70 +307,113 @@ const ProductDetail = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <span className="inline-block px-3 py-1 bg-blue-100/30 text-brand-blue text-sm font-medium rounded-full mb-4">
-                {product.category.name}
-              </span>
+              {product.category?.name && (
+                <span className="inline-block px-3 py-1 bg-blue-100/30 text-brand-blue text-sm font-medium rounded-full mb-4">
+                  {product.category.name}
+                </span>
+              )}
 
               <h1 className="text-3xl md:text-4xl font-display font-bold text-brand-blue mb-4">
                 {product.name}
               </h1>
 
-              <p className="text-gray-600 text-lg mb-6">
-                {product.shortDescription}
-              </p>
+              {product.shortDescription && (
+                <p className="text-gray-600 text-lg mb-6">
+                  {product.shortDescription}
+                </p>
+              )}
 
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
-                  Age: {product.ageGroup}
-                </span>
-                <span className={`text-sm px-3 py-1 rounded-full ${product.stockStatus === 'in_stock'
-                    ? 'bg-blue-100 text-brand-blue'
-                    : 'bg-red-100 text-red-700'
-                  }`}>
-                  {product.stockStatus === 'in_stock' ? 'In Stock' : 'Out of Stock'}
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                {product.ageGroup && (
+                  <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                    Age: {product.ageGroup}
+                  </span>
+                )}
+                <span className={`text-sm px-3 py-1 rounded-full ${stock.className}`}>
+                  {stock.label}
                 </span>
               </div>
 
               {/* Pricing */}
               <div className="bg-white rounded-2xl p-6 mb-6">
-                <div className="flex items-end gap-4 mb-4">
-                  <span className="text-4xl font-bold text-brand-blue">₹{product.price}</span>
-                  <span className="text-gray-500 mb-1">per unit</span>
+                <div className="flex flex-wrap items-end gap-3 mb-2">
+                  {hasPrice ? (
+                    <>
+                      <span className="text-4xl font-bold text-brand-blue">
+                        ₹{product.price}
+                      </span>
+                      <span className="text-gray-500 mb-1">per unit</span>
+                    </>
+                  ) : (
+                    <span className="text-2xl font-bold text-brand-blue">
+                      Price on request
+                    </span>
+                  )}
                 </div>
-                <div className="flex items-center gap-2 text-sm text-gray-600 bg-blue-100/20 px-4 py-2 rounded-lg">
-                  <span>Bulk Price: <strong className="text-brand-blue">₹{product.bulkPrice}</strong></span>
-                  <span>•</span>
-                  <span>Min. {product.minBulkQuantity} units</span>
-                </div>
+
+                {hasBulkPrice && (
+                  <div className="flex flex-wrap items-center gap-2 text-sm text-gray-600 bg-blue-100/20 px-4 py-2 rounded-lg">
+                    <span>
+                      Bulk price:{' '}
+                      <strong className="text-brand-blue">
+                        ₹{product.bulkPrice}
+                      </strong>
+                    </span>
+                    <span aria-hidden="true">•</span>
+                    <span>Minimum {product.minBulkQuantity} units</span>
+                  </div>
+                )}
+
+                {!hasPrice && (
+                  <p className="text-sm text-gray-500 mt-3">
+                    Send an enquiry and we will confirm the current price,
+                    availability and delivery timeline in writing.
+                  </p>
+                )}
               </div>
 
               {/* Quantity & CTA */}
-              <div className="flex items-center gap-4 mb-8">
-                <div className="flex items-center gap-3 bg-white rounded-full px-4 py-2">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
+                <div className="flex items-center justify-between sm:justify-start gap-3 bg-white rounded-full px-4 py-2">
                   <button
+                    type="button"
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    aria-label="Decrease quantity"
                     className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200"
                   >
                     <FiMinus />
                   </button>
-                  <span className="w-12 text-center font-semibold">{quantity}</span>
+                  <span className="w-12 text-center font-semibold" aria-live="polite">
+                    {quantity}
+                  </span>
                   <button
+                    type="button"
                     onClick={() => setQuantity(quantity + 1)}
+                    aria-label="Increase quantity"
                     className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200"
                   >
                     <FiPlus />
                   </button>
                 </div>
-                <Link to="/contact" className="btn-primary flex-1 text-center">
-                  Enquire Now
+                <Link
+                  to={quotePath}
+                  data-track="product_enquiry_click"
+                  className="btn-primary flex-1 text-center"
+                >
+                  Enquire for {quantity} {quantity === 1 ? 'unit' : 'units'}
                 </Link>
               </div>
 
               {/* WhatsApp */}
               <a
-                href={whatsappLink(`Hi, I'm interested in ${product.name}`)}
+                href={whatsappLink(
+                  `Hi, I'm interested in ${product.name}${
+                    quantity > 1 ? ` (quantity: ${quantity})` : ''
+                  }. Please share price, delivery and warranty details.`
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-track="whatsapp_click"
                 className="flex items-center justify-center gap-2 w-full py-3 bg-brand-orange-deep text-white rounded-full hover:bg-brand-orange-dark transition-colors font-semibold"
               >
                 <FaWhatsapp size={20} />
@@ -297,102 +428,172 @@ const ProductDetail = () => {
                 <FaGraduationCap size={20} className="text-brand-orange" />
                 Watch Video Tutorial
               </Link>
+
+              <p className="text-xs text-gray-500 mt-4">
+                Enquiry-based catalogue. We confirm price, delivery, warranty
+                and replacement terms in writing before payment.
+              </p>
             </motion.div>
           </div>
 
-          {/* Product Details Tabs */}
+          {/* Product Details */}
           <div className="mt-16 grid lg:grid-cols-3 gap-8">
             {/* Description */}
             <div className="lg:col-span-2">
               <div className="bg-white rounded-2xl p-8">
-                <h2 className="text-2xl font-display font-bold text-brand-blue mb-6">Description</h2>
-                <div className="prose prose-gray max-w-none">
-                  {product.description.split('\n\n').map((para, index) => (
-                    <p key={index} className="text-gray-600 mb-4">{para}</p>
-                  ))}
-                </div>
+                <h2 className="text-2xl font-display font-bold text-brand-blue mb-6">
+                  Description
+                </h2>
 
-                <h3 className="text-xl font-display font-semibold text-brand-blue mt-8 mb-4">Features</h3>
-                <ul className="space-y-3">
-                  {product.features.map((feature, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <FiCheck className="text-brand-blue mt-1 flex-shrink-0" />
-                      <span className="text-gray-600">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+                {product.description ? (
+                  <div className="prose prose-gray max-w-none">
+                    {String(product.description)
+                      .split('\n\n')
+                      .filter(Boolean)
+                      .map((para, index) => (
+                        <p key={index} className="text-gray-600 mb-4">
+                          {para}
+                        </p>
+                      ))}
+                  </div>
+                ) : (
+                  <p className="text-gray-600">
+                    Full kit contents and specifications are available on
+                    request. Ask us for the current product sheet.
+                  </p>
+                )}
 
-                <h3 className="text-xl font-display font-semibold text-brand-blue mt-8 mb-4">Learning Outcomes</h3>
-                <ul className="space-y-3">
-                  {product.learningOutcomes.map((outcome, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <FiCheck className="text-brand-blue mt-1 flex-shrink-0" />
-                      <span className="text-gray-600">{outcome}</span>
-                    </li>
-                  ))}
-                </ul>
+                {product.features.length > 0 && (
+                  <>
+                    <h3 className="text-xl font-display font-semibold text-brand-blue mt-8 mb-4">
+                      Features
+                    </h3>
+                    <ul className="space-y-3">
+                      {product.features.map((feature, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <FiCheck className="text-brand-blue mt-1 flex-shrink-0" />
+                          <span className="text-gray-600">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+
+                {product.learningOutcomes.length > 0 && (
+                  <>
+                    <h3 className="text-xl font-display font-semibold text-brand-blue mt-8 mb-4">
+                      Learning Outcomes
+                    </h3>
+                    <ul className="space-y-3">
+                      {product.learningOutcomes.map((outcome, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <FiCheck className="text-brand-blue mt-1 flex-shrink-0" />
+                          <span className="text-gray-600">{outcome}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
               </div>
             </div>
 
             {/* Sidebar */}
-            <div>
-              <div className="bg-white rounded-2xl p-6 mb-6">
-                <h3 className="font-display font-semibold text-lg text-brand-blue mb-4">Need Help?</h3>
+            <div className="space-y-6">
+              <div className="bg-white rounded-2xl p-6">
+                <h3 className="font-display font-semibold text-lg text-brand-blue mb-4">
+                  Need Help?
+                </h3>
                 <p className="text-gray-600 text-sm mb-4">
-                  Contact us for bulk orders, custom requirements, or any questions.
+                  Contact us for bulk orders, custom requirements, or any
+                  questions about this kit.
                 </p>
-                <Link to="/contact" className="btn-secondary w-full text-center text-sm">
-                  Contact Us
+                <Link
+                  to={quotePath}
+                  className="btn-secondary w-full text-center text-sm"
+                >
+                  Request a Quote
                 </Link>
               </div>
 
-              <div className="bg-blue-100/20 rounded-2xl p-6">
-                <h3 className="font-display font-semibold text-lg text-brand-blue mb-4">Eco-Friendly</h3>
-                <ul className="space-y-3 text-sm">
-                  <li className="flex items-center gap-2 text-gray-700">
-                    <FaGraduationCap className="text-brand-blue" />
-                    Recyclable materials
+              <div className="bg-white rounded-2xl p-6 border border-slate-200">
+                <h3 className="font-display font-semibold text-lg text-brand-blue mb-4">
+                  Warranty, Delivery &amp; Support
+                </h3>
+                <ul className="space-y-3 text-sm text-gray-600">
+                  <li className="flex items-start gap-2">
+                    <FiShield className="text-brand-orange mt-0.5 flex-shrink-0" />
+                    <span>
+                      Warranty and replacement terms are confirmed in your
+                      written quotation.
+                    </span>
                   </li>
-                  <li className="flex items-center gap-2 text-gray-700">
-                    <FaGraduationCap className="text-brand-blue" />
-                    Minimal plastic
+                  <li className="flex items-start gap-2">
+                    <FiTruck className="text-brand-orange mt-0.5 flex-shrink-0" />
+                    <span>
+                      Delivery timeline and charges depend on quantity and
+                      location; we confirm them before payment.
+                    </span>
                   </li>
-                  <li className="flex items-center gap-2 text-gray-700">
-                    <FaGraduationCap className="text-brand-blue" />
-                    Eco-friendly packaging
+                  <li className="flex items-start gap-2">
+                    <FiFileText className="text-brand-orange mt-0.5 flex-shrink-0" />
+                    <span>
+                      Read the{' '}
+                      <Link
+                        to="/terms"
+                        className="text-brand-blue underline"
+                      >
+                        Terms of Service
+                      </Link>{' '}
+                      for the full policy.
+                    </span>
                   </li>
                 </ul>
               </div>
+
+              {isEcoFriendly && (
+                <div className="bg-blue-100/20 rounded-2xl p-6">
+                  <h3 className="font-display font-semibold text-lg text-brand-blue mb-4">
+                    Eco-Friendly
+                  </h3>
+                  <ul className="space-y-3 text-sm">
+                    <li className="flex items-center gap-2 text-gray-700">
+                      <FaGraduationCap className="text-brand-blue" />
+                      Recyclable materials
+                    </li>
+                    <li className="flex items-center gap-2 text-gray-700">
+                      <FaGraduationCap className="text-brand-blue" />
+                      Minimal plastic
+                    </li>
+                    <li className="flex items-center gap-2 text-gray-700">
+                      <FaGraduationCap className="text-brand-blue" />
+                      Eco-friendly packaging
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
 
-          {/* Related Products */}
-          {relatedProducts.length > 0 && (
-            <div className="mt-16">
-              <h2 className="text-2xl font-display font-bold text-brand-blue mb-8">Related Products</h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {relatedProducts.map(item => (
-                  <Link
-                    key={item.id}
-                    to={`/products/${item.slug}`}
-                    className="card group overflow-hidden"
-                  >
-                    <div className="aspect-[4/3] overflow-hidden">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-display font-semibold text-brand-blue mb-2">{item.name}</h3>
-                      <span className="text-lg font-bold text-brand-blue">₹{item.price}</span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+          {/* No invented related products. Send visitors to the real catalogue. */}
+          <div className="mt-16 bg-white rounded-3xl border border-slate-200 p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+              <h2 className="text-2xl font-display font-bold text-brand-blue mb-2">
+                Looking for another kit?
+              </h2>
+              <p className="text-gray-600">
+                Browse the current catalogue or ask us to recommend kits for
+                your class group and budget.
+              </p>
             </div>
-          )}
+            <div className="flex flex-wrap gap-3">
+              <Link to="/products" className="btn-primary">
+                Browse All Products <FiArrowRight className="ml-2" />
+              </Link>
+              <Link to="/contact?type=quote" className="btn-secondary">
+                Request a Quote
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </>

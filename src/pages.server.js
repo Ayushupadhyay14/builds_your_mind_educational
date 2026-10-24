@@ -13,6 +13,8 @@ import OEMServices from './pages/OEMServices';
 import ODMServices from './pages/ODMServices';
 import DistributorProgram from './pages/DistributorProgram';
 import RetailerProgram from './pages/RetailerProgram';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 
@@ -20,5 +22,6 @@ import NotFound from './pages/NotFound';
 export const pages = {
   Home, About, Products, ProductDetail, CatalogVideo, WorkshopPage,
   ServicePage, CaseStudies, Blog, HomeTuition, ForSchools, OEMServices,
-  ODMServices, DistributorProgram, RetailerProgram, Contact, NotFound,
+  ODMServices, DistributorProgram, RetailerProgram, Privacy, Terms, Contact,
+  NotFound,
 };

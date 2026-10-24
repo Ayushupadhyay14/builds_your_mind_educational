@@ -5,6 +5,7 @@ import { FaGraduationCap, FaRecycle, FaChild, FaBox, FaCogs, FaAward, FaUsers, F
 import BrandPanel from '../components/BrandPanel';
 import { FiCheck, FiArrowRight } from 'react-icons/fi';
 import { ParallaxLayer } from '../components/Parallax';
+import { siteFacts, credibilityPoints } from '../data/siteFacts';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -48,13 +49,6 @@ const About = () => {
     { icon: FaCogs, title: 'Long-life Components', desc: 'Durable educational components built to last' },
   ];
 
-  const stats = [
-    { number: '500+', label: 'Schools Partner' },
-    { number: '50+', label: 'Product Range' },
-    { number: '100K+', label: 'Students Reached' },
-    { number: '10+', label: 'Years Experience' },
-  ];
-
   return (
     <>
       <Helmet>
@@ -81,7 +75,7 @@ const About = () => {
               About <span className="text-brand-orange">Builds Your Mind</span>
             </motion.h1>
             <motion.p variants={fadeInUp} className="text-lg md:text-xl text-blue-100/90">
-              Purpose-driven educational kits that inspire learning while protecting our planet.
+              Hands-on STEM programmes, workshops and educational kits for schools and colleges — by Harmono Pvt. Ltd.
             </motion.p>
           </motion.div>
         </div>
@@ -122,8 +116,9 @@ const About = () => {
                 Who We Are
               </motion.h2>
               <motion.p variants={fadeInUp} className="text-gray-600 mb-6 text-lg">
-                Builds Your Mind is a purpose-driven educational kit brand focused on creating 
-                eco-friendly, engaging and practical learning solutions for students and learners of all ages.
+                Builds Your Mind is the education brand of Harmono Pvt. Ltd.,
+                focused on practical STEM learning for schools, colleges and
+                learners of all ages.
               </motion.p>
               <motion.p variants={fadeInUp} className="text-gray-600 mb-6">
                 All products are designed, manufactured and quality-tested by our parent company 
@@ -137,6 +132,60 @@ const About = () => {
               </motion.p>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision */}
+      <section className="py-20 bg-white">
+        <div className="container-custom">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid gap-6 lg:grid-cols-3"
+          >
+            <motion.div variants={fadeInUp} className="card p-8 border-t-4 border-brand-blue">
+              <span className="inline-block px-3 py-1 bg-blue-50 text-brand-blue text-xs font-bold uppercase tracking-wider rounded-full mb-4">
+                Our Mission
+              </span>
+              <h2 className="font-display font-bold text-2xl text-brand-blue mb-3">
+                Make practical STEM learning ordinary
+              </h2>
+              <p className="text-gray-600 leading-relaxed">
+                Every session should leave students with something they built,
+                tested and can explain — not just something they watched.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="card p-8 border-t-4 border-brand-orange">
+              <span className="inline-block px-3 py-1 bg-orange-50 text-brand-orange-dark text-xs font-bold uppercase tracking-wider rounded-full mb-4">
+                Our Vision
+              </span>
+              <h2 className="font-display font-bold text-2xl text-brand-blue mb-3">
+                Institutions that can run it themselves
+              </h2>
+              <p className="text-gray-600 leading-relaxed">
+                A classroom where science and technology are learned by doing,
+                and where every institution can run hands-on sessions with its
+                own teachers.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="card p-8 border-t-4 border-slate-300">
+              <span className="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider rounded-full mb-4">
+                How We Work
+              </span>
+              <ul className="space-y-3">
+                {credibilityPoints.map((point) => (
+                  <li key={point} className="flex items-start gap-2 text-sm text-gray-600">
+                    <FiCheck className="text-brand-orange flex-shrink-0 mt-0.5" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -173,9 +222,9 @@ const About = () => {
       <section className="overflow-hidden py-20 bg-brand-blue">
         <div className="container-custom">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
+            {siteFacts.map((fact, index) => (
               <motion.div
-                key={index}
+                key={fact.label}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -183,9 +232,10 @@ const About = () => {
                 className="text-center"
               >
                 <div className="text-4xl md:text-5xl font-display font-bold text-brand-orange mb-2">
-                  {stat.number}
+                  {fact.value}
                 </div>
-                <div className="text-blue-100/80">{stat.label}</div>
+                <div className="text-blue-100/80 font-semibold">{fact.label}</div>
+                <div className="text-blue-200/60 text-xs mt-1">{fact.detail}</div>
               </motion.div>
             ))}
           </div>
@@ -359,6 +409,22 @@ const About = () => {
               For institutional enquiries, a programme advisor is your point of
               contact from the first conversation through to the session itself.
             </motion.p>
+            <motion.div
+              variants={fadeInUp}
+              className="grid sm:grid-cols-2 gap-3 mt-8 text-left"
+            >
+              {[
+                { role: 'Programme advisors', detail: 'Plan the session or programme with your institution.' },
+                { role: 'STEM trainers', detail: 'Run the hands-on sessions on campus.' },
+                { role: 'Curriculum & content', detail: 'Match activities to the class group and time available.' },
+                { role: 'Design, manufacturing & quality', detail: 'Provided by Harmono Pvt. Ltd. for kits and equipment.' },
+              ].map((item) => (
+                <div key={item.role} className="bg-white rounded-xl p-4 border border-slate-200">
+                  <p className="font-semibold text-brand-blue text-sm">{item.role}</p>
+                  <p className="text-gray-600 text-sm mt-1">{item.detail}</p>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -380,16 +446,18 @@ const About = () => {
                 Harmono Pvt. Ltd.
               </motion.h2>
               <motion.p variants={fadeInUp} className="text-gray-600 mb-6 text-lg">
-                Builds Your Mind is proudly manufactured by Harmono Pvt. Ltd., a leading company 
-                in educational product manufacturing with years of experience in quality production.
+                Builds Your Mind kits are designed, manufactured and
+                quality-tested by our parent company, Harmono Pvt. Ltd. The same
+                team supports the education programmes with product sourcing,
+                customisation and quality checks.
               </motion.p>
               <motion.ul variants={fadeInUp} className="space-y-4 mb-8">
                 {[
-                  'State-of-the-art manufacturing facility',
-                  'Rigorous quality control processes',
-                  'Experienced R&D team',
-                  'ISO certified production',
-                  'Pan-India distribution network'
+                  'Kit design and manufacturing by Harmono Pvt. Ltd.',
+                  'Quality checks before dispatch',
+                  'Product customisation for institutional requirements',
+                  'Support for OEM and ODM enquiries',
+                  'Distributor and retailer programme',
                 ].map((item, index) => (
                   <li key={index} className="flex items-center gap-3">
                     <FiCheck className="text-brand-blue flex-shrink-0" />

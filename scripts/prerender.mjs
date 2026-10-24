@@ -9,7 +9,9 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
-const serverEntry = path.join(root, 'dist-server', 'entry-server.mjs');
+const serverEntryMjs = path.join(root, 'dist-server', 'entry-server.mjs');
+const serverEntryJs = path.join(root, 'dist-server', 'entry-server.js');
+const serverEntry = fs.existsSync(serverEntryMjs) ? serverEntryMjs : serverEntryJs;
 
 const { render, prerenderPaths } = await import(pathToFileURL(serverEntry).href);
 

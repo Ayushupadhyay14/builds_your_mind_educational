@@ -127,37 +127,37 @@ const Navbar = () => {
   return (
     <nav
       ref={navRef}
-      className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-blue-100 shadow-sm"
+      className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-[0_4px_24px_-4px_rgba(30,58,138,0.06)] transition-all duration-300"
     >
       <div className="container-custom">
         <div className="flex items-center justify-between gap-4 h-20">
-          {/* Logo: mark + name, one link back to the home page.
-              A same-page click is still a navigation, so the layout's
-              scroll handling returns to the top. */}
+          {/* Logo: mark + name */}
           <Link
             to="/"
             aria-label="Builds Your Mind, go to home page"
-            className="flex items-center gap-3 flex-shrink-0"
+            className="flex items-center gap-3 flex-shrink-0 group"
           >
-            <img
-              src="/logo-mark.png"
-              alt=""
-              width="39"
-              height="48"
-              className="h-12 w-auto"
-            />
+            <div className="relative">
+              <img
+                src="/logo-mark.png"
+                alt=""
+                width="39"
+                height="48"
+                className="h-12 w-auto transition-transform group-hover:scale-105 duration-300"
+              />
+            </div>
             <span className="flex flex-col justify-center leading-tight">
-              <span className="font-body font-bold text-xl text-brand-blue whitespace-nowrap">
+              <span className="font-display font-bold text-xl text-brand-blue whitespace-nowrap tracking-tight group-hover:text-primary-600 transition-colors">
                 Builds Your Mind
               </span>
-              <span className="text-sm text-brand-gray-light whitespace-nowrap">
+              <span className="text-xs text-slate-500 whitespace-nowrap font-medium">
                 by Harmono Pvt. Ltd.
               </span>
             </span>
           </Link>
 
           {/* Desktop pill menu */}
-          <div className="hidden xl:flex items-center gap-1 p-1 bg-blue-50 rounded-full">
+          <div className="hidden lg:flex items-center gap-1 p-1 bg-slate-100/80 backdrop-blur-md rounded-full border border-slate-200/50 shadow-inner">
             {navLinks.map((link) =>
               link.children ? (
                 <div
@@ -170,42 +170,56 @@ const Navbar = () => {
                     type="button"
                     aria-haspopup="true"
                     aria-expanded={openMenu === link.name}
-                    onClick={() => setOpenMenu(link.name)}
+                    onClick={() => setOpenMenu(openMenu === link.name ? null : link.name)}
                     className={`${pill} ${
-                      isChildActive(link.children) ? pillActive : pillIdle
+                      isChildActive(link.children)
+                        ? "bg-brand-blue text-white shadow-md shadow-brand-blue/20"
+                        : "text-slate-700 hover:text-brand-blue hover:bg-white/80"
                     }`}
                   >
                     {link.name}
                     <Icon
                       name="chevron"
                       size={14}
-                      className={`transition-transform ${openMenu === link.name ? "rotate-180" : ""}`}
+                      className={`transition-transform duration-200 ${openMenu === link.name ? "rotate-180" : ""}`}
                     />
                   </button>
-                  {openMenu === link.name && (
-                    <div
-                      className={`absolute top-full pt-2 z-50 ${
-                        link.name === "More" ? "right-0" : "left-0"
-                      }`}
-                    >
-                      <div className="bg-white rounded-2xl shadow-xl border border-blue-100 p-2 min-w-[260px]">
-                        {link.children.map((child) => (
-                          <Link
-                            key={child.path}
-                            to={child.path}
-                            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
-                              location.pathname === child.path
-                                ? "bg-brand-blue text-white"
-                                : "text-brand-gray hover:bg-blue-50 hover:text-brand-blue"
-                            }`}
-                          >
-                            <Icon name={child.icon} size={18} />
-                            {child.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  <AnimatePresence>
+                    {openMenu === link.name && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 6, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 4, scale: 0.98 }}
+                        transition={{ duration: 0.18 }}
+                        className={`absolute top-full pt-2 z-50 ${
+                          link.name === "More" ? "right-0" : "left-0"
+                        }`}
+                      >
+                        <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(30,58,138,0.12)] border border-slate-100 p-2.5 min-w-[270px]">
+                          {link.children.map((child) => (
+                            <Link
+                              key={child.path}
+                              to={child.path}
+                              className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                                location.pathname === child.path
+                                  ? "bg-gradient-to-r from-brand-blue to-primary-700 text-white shadow-sm"
+                                  : "text-slate-700 hover:bg-blue-50/70 hover:text-brand-blue"
+                              }`}
+                            >
+                              <span className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                                location.pathname === child.path
+                                  ? "bg-white/20 text-white"
+                                  : "bg-slate-100 text-slate-500 group-hover:bg-blue-100"
+                              }`}>
+                                <Icon name={child.icon} size={16} />
+                              </span>
+                              {child.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               ) : (
                 <Link
@@ -213,7 +227,9 @@ const Navbar = () => {
                   to={link.path}
                   aria-current={location.pathname === link.path ? "page" : undefined}
                   className={`${pill} ${
-                    location.pathname === link.path ? pillActive : pillIdle
+                    location.pathname === link.path
+                      ? "bg-brand-blue text-white shadow-md shadow-brand-blue/20"
+                      : "text-slate-700 hover:text-brand-blue hover:bg-white/80"
                   }`}
                 >
                   {link.name}
@@ -223,16 +239,18 @@ const Navbar = () => {
           </div>
 
           {/* Phone box + CTA */}
-          <div className="hidden xl:flex items-center gap-3 flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
             <a
               href={PHONE_HREF}
-              className="flex items-center gap-2 px-4 py-2 border-2 border-blue-100 rounded-xl text-brand-blue font-semibold text-sm hover:border-brand-blue transition-colors"
+              className="flex items-center gap-2 px-3.5 py-2 border border-slate-200 rounded-full text-slate-700 font-semibold text-xs hover:border-brand-blue hover:text-brand-blue transition-all"
             >
-              <Icon name="phone" size={16} className="text-brand-orange" />
+              <span className="w-6 h-6 rounded-full bg-orange-50 flex items-center justify-center">
+                <Icon name="phone" size={12} className="text-brand-orange" />
+              </span>
               {PHONE_DISPLAY}
             </a>
-            <Link to="/contact" className="btn-primary text-sm !px-5 !py-2.5">
-              Book a Workshop
+            <Link to="/contact?type=meeting" className="btn-primary text-xs !px-5 !py-2.5 font-bold shadow-md shadow-orange-500/20">
+              Book a School Meeting
             </Link>
           </div>
 
@@ -242,9 +260,9 @@ const Navbar = () => {
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
-            className="xl:hidden flex items-center justify-center h-11 w-11 rounded-full bg-blue-50 text-brand-blue hover:bg-blue-100 transition-colors"
+            className="lg:hidden flex items-center justify-center h-11 w-11 rounded-2xl bg-slate-100 text-brand-blue hover:bg-blue-50 transition-colors"
           >
-            <Icon name={isOpen ? "close" : "menu"} size={24} />
+            <Icon name={isOpen ? "close" : "menu"} size={22} />
           </button>
         </div>
       </div>
@@ -256,7 +274,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="xl:hidden bg-white border-t border-blue-100 max-h-[calc(100vh-5rem)] overflow-y-auto"
+            className="lg:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 max-h-[calc(100vh-5rem)] overflow-y-auto shadow-2xl"
           >
             <div className="container-custom py-4 space-y-1">
               {navLinks.map((link) =>
@@ -328,8 +346,8 @@ const Navbar = () => {
                   <Icon name="phone" size={18} className="text-brand-orange" />
                   {PHONE_DISPLAY}
                 </a>
-                <Link to="/contact" className="btn-primary w-full text-center">
-                  Book a Workshop
+                <Link to="/contact?type=meeting" className="btn-primary w-full text-center">
+                  Book a School Meeting
                 </Link>
               </div>
             </div>

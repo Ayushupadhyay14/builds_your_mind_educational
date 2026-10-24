@@ -4,9 +4,19 @@ import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { captureUtm } from '../utils/utm';
-import { PHONE_E164 } from '../config/contact';
-
-const SITE_URL = 'https://buildsyourmind.in';
+import { initAnalytics, trackEvent, trackPageView } from '../utils/analytics';
+import {
+  PHONE_E164,
+  EMAIL,
+  LINKEDIN_URL,
+  INSTAGRAM_URL,
+} from '../config/contact';
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_LEGAL_NAME,
+  SERVED_CITIES,
+} from '../config/site';
 
 // Site-wide Organisation / Local Business schema (Technical Checklist #18).
 // Only verified facts: the brand, its legal name, the one official
@@ -15,11 +25,11 @@ const SITE_URL = 'https://buildsyourmind.in';
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': ['EducationalOrganization', 'LocalBusiness'],
-  name: 'Builds Your Mind',
-  legalName: 'Harmono Pvt. Ltd.',
+  name: SITE_NAME,
+  legalName: SITE_LEGAL_NAME,
   url: `${SITE_URL}/`,
   logo: `${SITE_URL}/logo.jpg`,
-  email: 'buildsyourmind@gmail.com',
+  email: EMAIL,
   telephone: PHONE_E164,
   address: {
     '@type': 'PostalAddress',
@@ -27,11 +37,12 @@ const organizationSchema = {
     addressRegion: 'Madhya Pradesh',
     addressCountry: 'IN',
   },
-  areaServed: ['Indore', 'Dewas', 'Ujjain', 'Dhar'],
+  areaServed: SERVED_CITIES,
+  sameAs: [LINKEDIN_URL, INSTAGRAM_URL],
   contactPoint: {
     '@type': 'ContactPoint',
     telephone: PHONE_E164,
-    email: 'buildsyourmind@gmail.com',
+    email: EMAIL,
     contactType: 'customer support',
   },
 };
@@ -39,6 +50,63 @@ const organizationSchema = {
 const Layout = ({ children }) => {
   const { pathname, search, hash, key } = useLocation();
   useEffect(() => { captureUtm(); }, [search]);
+
+  // Analytics is optional: it only loads a script when VITE_GA_MEASUREMENT_ID
+  // is configured, and it always pushes a generic event to window.dataLayer.
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+
+  useEffect(() => {
+    trackPageView(pathname);
+  }, [pathname]);
+
+  // One delegated listener covers every phone, WhatsApp, email and explicit
+  // data-track action on the site. No form contents are ever sent.
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+
+    const handleClick = (event) => {
+      const target = event.target.closest('a, button, [data-track]');
+      if (!target) return;
+
+      const pagePath = window.location.pathname;
+      const explicit = target.getAttribute('data-track');
+
+      if (explicit) {
+        trackEvent(explicit, {
+          page_path: pagePath,
+          link_text: (target.textContent || '').trim().slice(0, 80),
+        });
+        return;
+      }
+
+      const href = target.getAttribute('href') || '';
+      if (href.startsWith('tel:')) {
+        trackEvent('phone_click', { page_path: pagePath });
+      } else if (href.includes('wa.me')) {
+        trackEvent('whatsapp_click', { page_path: pagePath });
+      } else if (href.startsWith('mailto:')) {
+        trackEvent('email_click', { page_path: pagePath });
+      }
+    };
+
+    const handleSubmit = (event) => {
+      const form = event.target.closest('form');
+      if (!form) return;
+      trackEvent('form_submit', {
+        page_path: window.location.pathname,
+        form_id: form.id || 'unnamed',
+      });
+    };
+
+    document.addEventListener('click', handleClick);
+    document.addEventListener('submit', handleSubmit, true);
+    return () => {
+      document.removeEventListener('click', handleClick);
+      document.removeEventListener('submit', handleSubmit, true);
+    };
+  }, []);
 
   // The router owns scrolling now, so stop the browser from restoring an old
   // scroll position on back/forward and fighting the effect below.

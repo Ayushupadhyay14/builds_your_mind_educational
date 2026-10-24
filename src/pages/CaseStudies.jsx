@@ -106,12 +106,12 @@ const CaseStudies = () => {
               <Link to="/contact" className="btn-primary">
                 {caseStudyButton} <FiArrowRight className="ml-2" />
               </Link>
-              <a
-                href="/stem-workshops-schools-indore"
+              <Link
+                to="/stem-workshops-schools-indore"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-all"
               >
                 See Our Workshops
-              </a>
+              </Link>
             </motion.div>
           </motion.div>
         </div>

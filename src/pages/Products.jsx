@@ -9,9 +9,9 @@ import {
   FiShoppingCart,
   FiArrowRight,
 } from "react-icons/fi";
-import { FaGraduationCap } from "react-icons/fa";
+import { FaGraduationCap, FaWhatsapp } from "react-icons/fa";
 import { getProducts, getCategories } from "../services/api";
-import toast from "react-hot-toast";
+import { WHATSAPP_HREF } from "../config/contact";
 import { ParallaxLayer } from '../components/Parallax';
 
 const fadeInUp = {
@@ -31,6 +31,7 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,15 +41,22 @@ const Products = () => {
           getCategories(),
         ]);
 
-        // ✅ correct arrays
-        setProducts(productsRes.data.results || []);
+        const productList = Array.isArray(productsRes.data)
+          ? productsRes.data
+          : productsRes.data?.results || [];
+        const categoryList = Array.isArray(categoriesRes.data)
+          ? categoriesRes.data
+          : categoriesRes.data?.results || [];
+
+        setProducts(productList);
         setCategories([
           { id: "all", name: "All Products", slug: "all" },
-          ...(categoriesRes.data.results || []),
+          ...categoryList,
         ]);
       } catch (error) {
         console.error("Error:", error);
-        toast.error("Failed to load products");
+        setLoadError(true);
+        setCategories([{ id: "all", name: "All Products", slug: "all" }]);
       } finally {
         setLoading(false);
       }
@@ -68,11 +76,11 @@ const Products = () => {
 
   // Filter products
   const filteredProducts = products.filter((product) => {
-    const matchesSearch =
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.short_description
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
+    const name = (product.name || "").toLowerCase();
+    const shortDescription = (product.short_description || "").toLowerCase();
+    const query = searchQuery.toLowerCase();
+
+    const matchesSearch = name.includes(query) || shortDescription.includes(query);
 
     // Category matching - backend se category object aata hai
     const matchesCategory =
@@ -92,22 +100,11 @@ const Products = () => {
     }
   }, [searchParams]);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-blue mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading products...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
       <Helmet>
         <title>
-          Educational Kits | Builds Your Mind - STEM, DIY Science, Electronics
+          Educational Kits for Schools | Builds Your Mind
         </title>
         <meta
           name="description"
@@ -249,11 +246,11 @@ const Products = () => {
                         <button
                           key={cat.id}
                           onClick={() => {
-                            setSelectedCategory(cat.id);
+                            setSelectedCategory(cat.slug || cat.id);
                             setShowFilters(false);
                           }}
                           className={`w-full text-left px-4 py-2 rounded-lg transition-colors ${
-                            selectedCategory === cat.id
+                            selectedCategory === (cat.slug || cat.id)
                               ? "bg-blue-100/30 text-brand-blue font-medium"
                               : "text-gray-600 hover:bg-gray-100"
                           }`}
@@ -297,29 +294,83 @@ const Products = () => {
               {/* Results Info */}
               <div className="flex items-center justify-between mb-6">
                 <p className="text-gray-600">
-                  Showing{" "}
-                  <span className="font-semibold text-brand-blue">
-                    {filteredProducts.length}
-                  </span>{" "}
-                  products
+                  {loading ? (
+                    "Loading the catalogue…"
+                  ) : (
+                    <>
+                      Showing{" "}
+                      <span className="font-semibold text-brand-blue">
+                        {filteredProducts.length}
+                      </span>{" "}
+                      products
+                    </>
+                  )}
                 </p>
               </div>
 
-              {filteredProducts.length === 0 ? (
-                <div className="text-center py-16">
-                  <p className="text-gray-500 text-lg">
-                    No products found matching your criteria.
+              {loading ? (
+                <div
+                  className="grid sm:grid-cols-2 xl:grid-cols-3 gap-8"
+                  aria-label="Loading products"
+                >
+                  {Array.from({ length: 6 }).map((_, index) => (
+                    <div
+                      key={index}
+                      className="card overflow-hidden animate-pulse"
+                    >
+                      <div className="aspect-[4/3] bg-slate-200" />
+                      <div className="p-5 space-y-3">
+                        <div className="h-4 bg-slate-200 rounded w-1/3" />
+                        <div className="h-5 bg-slate-200 rounded w-2/3" />
+                        <div className="h-4 bg-slate-200 rounded w-full" />
+                        <div className="h-4 bg-slate-200 rounded w-1/2" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : filteredProducts.length === 0 ? (
+                <div className="text-center py-16 bg-white rounded-2xl border border-slate-200 px-6">
+                  <p className="text-gray-800 text-lg font-semibold mb-2">
+                    {loadError
+                      ? "Our product catalogue is temporarily unavailable."
+                      : "No products match your filters."}
                   </p>
-                  <button
-                    onClick={() => {
-                      setSearchQuery("");
-                      setSelectedCategory("all");
-                      setSelectedAge("all");
-                    }}
-                    className="mt-4 min-h-[44px] text-brand-blue font-medium hover:underline"
-                  >
-                    Clear all filters
-                  </button>
+                  <p className="text-gray-500 mb-6 max-w-md mx-auto">
+                    {loadError
+                      ? "You can still request the current catalogue and a quote — our team will send it to you directly."
+                      : "Clear the filters, or request our current catalogue and a quote."}
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-3">
+                    {!loadError && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSearchQuery("");
+                          setSelectedCategory("all");
+                          setSelectedAge("all");
+                        }}
+                        className="btn-secondary"
+                      >
+                        Clear all filters
+                      </button>
+                    )}
+                    <Link
+                      to="/contact?type=quote"
+                      data-track="request_quote_click"
+                      className="btn-primary"
+                    >
+                      Request Catalogue &amp; Quote <FiArrowRight className="ml-2" />
+                    </Link>
+                    <a
+                      href={WHATSAPP_HREF}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-track="whatsapp_click"
+                      className="inline-flex items-center justify-center gap-2 min-h-[44px] px-5 py-3 rounded-full border-2 border-emerald-200 text-emerald-700 font-semibold hover:bg-emerald-50 transition-colors"
+                    >
+                      <FaWhatsapp /> WhatsApp
+                    </a>
+                  </div>
                 </div>
               ) : (
                 <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -336,7 +387,9 @@ const Products = () => {
                       <div className="relative h-56 w-full overflow-hidden">
                         <img
                           src={product.image || "/placeholder.jpg"}
-                          alt={product.name}
+                          alt={product.name || "Educational kit"}
+                          loading="lazy"
+                          decoding="async"
                           className="w-full h-full object-cover"
                         />
 
@@ -353,32 +406,43 @@ const Products = () => {
 
                       {/* CONTENT */}
                       <div className="p-5">
-                        <div className="flex items-center gap-2 mb-2">
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
                           <span className="text-sm bg-blue-100/40 text-brand-blue px-2 py-1 rounded">
                             {product.category?.name || "Product"}
                           </span>
-                          <span className="text-sm text-gray-500">
-                            {
-                              ageGroups.find((a) => a.id === product.age_group)
-                                ?.name
-                            }
-                          </span>
+                          {ageGroups.find((a) => a.id === product.age_group)
+                            ?.name && (
+                            <span className="text-sm text-gray-500">
+                              {
+                                ageGroups.find(
+                                  (a) => a.id === product.age_group
+                                )?.name
+                              }
+                            </span>
+                          )}
                         </div>
 
                         <h3 className="font-display font-semibold text-lg text-brand-blue mb-1">
-                          {product.name}
+                          {product.name || "Educational Kit"}
                         </h3>
 
                         <p className="text-gray-600 text-sm line-clamp-2 mb-4">
-                          {product.short_description}
+                          {product.short_description ||
+                            "Ask us for the current kit contents, age group and specifications."}
                         </p>
 
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between gap-3">
                           <div>
-                            <span className="text-xl font-bold text-brand-blue">
-                              ₹{product.price}
-                            </span>
-                            {product.bulk_price && (
+                            {Number(product.price) > 0 ? (
+                              <span className="text-xl font-bold text-brand-blue">
+                                ₹{product.price}
+                              </span>
+                            ) : (
+                              <span className="text-base font-semibold text-brand-blue">
+                                Price on request
+                              </span>
+                            )}
+                            {Number(product.bulk_price) > 0 && (
                               <span className="text-sm text-gray-500 ml-2">
                                 Bulk: ₹{product.bulk_price}
                               </span>
@@ -386,12 +450,23 @@ const Products = () => {
                           </div>
 
                           <Link
-                            to={`/products/${product.slug}`}
+                            to={`/products/${product.slug || product.id}`}
+                            aria-label={`View ${product.name || "product"}`}
                             className="w-10 h-10 rounded-full bg-blue-100/40 flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition"
                           >
                             <FiArrowRight />
                           </Link>
                         </div>
+
+                        <Link
+                          to={`/contact?type=product&product=${encodeURIComponent(
+                            product.name || "Educational kit"
+                          )}`}
+                          data-track="product_quote_click"
+                          className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-orange hover:gap-2 transition-all"
+                        >
+                          Request a Quote <FiArrowRight />
+                        </Link>
                       </div>
                     </motion.div>
                   ))}

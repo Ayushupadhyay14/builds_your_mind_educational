@@ -2,16 +2,21 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import {
   FaGraduationCap,
-  FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
-  FaYoutube,
-  FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa";
 import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
 import { subscribeNewsletter } from "../services/api";
-import { PHONE_DISPLAY, PHONE_HREF, WHATSAPP_HREF } from "../config/contact";
+import {
+  PHONE_DISPLAY,
+  PHONE_HREF,
+  WHATSAPP_HREF,
+  EMAIL,
+  EMAIL_HREF,
+  ADDRESS_DISPLAY,
+  SOCIAL_PROFILES,
+} from "../config/contact";
 import toast from "react-hot-toast";
 
 const Footer = () => {
@@ -34,17 +39,23 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-brand-blue text-white">
+    <footer className="bg-slate-950 text-white relative overflow-hidden">
+      {/* Subtle background tech circuit */}
+      <div aria-hidden="true" className="absolute inset-0 circuit-pattern opacity-10 pointer-events-none" />
+
       {/* Newsletter */}
-      <div className="border-b border-white/10">
+      <div className="border-b border-white/10 relative z-10">
         <div className="container-custom py-12">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="glass-card bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 flex flex-col lg:flex-row items-center justify-between gap-8">
             <div>
-              <h3 className="text-2xl font-body font-bold mb-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-xs font-bold text-amber-300 uppercase tracking-wider mb-2">
+                Stay Ahead in STEM
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-display font-bold text-white mb-2">
                 Subscribe to Our Newsletter
               </h3>
-              <p className="text-blue-200/80">
-                Get updates on new products, workshops and STEM programmes.
+              <p className="text-slate-400 text-sm max-w-md">
+                Get updates on new robotics products, AI workshops and STEM school curriculum in Madhya Pradesh.
               </p>
             </div>
             <form onSubmit={handleNewsletter} className="flex w-full max-w-md">
@@ -52,16 +63,17 @@ const Footer = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="flex-1 px-5 py-3 rounded-l-full bg-white/10 border border-white/20 text-white placeholder:text-white/70 focus:outline-none focus:border-brand-orange min-w-0"
+                placeholder="Enter your institutional email"
+                className="flex-1 px-5 py-3.5 rounded-l-full bg-white/10 border border-white/20 text-white placeholder:text-slate-400 focus:outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 min-w-0 text-sm"
                 required
               />
               <button
                 type="submit"
                 disabled={loading}
-                className="px-6 py-3 bg-brand-orange-deep text-white font-semibold rounded-r-full hover:bg-brand-orange-dark transition-colors disabled:opacity-50 flex-shrink-0"
+                aria-label="Subscribe"
+                className="px-7 py-3.5 bg-gradient-to-r from-brand-orange-deep to-brand-orange text-white font-bold rounded-r-full hover:shadow-lg hover:shadow-orange-500/25 transition-all disabled:opacity-50 flex items-center justify-center flex-shrink-0"
               >
-                {loading ? "..." : <FiSend size={20} />}
+                {loading ? "..." : <FiSend size={18} />}
               </button>
             </form>
           </div>
@@ -69,67 +81,69 @@ const Footer = () => {
       </div>
 
       {/* Main Footer */}
-      <div className="container-custom py-16">
+      <div className="container-custom py-16 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-2">
             <Link
               to="/"
               aria-label="Builds Your Mind, go to home page"
-              className="flex items-center gap-3 mb-6"
+              className="flex items-center gap-3 mb-6 group"
             >
-              <span className="flex items-center justify-center h-14 w-14 rounded-full bg-white flex-shrink-0">
+              <span className="flex items-center justify-center h-14 w-14 rounded-2xl bg-white shadow-md flex-shrink-0 group-hover:scale-105 transition-transform">
                 <img src="/logo-mark.png" alt="" width="32" height="38" className="h-9 w-auto" />
               </span>
               <span className="flex flex-col justify-center leading-tight">
-                <span className="font-display font-bold text-2xl">Builds Your Mind</span>
-                <span className="text-sm text-blue-200/80">by Harmono Pvt. Ltd.</span>
+                <span className="font-display font-bold text-2xl tracking-tight text-white group-hover:text-amber-400 transition-colors">
+                  Builds Your Mind
+                </span>
+                <span className="text-xs text-slate-400">by Harmono Pvt. Ltd.</span>
               </span>
             </Link>
-            <p className="text-blue-200/80 mb-6 max-w-sm">
-              STEM education for schools and colleges — hands-on robotics, AI,
-              coding and IoT workshops, and STEM lab setup.
+            <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-sm">
+              Hands-on STEM innovation partner in Indore for schools, colleges and universities — Robotics, AI, IoT, and DIY Science Kits.
             </p>
             <div className="flex flex-wrap gap-3">
-              {[
-                FaFacebookF,
-                FaInstagram,
-                FaLinkedinIn,
-                FaYoutube,
-                FaTwitter,
-              ].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-orange transition-all"
-                >
-                  <Icon size={18} />
-                </a>
-              ))}
+              {SOCIAL_PROFILES.map(({ label, href }) => {
+                const Icon = label === "LinkedIn" ? FaLinkedinIn : FaInstagram;
+                return (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Builds Your Mind on ${label}`}
+                    className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange hover:scale-110 transition-all text-white"
+                  >
+                    <Icon size={16} />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-body font-semibold text-lg mb-6">
+            <h4 className="font-display font-bold text-base text-white tracking-wide uppercase mb-6 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
               Quick Links
             </h4>
-            <ul className="space-y-0">
+            <ul className="space-y-2.5 text-sm">
               {[
                 { name: "Home", path: "/" },
                 { name: "Products", path: "/products" },
                 { name: "STEM Workshops", path: "/stem-workshops-schools-indore" },
                 { name: "About Us", path: "/about" },
                 {
-                  name: "STEM Education in Madhya Pradesh",
+                  name: "STEM in Madhya Pradesh",
                   path: "/stem-education-madhya-pradesh",
                 },
-                { name: "Contact", path: "/contact" },
+                { name: "Contact Us", path: "/contact" },
               ].map((link) => (
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-blue-200/80 hover:text-brand-orange transition-colors"
+                    className="text-slate-400 hover:text-amber-400 transition-colors inline-block"
                   >
                     {link.name}
                   </Link>
@@ -140,10 +154,11 @@ const Footer = () => {
 
           {/* For Business */}
           <div>
-            <h4 className="font-body font-semibold text-lg mb-6">
+            <h4 className="font-display font-bold text-base text-white tracking-wide uppercase mb-6 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
               For Business
             </h4>
-            <ul className="space-y-0">
+            <ul className="space-y-2.5 text-sm">
               {[
                 { name: "For Schools", path: "/for-schools" },
                 { name: "OEM Services", path: "/oem-services" },
@@ -154,7 +169,7 @@ const Footer = () => {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-blue-200/80 hover:text-brand-orange transition-colors"
+                    className="text-slate-400 hover:text-amber-400 transition-colors inline-block"
                   >
                     {link.name}
                   </Link>
@@ -165,52 +180,61 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-body font-semibold text-lg mb-6">
+            <h4 className="font-display font-bold text-base text-white tracking-wide uppercase mb-6 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
               Contact Us
             </h4>
-            <ul className="space-y-4">
-              <li className="flex items-center gap-3">
-                <span className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
-                  <FiMail className="text-brand-orange" size={18} />
-                </span>
+            <ul className="space-y-3 text-sm">
+              <li>
                 <a
-                  href="mailto:buildsyourmind@gmail.com"
-                  className="text-blue-200/80 hover:text-brand-orange transition-colors break-words min-w-0"
+                  href={EMAIL_HREF}
+                  className="flex items-center gap-3 p-2.5 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-orange/40 hover:bg-white/10 transition-all group"
                 >
-                  buildsyourmind<wbr />@gmail.com
+                  <span className="w-9 h-9 rounded-xl bg-orange-500/10 text-brand-orange flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                    <FiMail size={16} />
+                  </span>
+                  <span className="text-slate-300 group-hover:text-amber-300 transition-colors break-words text-xs sm:text-sm font-medium">
+                    {EMAIL}
+                  </span>
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <span className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
-                  <FiPhone className="text-brand-orange" size={18} />
-                </span>
+              <li>
                 <a
                   href={PHONE_HREF}
-                  className="text-blue-200/80 hover:text-brand-orange transition-colors"
+                  className="flex items-center gap-3 p-2.5 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-orange/40 hover:bg-white/10 transition-all group"
                 >
-                  {PHONE_DISPLAY}
+                  <span className="w-9 h-9 rounded-xl bg-orange-500/10 text-brand-orange flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                    <FiPhone size={16} />
+                  </span>
+                  <span className="text-slate-300 group-hover:text-amber-300 transition-colors text-xs sm:text-sm font-medium">
+                    {PHONE_DISPLAY}
+                  </span>
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <span className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
-                  <FaWhatsapp className="text-brand-orange" size={18} />
-                </span>
+              <li>
                 <a
                   href={WHATSAPP_HREF}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-200/80 hover:text-brand-orange transition-colors"
+                  className="flex items-center gap-3 p-2.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 hover:border-emerald-500/50 hover:bg-emerald-500/20 transition-all group"
                 >
-                  Chat on WhatsApp
+                  <span className="w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                    <FaWhatsapp size={18} />
+                  </span>
+                  <span className="text-emerald-300 group-hover:text-white transition-colors text-xs sm:text-sm font-bold">
+                    Direct WhatsApp
+                  </span>
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <span className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
-                  <FiMapPin className="text-brand-orange" size={18} />
-                </span>
-                <span className="text-blue-200/80">
-                  Harmono Pvt. Ltd., Indore, India
-                </span>
+              <li>
+                <div className="flex items-center gap-3 p-2.5 rounded-2xl bg-white/5 border border-white/10">
+                  <span className="w-9 h-9 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center flex-shrink-0">
+                    <FiMapPin size={16} />
+                  </span>
+                  <span className="text-slate-400 text-xs">
+                    {ADDRESS_DISPLAY}
+                  </span>
+                </div>
               </li>
             </ul>
           </div>
@@ -218,23 +242,23 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/10">
+      <div className="border-t border-white/10 relative z-10">
         <div className="container-custom py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-blue-200/80 text-sm text-center md:text-left">
-              © {new Date().getFullYear()} Harmono Pvt. Ltd. All rights
-              reserved.
+            <p className="text-slate-400 text-xs sm:text-sm text-center md:text-left">
+              © {new Date().getFullYear()} Harmono Pvt. Ltd. · Builds Your Mind.
+              All rights reserved.
             </p>
-            <div className="flex gap-6 text-sm text-blue-200/80">
+            <div className="flex gap-6 text-xs sm:text-sm text-slate-400">
               <Link
                 to="/privacy"
-                className="hover:text-brand-orange transition-colors"
+                className="hover:text-amber-400 transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 to="/terms"
-                className="hover:text-brand-orange transition-colors"
+                className="hover:text-amber-400 transition-colors"
               >
                 Terms of Service
               </Link>

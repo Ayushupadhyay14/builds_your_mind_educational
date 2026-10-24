@@ -17,6 +17,8 @@ export const pages = {
   ODMServices: lazy(() => import('./pages/ODMServices')),
   DistributorProgram: lazy(() => import('./pages/DistributorProgram')),
   RetailerProgram: lazy(() => import('./pages/RetailerProgram')),
+  Privacy: lazy(() => import('./pages/Privacy')),
+  Terms: lazy(() => import('./pages/Terms')),
   Contact: lazy(() => import('./pages/Contact')),
   NotFound: lazy(() => import('./pages/NotFound')),
 };

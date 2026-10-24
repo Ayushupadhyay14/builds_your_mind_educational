@@ -97,12 +97,12 @@ const Blog = () => {
               <Link to="/contact" className="btn-primary">
                 {blogButton} <FiArrowRight className="ml-2" />
               </Link>
-              <a
-                href="/school-stem-programme-indore"
+              <Link
+                to="/school-stem-programme-indore"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-all"
               >
                 See the School Programme
-              </a>
+              </Link>
             </motion.div>
           </motion.div>
         </div>

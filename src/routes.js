@@ -26,6 +26,8 @@ export const routes = [
   { path: '/odm-services', page: 'ODMServices', prerender: true },
   { path: '/distributor-program', page: 'DistributorProgram', prerender: true },
   { path: '/retailer-program', page: 'RetailerProgram', prerender: true },
+  { path: '/privacy', page: 'Privacy', prerender: true },
+  { path: '/terms', page: 'Terms', prerender: true },
   { path: '/contact', page: 'Contact', prerender: true },
   { path: '*', page: 'NotFound' },
 ];

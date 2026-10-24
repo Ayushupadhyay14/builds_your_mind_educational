@@ -142,7 +142,7 @@ const HomeTuition = () => {
     <>
       <Helmet>
         <title>
-          Home Tuition Services | Builds Your Mind - Verified Home Tutors
+          Home Tuition in Indore | Builds Your Mind
         </title>
         <meta
           name="description"

@@ -6,6 +6,12 @@ import { FiCheck, FiArrowRight, FiImage } from "react-icons/fi";
 import { ParallaxLayer } from '../components/Parallax';
 import StockFigure from "../components/StockFigure";
 import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_LEGAL_NAME,
+  SERVED_CITIES,
+} from "../config/site";
+import {
   workshopPages,
   workshopOrder,
   workshopContact,
@@ -74,12 +80,53 @@ const WorkshopPage = ({ pageId }) => {
     })),
   };
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: page.h1,
+    serviceType: page.badge,
+    description: page.description,
+    url: `${SITE_URL}${page.path}`,
+    provider: {
+      "@type": "EducationalOrganization",
+      name: SITE_NAME,
+      legalName: SITE_LEGAL_NAME,
+      url: `${SITE_URL}/`,
+    },
+    areaServed: SERVED_CITIES,
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${SITE_URL}/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: page.h1,
+        item: `${SITE_URL}${page.path}`,
+      },
+    ],
+  };
+
   return (
     <>
       <Helmet>
         <title>{page.title}</title>
         <meta name="description" content={page.description} />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(serviceSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
       </Helmet>
 
       {/* Hero */}

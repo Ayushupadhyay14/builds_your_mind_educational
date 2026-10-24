@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { WHATSAPP_HREF } from '../config/contact';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { FaGraduationCap, FaBoxOpen, FaChalkboardTeacher, FaHandshake, FaStore, FaCogs, FaWhatsapp } from 'react-icons/fa';
+import { FaBoxOpen, FaChalkboardTeacher, FaHandshake, FaStore, FaCogs, FaWhatsapp } from 'react-icons/fa';
 import { FiCheck, FiArrowRight, FiSend } from 'react-icons/fi';
 import { submitSchoolInquiry } from '../services/api';
 import { ParallaxLayer } from '../components/Parallax';
@@ -26,7 +26,6 @@ const ForSchools = () => {
   const offerings = [
     { icon: FaBoxOpen, title: 'Educational Kits Supply', desc: 'STEM, Robotics, IoT and Science kits for your school labs at special institutional pricing.', link: '/products' },
     { icon: FaChalkboardTeacher, title: 'School Workshops', desc: 'Interactive hands-on workshops conducted at your school by expert trainers.', link: '/stem-workshops-schools-indore' },
-    { icon: FaGraduationCap, title: 'Home Tuition Partnership', desc: 'Partner with us to provide home tuition services to your student community.', link: '/home-tuition' },
     { icon: FaCogs, title: 'Custom Kits (OEM/ODM)', desc: 'Get custom branded educational kits made specifically for your institution.', link: '/oem-services' },
     { icon: FaHandshake, title: 'Distributor Program', desc: 'Become an area distributor for Builds Your Mind products.', link: '/distributor-program' },
     { icon: FaStore, title: 'Retailer Program', desc: 'Stock our products in your retail outlet with attractive margins.', link: '/retailer-program' },
@@ -38,7 +37,6 @@ const ForSchools = () => {
       const interests = [];
       if (data.interest_kits) interests.push('Educational Kits');
       if (data.interest_workshops) interests.push('Workshops');
-      if (data.interest_tuition) interests.push('Home Tuition');
       if (data.interest_oem) interests.push('Custom Kits (OEM/ODM)');
 
       await submitSchoolInquiry({
@@ -53,7 +51,7 @@ const ForSchools = () => {
         interested_in: interests,
         message: data.message,
       });
-      toast.success('Inquiry submitted! Our team will contact you soon.');
+      toast.success('Enquiry submitted! Our team will contact you soon.');
       reset();
     } catch {
       toast.error('Failed to submit. Please try again.');
@@ -65,8 +63,8 @@ const ForSchools = () => {
   return (
     <>
       <Helmet>
-        <title>For Schools & Partners | Builds Your Mind</title>
-        <meta name="description" content="Partner with Builds Your Mind for educational kits, workshops, home tuition and distribution programs for schools and institutions." />
+        <title>School STEM Collaboration | Builds Your Mind</title>
+        <meta name="description" content="Partner with Builds Your Mind for STEM workshops, lab setup, kits and custom school proposals. A clear four-step collaboration process." />
       </Helmet>
 
       {/* Hero */}
@@ -80,7 +78,7 @@ const ForSchools = () => {
               Partner With <span className="text-brand-orange">Builds Your Mind</span>
             </motion.h1>
             <motion.p variants={fadeInUp} className="text-lg md:text-xl text-blue-100/90">
-              Educational kits, workshops, home tuition services, and business partnership opportunities for schools and institutions.
+              Educational kits, workshops, STEM lab setup and business partnership opportunities for schools and institutions.
             </motion.p>
           </motion.div>
         </div>
@@ -114,15 +112,100 @@ const ForSchools = () => {
         </div>
       </section>
 
-      {/* Inquiry Form */}
+      {/* Collaboration process */}
       <section className="py-20 bg-white">
+        <div className="container-custom">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="max-w-3xl mb-12"
+          >
+            <motion.h2 variants={fadeInUp} className="section-title mb-4">
+              How a School Collaboration Works
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle">
+              A clear four-step process, from the first conversation to a
+              programme your teachers can run with confidence.
+            </motion.p>
+          </motion.div>
+
+          <motion.ol
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid gap-6 md:grid-cols-2 lg:grid-cols-4"
+          >
+            {[
+              {
+                step: '01',
+                title: 'Share your goals',
+                desc: 'Tell us the class groups, subjects and dates you have in mind.',
+              },
+              {
+                step: '02',
+                title: 'Plan with an advisor',
+                desc: 'A programme advisor suggests a scope, format and budget range.',
+              },
+              {
+                step: '03',
+                title: 'Run a pilot session',
+                desc: 'Start with one workshop or lab session so your team can see it in action.',
+              },
+              {
+                step: '04',
+                title: 'Agree the programme',
+                desc: 'Confirm a term plan or MoU, with scope and pricing in writing.',
+              },
+            ].map((item, index) => (
+              <motion.li key={item.step} variants={fadeInUp} className="h-full">
+                <div className="card h-full p-6 border-t-4 border-brand-orange">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-blue to-primary-600 text-white font-display font-bold flex items-center justify-center">
+                      {item.step}
+                    </span>
+                    <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                      Step {index + 1}
+                    </span>
+                  </div>
+                  <h3 className="font-display font-semibold text-lg text-brand-blue mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm">{item.desc}</p>
+                </div>
+              </motion.li>
+            ))}
+          </motion.ol>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="mt-10 flex flex-wrap gap-4"
+          >
+            <a href="#enquiry" className="btn-primary" data-track="request_proposal_click">
+              Request a Customised Proposal
+              <FiArrowRight className="ml-2" />
+            </a>
+            <Link to="/stem-partnership-mou" className="btn-secondary">
+              See Partnership &amp; MoU
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Enquiry Form */}
+      <section id="enquiry" className="scroll-mt-28 py-20 bg-white">
         <div className="container-custom">
           <div className="grid lg:grid-cols-5 gap-12">
             <div className="lg:col-span-2">
-              <h2 className="section-title mb-6">School / Partner Inquiry</h2>
+              <h2 className="section-title mb-6">School / Partner Enquiry</h2>
               <p className="text-gray-600 mb-8">Fill the form below and our team will reach out to you with the best solutions for your institution.</p>
               <ul className="space-y-4 mb-8">
-                {['Institutional pricing available', 'Customizable programs', 'Pan-India delivery', 'Dedicated account manager', 'After-sales support'].map((item, i) => (
+                {['Institutional pricing available', 'Customisable programmes', 'Delivery scope confirmed in writing', 'Single point of contact', 'After-sales support'].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-gray-700">
                     <FiCheck className="text-brand-blue flex-shrink-0" />{item}
                   </li>
@@ -183,7 +266,6 @@ const ForSchools = () => {
                       {[
                         { name: 'interest_kits', label: 'Educational Kits' },
                         { name: 'interest_workshops', label: 'Workshops' },
-                        { name: 'interest_tuition', label: 'Home Tuition' },
                         { name: 'interest_oem', label: 'Custom Kits (OEM/ODM)' },
                       ].map((item) => (
                         <label key={item.name} className="flex items-center gap-3 min-h-[44px] text-sm text-gray-700 cursor-pointer">
@@ -198,7 +280,7 @@ const ForSchools = () => {
                     <textarea {...register('message')} rows={3} className="input-field resize-none" placeholder="Tell us about your requirements..." />
                   </div>
                   <button type="submit" disabled={loading} className="btn-primary w-full disabled:opacity-50">
-                    {loading ? 'Submitting...' : <>Submit Inquiry <FiSend className="ml-2" /></>}
+                    {loading ? 'Submitting...' : <>Submit Enquiry <FiSend className="ml-2" /></>}
                   </button>
                 </form>
               </div>
