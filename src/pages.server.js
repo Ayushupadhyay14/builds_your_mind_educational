@@ -3,6 +3,7 @@ import About from './pages/About';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import CatalogVideo from './pages/CatalogVideo';
+import WatchVideo from './pages/WatchVideo';
 import WorkshopPage from './pages/WorkshopPage';
 import ServicePage from './pages/ServicePage';
 import CaseStudies from './pages/CaseStudies';
@@ -20,7 +21,7 @@ import NotFound from './pages/NotFound';
 
 // Plain (non-lazy) pages for the build-time server render.
 export const pages = {
-  Home, About, Products, ProductDetail, CatalogVideo, WorkshopPage,
+  Home, About, Products, ProductDetail, CatalogVideo, WatchVideo, WorkshopPage,
   ServicePage, CaseStudies, Blog, HomeTuition, ForSchools, OEMServices,
   ODMServices, DistributorProgram, RetailerProgram, Privacy, Terms, Contact,
   NotFound,

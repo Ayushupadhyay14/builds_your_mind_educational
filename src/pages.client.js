@@ -7,6 +7,7 @@ export const pages = {
   Products: lazy(() => import('./pages/Products')),
   ProductDetail: lazy(() => import('./pages/ProductDetail')),
   CatalogVideo: lazy(() => import('./pages/CatalogVideo')),
+  WatchVideo: lazy(() => import('./pages/WatchVideo')),
   WorkshopPage: lazy(() => import('./pages/WorkshopPage')),
   ServicePage: lazy(() => import('./pages/ServicePage')),
   CaseStudies: lazy(() => import('./pages/CaseStudies')),

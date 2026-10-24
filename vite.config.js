@@ -6,6 +6,7 @@ export default defineConfig({
   // Server render (pre-render step) bundles its dependencies so node needs no interop
   ssr: { noExternal: true },
   server: {
+    host: true,
     port: 3000,
     proxy: {
       '/api': {

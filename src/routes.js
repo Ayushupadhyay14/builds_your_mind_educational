@@ -7,6 +7,7 @@ export const routes = [
   { path: '/products', page: 'Products', prerender: true },
   { path: '/products/:slug', page: 'ProductDetail' },
   { path: '/catalog/:id', page: 'CatalogVideo' },
+  { path: '/watch', page: 'WatchVideo', prerender: true },
   { path: '/workshops', redirect: '/stem-workshops-schools-indore' },
   { path: '/stem-workshops-schools-indore', page: 'WorkshopPage', props: { pageId: 'P03' }, prerender: true },
   { path: '/robotics-workshops-schools-indore', page: 'WorkshopPage', props: { pageId: 'P04' }, prerender: true },

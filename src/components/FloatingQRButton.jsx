@@ -1,35 +1,43 @@
 import { useState, useEffect, useRef } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { FaQrcode, FaYoutube } from 'react-icons/fa';
-import { FiX, FiExternalLink, FiCopy, FiCheck } from 'react-icons/fi';
-import { FEATURED_YOUTUBE_URL, QR_MODAL_DEFAULTS } from '../config/video';
+import { FaQrcode, FaYoutube, FaPlay } from 'react-icons/fa';
+import { FiX, FiExternalLink, FiCopy, FiCheck, FiSmartphone, FiVideo } from 'react-icons/fi';
+import { getScannableVideoUrl, LOCAL_VIDEO_PATH, FEATURED_YOUTUBE_URL, QR_MODAL_DEFAULTS } from '../config/video';
 import './FloatingQRButton.css';
 
 /**
  * FloatingQRButton Component
  *
- * A fixed, floating button at the bottom-right of the screen that opens
- * an interactive modal dialog with a dynamically generated QR code linking
- * directly to a featured YouTube video.
- *
- * @param {string} [videoUrl] - The YouTube video URL (defaults to FEATURED_YOUTUBE_URL in src/config/video.js)
- * @param {string} [title] - Title heading in modal (defaults to "Scan to Watch Video")
- * @param {string} [instruction] - Short instruction text below heading
- * @param {string} [buttonText] - Text on the direct YouTube link button
- * @param {string} [badgeText] - Optional badge tag shown above title
+ * A fixed, floating button at the bottom-right of the website.
+ * Opens a modal popup with:
+ * 1) Dynamic QR Code: When scanned by mobile phone, plays the video on the user's phone.
+ * 2) Inline Video Player: Allows watching the video directly on the website.
  */
 const FloatingQRButton = ({
-  videoUrl = FEATURED_YOUTUBE_URL,
+  customVideoUrl,
+  localVideoSrc = LOCAL_VIDEO_PATH,
   title = QR_MODAL_DEFAULTS.title,
   instruction = QR_MODAL_DEFAULTS.instruction,
-  buttonText = QR_MODAL_DEFAULTS.buttonText,
   badgeText = QR_MODAL_DEFAULTS.badgeText,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('qr'); // 'qr' | 'player'
   const [copied, setCopied] = useState(false);
+  const [scannableUrl, setScannableUrl] = useState(() => customVideoUrl || getScannableVideoUrl());
+
   const modalCardRef = useRef(null);
   const closeBtnRef = useRef(null);
   const triggerBtnRef = useRef(null);
+  const videoPlayerRef = useRef(null);
+
+  // Update scannable URL on mount (ensuring client-side hostname is used)
+  useEffect(() => {
+    if (!customVideoUrl) {
+      setScannableUrl(getScannableVideoUrl());
+    }
+  }, [customVideoUrl]);
+
+  const isYouTube = scannableUrl.includes('youtube.com') || scannableUrl.includes('youtu.be');
 
   // Close modal when Escape key is pressed
   useEffect(() => {
@@ -39,7 +47,6 @@ const FloatingQRButton = ({
       if (e.key === 'Escape') {
         e.preventDefault();
         setIsOpen(false);
-        // Return focus to trigger button
         triggerBtnRef.current?.focus();
       }
     };
@@ -48,14 +55,14 @@ const FloatingQRButton = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
 
-  // Prevent background scrolling when modal is open
+  // Prevent background scrolling when modal is open and pause video on close
   useEffect(() => {
     if (typeof document === 'undefined') return;
 
     if (isOpen) {
       const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
-      // Auto-focus the close button for accessibility
+
       setTimeout(() => {
         closeBtnRef.current?.focus();
       }, 50);
@@ -63,6 +70,10 @@ const FloatingQRButton = ({
       return () => {
         document.body.style.overflow = originalOverflow;
       };
+    } else {
+      if (videoPlayerRef.current) {
+        videoPlayerRef.current.pause();
+      }
     }
   }, [isOpen]);
 
@@ -70,12 +81,11 @@ const FloatingQRButton = ({
   const handleCopyLink = async () => {
     try {
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(videoUrl);
+        await navigator.clipboard.writeText(scannableUrl);
         setCopied(true);
         setTimeout(() => setCopied(false), 2200);
       }
     } catch {
-      // Fallback
       setCopied(false);
     }
   };
@@ -99,7 +109,7 @@ const FloatingQRButton = ({
           className="qr-floating-btn"
           aria-haspopup="dialog"
           aria-expanded={isOpen}
-          aria-label="Open QR code to watch our video on YouTube"
+          aria-label="Scan QR code to watch video on your phone"
           title="Scan QR Code to Watch Video"
           id="floating-qr-trigger-button"
         >
@@ -117,7 +127,7 @@ const FloatingQRButton = ({
         </button>
       </div>
 
-      {/* QR Code Modal Popup */}
+      {/* QR Code & Video Modal Popup */}
       {isOpen && (
         <div
           className="qr-modal-backdrop"
@@ -126,7 +136,7 @@ const FloatingQRButton = ({
         >
           <div
             ref={modalCardRef}
-            className="qr-modal-card"
+            className={`qr-modal-card ${activeTab === 'player' ? 'qr-modal-card-wide' : ''}`}
             role="dialog"
             aria-modal="true"
             aria-labelledby="qr-modal-title"
@@ -142,7 +152,7 @@ const FloatingQRButton = ({
                   triggerBtnRef.current?.focus();
                 }}
                 className="qr-modal-close-btn"
-                aria-label="Close QR code popup"
+                aria-label="Close video popup"
                 id="qr-modal-close-button"
               >
                 <FiX size={18} />
@@ -150,7 +160,11 @@ const FloatingQRButton = ({
 
               {badgeText && (
                 <span className="qr-badge">
-                  <FaYoutube className="text-red-600" size={14} />
+                  {isYouTube ? (
+                    <FaYoutube className="text-red-600" size={14} />
+                  ) : (
+                    <FaPlay className="text-orange-500" size={10} />
+                  )}
                   {badgeText}
                 </span>
               )}
@@ -162,69 +176,125 @@ const FloatingQRButton = ({
               <p id="qr-modal-instruction" className="qr-modal-instruction">
                 {instruction}
               </p>
-            </div>
 
-            {/* Modal Body with dynamically generated QR code */}
-            <div className="qr-modal-body">
-              {/* QR Code Container with Camera Viewfinder Framing */}
-              <div className="qr-code-frame" aria-label="Dynamically generated QR code">
-                <span className="qr-corner qr-corner-tl" aria-hidden="true" />
-                <span className="qr-corner qr-corner-tr" aria-hidden="true" />
-                <span className="qr-corner qr-corner-bl" aria-hidden="true" />
-                <span className="qr-corner qr-corner-br" aria-hidden="true" />
-
-                <QRCodeSVG
-                  value={videoUrl}
-                  size={200}
-                  level="Q"
-                  includeMargin={true}
-                  bgColor="#FFFFFF"
-                  fgColor="#0F172A"
-                  title="Scan with phone camera to watch on YouTube"
-                />
-              </div>
-
-              {/* Action Buttons */}
-              <div className="qr-modal-actions">
-                {/* Primary: Direct "Watch on YouTube" Alternative Link */}
-                <a
-                  href={videoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="qr-btn-youtube"
-                  id="qr-modal-youtube-link"
-                >
-                  <FaYoutube size={19} />
-                  <span>{buttonText}</span>
-                  <FiExternalLink size={15} className="ml-0.5 opacity-80" />
-                </a>
-
-                {/* Secondary: Quick Copy Video Link */}
+              {/* View Switcher Tabs: QR Code vs Inline Video Player */}
+              <div className="qr-view-tabs" role="tablist">
                 <button
                   type="button"
-                  onClick={handleCopyLink}
-                  className="qr-btn-copy"
-                  aria-label="Copy video URL to clipboard"
-                  id="qr-modal-copy-link-btn"
+                  role="tab"
+                  aria-selected={activeTab === 'qr'}
+                  onClick={() => {
+                    setActiveTab('qr');
+                    if (videoPlayerRef.current) videoPlayerRef.current.pause();
+                  }}
+                  className={`qr-tab-btn ${activeTab === 'qr' ? 'qr-tab-btn-active' : ''}`}
                 >
-                  {copied ? (
-                    <>
-                      <FiCheck size={16} className="text-emerald-600" />
-                      <span className="text-emerald-600">Link Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      <FiCopy size={15} />
-                      <span>Copy Video Link</span>
-                    </>
-                  )}
+                  <FiSmartphone size={14} />
+                  <span>Scan on Phone</span>
+                </button>
+
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={activeTab === 'player'}
+                  onClick={() => setActiveTab('player')}
+                  className={`qr-tab-btn ${activeTab === 'player' ? 'qr-tab-btn-active' : ''}`}
+                >
+                  <FiVideo size={14} />
+                  <span>Watch on Desktop</span>
                 </button>
               </div>
+            </div>
 
-              {/* Scanner Helper Note */}
-              <p className="qr-modal-hint">
-                Compatible with iOS Camera, Google Lens & any QR scanner.
-              </p>
+            {/* Modal Body */}
+            <div className="qr-modal-body">
+              {activeTab === 'qr' ? (
+                /* TAB 1: QR Code Scanner View (Runs on user's phone when scanned) */
+                <>
+                  <div className="qr-code-frame" aria-label="Dynamically generated QR code">
+                    <span className="qr-corner qr-corner-tl" aria-hidden="true" />
+                    <span className="qr-corner qr-corner-tr" aria-hidden="true" />
+                    <span className="qr-corner qr-corner-bl" aria-hidden="true" />
+                    <span className="qr-corner qr-corner-br" aria-hidden="true" />
+
+                    <QRCodeSVG
+                      value={scannableUrl}
+                      size={200}
+                      level="Q"
+                      includeMargin={true}
+                      bgColor="#FFFFFF"
+                      fgColor="#0F172A"
+                      title="Scan with phone camera to run video on mobile"
+                    />
+                  </div>
+
+                  <div className="qr-modal-actions">
+                    <a
+                      href={scannableUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`qr-btn-primary-action ${isYouTube ? 'qr-btn-youtube' : 'qr-btn-standard'}`}
+                      id="qr-modal-open-video-link"
+                    >
+                      {isYouTube ? <FaYoutube size={19} /> : <FaPlay size={14} />}
+                      <span>{isYouTube ? 'Watch on YouTube' : 'Open Video Link'}</span>
+                      <FiExternalLink size={15} className="ml-0.5 opacity-80" />
+                    </a>
+
+                    <button
+                      type="button"
+                      onClick={handleCopyLink}
+                      className="qr-btn-copy"
+                      aria-label="Copy video URL to clipboard"
+                      id="qr-modal-copy-link-btn"
+                    >
+                      {copied ? (
+                        <>
+                          <FiCheck size={16} className="text-emerald-600" />
+                          <span className="text-emerald-600">Link Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <FiCopy size={15} />
+                          <span>Copy Mobile Video Link</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  <p className="qr-modal-hint">
+                    📱 Open your iPhone Camera or Google Lens to scan and watch instantly on your phone.
+                  </p>
+                </>
+              ) : (
+                /* TAB 2: Direct Video Player View */
+                <div className="qr-player-wrapper">
+                  <div className="qr-video-container">
+                    <video
+                      ref={videoPlayerRef}
+                      src={localVideoSrc}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      className="qr-video-element"
+                    >
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+
+                  <div className="qr-player-actions">
+                    <a
+                      href={scannableUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="qr-btn-primary-action qr-btn-standard"
+                    >
+                      <FiExternalLink size={15} />
+                      <span>Open in Fullscreen Cinema Tab</span>
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

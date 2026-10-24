@@ -164,13 +164,18 @@
 .qr-modal-card {
   position: relative;
   width: 100%;
-  max-width: 24rem; /* 384px */
+  max-width: 25rem; /* 400px default */
   background: #FFFFFF;
   border-radius: 1.5rem;
   box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.35),
               0 0 0 1px rgba(226, 232, 240, 0.8);
   overflow: hidden;
+  transition: max-width 0.3s ease;
   animation: qrModalScaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.qr-modal-card-wide {
+  max-width: 38rem; /* 608px when viewing video player */
 }
 
 @keyframes qrModalScaleUp {
@@ -187,7 +192,7 @@
 /* Modal Header Bar */
 .qr-modal-header {
   position: relative;
-  padding: 1.25rem 1.5rem 1rem;
+  padding: 1.25rem 1.5rem 0.875rem;
   background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
   border-bottom: 1px solid #F1F5F9;
   display: flex;
@@ -213,6 +218,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   outline: none;
+  z-index: 10;
 }
 
 .qr-modal-close-btn:hover {
@@ -241,7 +247,7 @@
   background: #FFF7ED;
   border: 1px solid #FFEDD5;
   border-radius: 9999px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 /* Title in Modal */
@@ -256,12 +262,51 @@
 
 /* Instructions Subtitle */
 .qr-modal-instruction {
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   line-height: 1.45;
   color: #475569;
-  margin-top: 0.375rem;
-  margin-bottom: 0;
+  margin-top: 0.35rem;
+  margin-bottom: 0.75rem;
   padding: 0 0.5rem;
+}
+
+/* View Switcher Tabs (QR vs Video Player) */
+.qr-view-tabs {
+  display: inline-flex;
+  align-items: center;
+  background: #F1F5F9;
+  padding: 0.25rem;
+  border-radius: 9999px;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+  border: 1px solid #E2E8F0;
+}
+
+.qr-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #64748B;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  outline: none;
+}
+
+.qr-tab-btn:hover {
+  color: #1E3A8A;
+}
+
+.qr-tab-btn-active {
+  background: #FFFFFF;
+  color: #1E3A8A;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 /* Modal Body */
@@ -347,22 +392,28 @@
   gap: 0.625rem;
 }
 
-/* Primary "Watch on YouTube" Button */
-.qr-btn-youtube {
+/* Primary Action Buttons */
+.qr-btn-primary-action {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   width: 100%;
   padding: 0.75rem 1.25rem;
-  background: #DC2626;
-  color: #FFFFFF;
   border-radius: 0.75rem;
   font-size: 0.9375rem;
   font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+.qr-btn-youtube {
+  background: #DC2626;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
 }
 
 .qr-btn-youtube:hover {
@@ -372,8 +423,21 @@
   color: #FFFFFF;
 }
 
-.qr-btn-youtube:focus-visible {
-  outline: 2px solid #DC2626;
+.qr-btn-standard {
+  background: #1E3A8A;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
+}
+
+.qr-btn-standard:hover {
+  background: #152C6B;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(30, 58, 138, 0.35);
+  color: #FFFFFF;
+}
+
+.qr-btn-primary-action:focus-visible {
+  outline: 2px solid #F97316;
   outline-offset: 2px;
 }
 
@@ -417,6 +481,38 @@
 }
 
 /* ==========================================================================
+   Inline Video Player Styles
+   ========================================================================== */
+.qr-player-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.qr-video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #0F172A;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25);
+  border: 1px solid #E2E8F0;
+}
+
+.qr-video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000000;
+}
+
+.qr-player-actions {
+  width: 100%;
+}
+
+/* ==========================================================================
    Responsive Adaptations
    ========================================================================== */
 @media (max-width: 640px) {
@@ -432,7 +528,7 @@
     border-radius: 50%;
   }
 
-  /* On mobile screens, hide the text label and show only the iconic QR button for clean screen real estate */
+  /* On mobile screens, hide the text label and show only the iconic QR button */
   .qr-btn-label {
     display: none;
   }
@@ -446,6 +542,10 @@
     max-width: 22rem;
   }
 
+  .qr-modal-card-wide {
+    max-width: 95vw;
+  }
+
   .qr-modal-header {
     padding: 1.125rem 1.25rem 0.875rem;
   }
@@ -457,6 +557,11 @@
   .qr-modal-body {
     padding: 1rem 1.25rem 1.25rem;
   }
+
+  .qr-tab-btn {
+    padding: 0.3rem 0.65rem;
+    font-size: 0.75rem;
+  }
 }
 
 /* Accessibility: Reduced Motion */
@@ -465,7 +570,7 @@
   .qr-modal-backdrop,
   .qr-modal-card,
   .qr-modal-close-btn,
-  .qr-btn-youtube,
+  .qr-btn-primary-action,
   .qr-corner,
   .qr-pulse-ring {
     animation: none !important;
