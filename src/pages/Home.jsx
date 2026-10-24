@@ -420,7 +420,7 @@ const Home = () => (
     {/* Proof / Real Work Only */}
     <section className="py-20 lg:py-24 bg-gradient-to-b from-slate-50 to-white">
       <div className="container-custom">
-        <SectionHead eyebrow="Verified Work Only" title="Case Studies & Real Evidence">
+        <SectionHead eyebrow="Published With Permission" title="Case Studies & Real Evidence">
           We publish case studies and pictures only from real, completed institutional work with permission. We do not use invented testimonials or borrowed figures.
         </SectionHead>
         <div className="glass-card bg-white p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-10 border border-slate-200 shadow-lg">
@@ -429,10 +429,10 @@ const Home = () => (
           </span>
           <div className="flex-grow">
             <h4 className="font-display font-bold text-lg text-brand-blue mb-1">
-              Verified Documentation of Completed Sessions
+              Documentation of Completed Sessions
             </h4>
             <p className="text-slate-600 text-sm leading-relaxed">
-              As our workshops and long-term school programmes are completed in Indore, Ujjain, Dewas, and Dhar, verified documentation and case notes appear here.
+              As our workshops and long-term school programmes are completed in Indore, Ujjain, Dewas, and Dhar, documented case notes appear here.
             </p>
           </div>
           <Link to="/case-studies" className="btn-outline flex-shrink-0 font-bold">

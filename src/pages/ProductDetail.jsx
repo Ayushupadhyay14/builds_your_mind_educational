@@ -16,7 +16,6 @@ import {
 import { getProductBySlug } from '../services/api';
 import { whatsappLink } from '../utils/utm';
 import { SITE_URL } from '../config/site';
-import Loading from '../components/Loading';
 
 const asList = (value) => {
   if (Array.isArray(value)) return value.filter(Boolean);
@@ -121,7 +120,65 @@ const ProductDetail = () => {
   }, [product, activeImage]);
 
   if (loading) {
-    return <Loading />;
+    return (
+      <>
+        <Helmet>
+          <title>Product Details | Builds Your Mind</title>
+          <meta
+            name="description"
+            content="View educational kit details, features and enquiry options from Builds Your Mind. Ask for current price, availability, delivery and warranty terms."
+          />
+        </Helmet>
+
+        <section className="pt-32 pb-20 bg-brand-cream min-h-screen">
+          <div className="container-custom">
+            <nav aria-label="Breadcrumb" className="mb-8">
+              <ol className="flex flex-wrap items-center gap-2 text-sm">
+                <li>
+                  <Link to="/" className="text-gray-500 hover:text-brand-blue">
+                    Home
+                  </Link>
+                </li>
+                <li className="text-gray-400" aria-hidden="true">
+                  /
+                </li>
+                <li>
+                  <Link
+                    to="/products"
+                    className="text-gray-500 hover:text-brand-blue"
+                  >
+                    Products
+                  </Link>
+                </li>
+                <li className="text-gray-400" aria-hidden="true">
+                  /
+                </li>
+                <li className="text-brand-blue font-medium">Product details</li>
+              </ol>
+            </nav>
+
+            <h1 className="text-3xl md:text-4xl font-display font-bold text-brand-blue mb-8">
+              Product Details
+            </h1>
+
+            <div
+              className="grid lg:grid-cols-2 gap-12 animate-pulse"
+              aria-label="Loading product details"
+            >
+              <div className="aspect-square rounded-3xl bg-slate-200" />
+              <div className="space-y-5">
+                <div className="h-4 w-1/3 rounded bg-slate-200" />
+                <div className="h-9 w-2/3 rounded bg-slate-200" />
+                <div className="h-4 w-full rounded bg-slate-200" />
+                <div className="h-4 w-5/6 rounded bg-slate-200" />
+                <div className="h-4 w-4/6 rounded bg-slate-200" />
+                <div className="h-12 w-48 rounded-full bg-slate-200" />
+              </div>
+            </div>
+          </div>
+        </section>
+      </>
+    );
   }
 
   if (!product) {
@@ -209,6 +266,7 @@ const ProductDetail = () => {
             `${product.name} from Builds Your Mind. Ask for current kit contents, price, delivery and warranty terms.`
           }
         />
+        <link rel="canonical" href={`${SITE_URL}${productPath}`} />
         <script type="application/ld+json">
           {JSON.stringify(productSchema)}
         </script>

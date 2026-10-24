@@ -20,9 +20,9 @@ const ODMServices = () => {
   const services = [
     { icon: FaLightbulb, title: 'Product Ideation', desc: 'Innovative concepts tailored to market needs and educational requirements.' },
     { icon: FaPencilRuler, title: 'Curriculum-Based Design', desc: 'Products designed to align with educational standards and learning objectives.' },
-    { icon: FaGraduationCap, title: 'Eco-Material Selection', desc: 'Sustainable and eco-friendly materials for all components.' },
-    { icon: FaCubes, title: 'Prototyping', desc: 'Rapid prototyping to visualize and test product concepts.' },
-    { icon: FaPalette, title: 'Branding & Packaging', desc: 'Custom branding and attractive packaging design.' },
+    { icon: FaGraduationCap, title: 'Eco-Material Selection', desc: 'Eco-friendly material options where available.' },
+    { icon: FaCubes, title: 'Prototyping', desc: 'Prototyping to visualise and test product concepts.' },
+    { icon: FaPalette, title: 'Branding & Packaging', desc: 'Custom branding and packaging design.' },
     { icon: FaIndustry, title: 'Mass Production', desc: 'Scalable manufacturing for large volume orders.' },
   ];
 
@@ -175,11 +175,11 @@ const ODMServices = () => {
               <ul className="space-y-4">
                 {[
                   'Complete product development support',
-                  'Expert curriculum-aligned design',
-                  'Eco-friendly material expertise',
-                  'Rapid prototyping capabilities',
-                  'Professional branding services',
-                  'Quality-assured mass production',
+                  'Curriculum-aligned design',
+                  'Eco-friendly material options',
+                  'Prototyping support',
+                  'Branding support',
+                  'Mass production with agreed quality checks',
                 ].map((item, index) => (
                   <li key={index} className="flex items-center gap-3 text-gray-700">
                     <FiCheck className="text-brand-blue flex-shrink-0" />

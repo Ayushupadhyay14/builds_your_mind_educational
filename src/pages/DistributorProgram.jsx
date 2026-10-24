@@ -18,11 +18,11 @@ const staggerContainer = {
 
 const DistributorProgram = () => {
   const benefits = [
-    { icon: FaMapMarkerAlt, title: 'Area-wise Rights', desc: 'Exclusive distribution rights for your designated territory.' },
-    { icon: FaBullhorn, title: 'Marketing Support', desc: 'Comprehensive marketing materials and promotional support.' },
-    { icon: FaTruck, title: 'Supply Chain', desc: 'Reliable supply chain management and timely deliveries.' },
-    { icon: FaChartLine, title: 'Attractive Margins', desc: 'Competitive pricing with healthy profit margins.' },
-    { icon: FaUsers, title: 'Training & Support', desc: 'Product training and ongoing sales support.' },
+    { icon: FaMapMarkerAlt, title: 'Area-wise Rights', desc: 'Territory rights are discussed and confirmed in the agreement.' },
+    { icon: FaBullhorn, title: 'Marketing Support', desc: 'Marketing materials and promotional support as agreed.' },
+    { icon: FaTruck, title: 'Supply Schedule', desc: 'Supply schedule and delivery terms confirmed in writing.' },
+    { icon: FaChartLine, title: 'Margin Structure', desc: 'Margins are discussed with you before you sign.' },
+    { icon: FaUsers, title: 'Training & Support', desc: 'Product training and sales support as agreed.' },
     { icon: FaHandshake, title: 'Long-term Partnership', desc: 'Build a lasting business relationship with us.' },
   ];
 

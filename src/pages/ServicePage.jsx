@@ -207,6 +207,32 @@ const ServicePage = ({ pageId }) => {
         </div>
       </section>
 
+      {/* Programme facts. Only shown for pages that have approved facts. */}
+      {page.quickFacts?.length > 0 && (
+        <section className="py-12 bg-white border-b border-slate-100">
+          <div className="container-custom">
+            <h2 className="section-title text-center mb-8">
+              Programme at a Glance
+            </h2>
+            <dl className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
+              {page.quickFacts.map((fact) => (
+                <div
+                  key={fact.label}
+                  className="rounded-2xl border border-slate-100 bg-brand-cream p-5"
+                >
+                  <dt className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
+                    {fact.label}
+                  </dt>
+                  <dd className="text-brand-blue font-semibold">
+                    {fact.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+      )}
+
       {/* Illustrative stock photo (see STOCK_IMAGES.md) */}
       <section className="py-20 bg-white">
         <div className="container-custom">

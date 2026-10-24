@@ -18,12 +18,12 @@ const staggerContainer = {
 
 const RetailerProgram = () => {
   const benefits = [
-    { icon: FaBoxOpen, title: 'Regular Supply', desc: 'Consistent and timely supply of educational kits to keep your shelves stocked.' },
-    { icon: FaPercent, title: 'Attractive Margins', desc: 'Competitive pricing structure with healthy retail margins.' },
-    { icon: FaStore, title: 'Display Support', desc: 'POS materials and display units to showcase products effectively.' },
-    { icon: FaHeadset, title: 'Sales Support', desc: 'Training and support to help you sell our products.' },
+    { icon: FaBoxOpen, title: 'Regular Supply', desc: 'Supply schedule agreed with you to keep your shelves stocked.' },
+    { icon: FaPercent, title: 'Margin Structure', desc: 'Retail margins discussed with you before ordering.' },
+    { icon: FaStore, title: 'Display Materials', desc: 'POS materials and display units as agreed.' },
+    { icon: FaHeadset, title: 'Sales Support', desc: 'Training and support as agreed.' },
     { icon: FaShoppingBag, title: 'Easy Ordering', desc: 'Simple reordering process with flexible minimum quantities.' },
-    { icon: FaAward, title: 'Quality Products', desc: 'Premium eco-friendly educational kits that sell themselves.' },
+    { icon: FaAward, title: 'Educational Kits', desc: 'Eco-friendly kits from our current product range.' },
   ];
 
   const idealFor = [
@@ -61,7 +61,7 @@ const RetailerProgram = () => {
               Retailer Program
             </motion.h1>
             <motion.p variants={fadeInUp} className="text-lg md:text-xl text-blue-100/90">
-              Register as a retail partner for regular supply of eco-friendly educational kits with attractive margins.
+              Register as a retail partner for regular supply of eco-friendly educational kits, with retail margins discussed with you.
             </motion.p>
           </motion.div>
         </div>

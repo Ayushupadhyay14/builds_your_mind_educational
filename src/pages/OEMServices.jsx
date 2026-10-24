@@ -31,8 +31,8 @@ const OEMServices = () => {
     { step: '02', title: 'Quotation', desc: 'Receive detailed pricing and timeline' },
     { step: '03', title: 'Sample Approval', desc: 'Review and approve product samples' },
     { step: '04', title: 'Production', desc: 'Bulk manufacturing begins' },
-    { step: '05', title: 'Quality Check', desc: 'Rigorous testing and QC' },
-    { step: '06', title: 'Delivery', desc: 'On-time delivery to your location' },
+    { step: '05', title: 'Quality Check', desc: 'Quality checks before dispatch' },
+    { step: '06', title: 'Delivery', desc: 'Delivery schedule agreed with you' },
   ];
 
   return (
@@ -165,12 +165,12 @@ const OEMServices = () => {
               <ul className="space-y-4">
                 {[
                   'Launch products under your own brand',
-                  'Eco-friendly manufacturing processes',
-                  'Consistent quality assurance',
-                  'Competitive pricing for bulk orders',
-                  'Flexible customization options',
-                  'On-time delivery guarantee',
-                  'Dedicated account manager',
+                  'Eco-friendly material options',
+                  'Quality requirements agreed with you',
+                  'Bulk-order pricing on request',
+                  'Flexible customisation options',
+                  'Delivery schedule agreed in writing',
+                  'Single point of contact',
                 ].map((item, index) => (
                   <li key={index} className="flex items-center gap-3 text-blue-100">
                     <FiCheck className="text-brand-orange flex-shrink-0" />

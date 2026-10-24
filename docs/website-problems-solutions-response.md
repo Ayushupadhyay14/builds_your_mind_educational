@@ -143,6 +143,14 @@ into page components.
 - `public/sitemap.xml` — new pages and updated lastmod.
 - `index.html` — current fallback title/description/OG tags.
 - `.env.example` — optional GA4 measurement ID.
+- `src/pages/CatalogVideo.jsx` — title, description and H1 render before the video loads.
+- `src/pages/HomeTuition.jsx` — removed unverified teacher-verification and "best teacher" claims.
+- `src/pages/OEMServices.jsx`, `src/pages/ODMServices.jsx` — replaced delivery guarantees and subjective quality claims with agreed-in-writing wording.
+- `src/pages/DistributorProgram.jsx`, `src/pages/RetailerProgram.jsx` — softened unverified margin, exclusivity and delivery claims.
+- `src/pages/Home.jsx` — proof section now says "Published With Permission" instead of implying external verification.
+- `src/data/servicePages.js` — programme-at-a-glance facts for lab setup, school programme and college workshops; partner section renamed "Named With Permission".
+- `src/pages/WorkshopPage.jsx` — "Workshop at a Glance" block covering class groups, duration, format, group size, materials and outcome.
+- `src/pages/ServicePage.jsx` — "Programme at a Glance" block driven by approved page facts.
 
 ---
 
@@ -172,6 +180,19 @@ These cannot be completed truthfully from code alone:
 ---
 
 ## Verification performed
+
+Final checks on the production build:
+
+- 24 pages pre-rendered; 24 sitemap URLs; 24 unique page titles and canonical URLs.
+- Every static page has exactly one H1; titles are 60 characters or fewer and meta descriptions are 155 characters or fewer.
+- Every built internal link resolves to an existing page or a known dynamic product/catalog route; every referenced asset file exists.
+- All JSON-LD blocks parse as JSON; `public/sitemap.xml` is well-formed XML and `robots.txt` points to it.
+- The 404, product-detail and catalog-video SSR output includes a title, meta description and H1. The 404 also has `noindex,follow`.
+- Contact query-parameter prefill was tested for `type`, `product` and `qty`.
+- WhatsApp, `tel:` and `mailto:` links all use the single configured number/email; only confirmed social profiles are rendered.
+- A claim scan of the built pages found none of the removed unverified phrases (school counts, years, certifications, delivery guarantees, "verified teachers", margin promises).
+
+Older checks:
 
 - `npm run build` (client build, SSR build, pre-render) — run after these
   changes; see the terminal output in the implementation session.

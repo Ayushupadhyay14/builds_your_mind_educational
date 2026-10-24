@@ -24,11 +24,11 @@ const ForSchools = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const offerings = [
-    { icon: FaBoxOpen, title: 'Educational Kits Supply', desc: 'STEM, Robotics, IoT and Science kits for your school labs at special institutional pricing.', link: '/products' },
-    { icon: FaChalkboardTeacher, title: 'School Workshops', desc: 'Interactive hands-on workshops conducted at your school by expert trainers.', link: '/stem-workshops-schools-indore' },
+    { icon: FaBoxOpen, title: 'Educational Kits Supply', desc: 'STEM, Robotics, IoT and Science kits for your school labs, with institutional pricing on request.', link: '/products' },
+    { icon: FaChalkboardTeacher, title: 'School Workshops', desc: 'Interactive hands-on workshops conducted at your school by our trainers.', link: '/stem-workshops-schools-indore' },
     { icon: FaCogs, title: 'Custom Kits (OEM/ODM)', desc: 'Get custom branded educational kits made specifically for your institution.', link: '/oem-services' },
     { icon: FaHandshake, title: 'Distributor Program', desc: 'Become an area distributor for Builds Your Mind products.', link: '/distributor-program' },
-    { icon: FaStore, title: 'Retailer Program', desc: 'Stock our products in your retail outlet with attractive margins.', link: '/retailer-program' },
+    { icon: FaStore, title: 'Retailer Program', desc: 'Stock our products in your retail outlet, with retail margins discussed with you.', link: '/retailer-program' },
   ];
 
   const onSubmit = async (data) => {

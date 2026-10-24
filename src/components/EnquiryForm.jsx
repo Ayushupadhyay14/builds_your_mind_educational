@@ -240,7 +240,7 @@ const EnquiryForm = ({ defaultProgramme = '', source = '' }) => {
         <p className="text-slate-600 mb-8 max-w-lg mx-auto text-base leading-relaxed">
           We have received details for{' '}
           <strong className="text-brand-blue">{submittedData?.institution || 'your institution'}</strong>.
-          A dedicated STEM programme advisor will review your requirements and reach out within 24 hours.
+          A STEM programme advisor will review your requirements and get back to you.
         </p>
 
         {/* Timeline roadmap */}

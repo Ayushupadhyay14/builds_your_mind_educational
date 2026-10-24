@@ -189,6 +189,35 @@ const WorkshopPage = ({ pageId }) => {
         </div>
       </section>
 
+      {/* Programme facts. Every value here comes from the approved page copy. */}
+      <section className="py-12 bg-white border-b border-slate-100">
+        <div className="container-custom">
+          <h2 className="section-title text-center mb-8">
+            Workshop at a Glance
+          </h2>
+          <dl className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
+            {[
+              ["Class groups", "Primary, middle and senior school"],
+              ["Duration", "Agreed with your institution"],
+              ["Format", "On-site at your school"],
+              ["Group size", "Small groups"],
+              ["Materials", "Brought by our team"],
+              ["Outcome", "A working project and class demonstration"],
+            ].map(([label, value]) => (
+              <div
+                key={label}
+                className="rounded-2xl border border-slate-100 bg-brand-cream p-5"
+              >
+                <dt className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
+                  {label}
+                </dt>
+                <dd className="text-brand-blue font-semibold">{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       {/* Illustrative stock photo (see STOCK_IMAGES.md) */}
       <section className="py-20 bg-white">
         <div className="container-custom">

@@ -39,23 +39,23 @@ const HomeTuition = () => {
   const features = [
     {
       icon: FaShieldAlt,
-      title: "Verified Teachers",
-      desc: "All teachers are thoroughly background-checked and verified",
+      title: "Teacher Matching",
+      desc: "Share your subject, level and location; we match a teacher for you",
     },
     {
       icon: FaBookOpen,
       title: "Subject-wise Matching",
-      desc: "Get perfectly matched teachers for every subject",
+      desc: "Teachers matched to the subject and class level",
     },
     {
       icon: FaMapMarkerAlt,
-      title: "Location Based",
-      desc: "Teachers from your area for convenient scheduling",
+      title: "Location Considered",
+      desc: "Your area is taken into account when matching a teacher",
     },
     {
       icon: FaUserGraduate,
-      title: "All Classes & Boards",
-      desc: "From Nursery to Class 12, all boards covered",
+      title: "Nursery to Class 12",
+      desc: "Board and syllabus requirements are discussed at enquiry",
     },
     {
       icon: FaClock,
@@ -64,8 +64,8 @@ const HomeTuition = () => {
     },
     {
       icon: FaClipboardCheck,
-      title: "Progress Tracking",
-      desc: "Regular performance updates and reports",
+      title: "Progress Check-ins",
+      desc: "Agree progress check-ins with the teacher",
     },
   ];
 
@@ -111,7 +111,7 @@ const HomeTuition = () => {
     setLoading(true);
     try {
       await registerTeacher(data);
-      toast.success("Registration submitted! We will verify and contact you.");
+      toast.success("Registration submitted! We will review and contact you.");
       teacherForm.reset();
     } catch {
       toast.error("Failed to submit. Please try again.");
@@ -129,7 +129,7 @@ const HomeTuition = () => {
     {
       num: "2",
       title: "We Match",
-      desc: "Our team finds the best teacher based on subject, location & preference",
+      desc: "Our team matches a teacher based on subject, location & preference",
     },
     {
       num: "3",
@@ -146,7 +146,7 @@ const HomeTuition = () => {
         </title>
         <meta
           name="description"
-          content="Apply online for home tuition services. Get verified, trained teachers matched by subject and location. From Nursery to Class 12."
+          content="Apply online for home tuition in Indore. Teachers matched by subject, level and location. Nursery to Class 12."
         />
       </Helmet>
 
@@ -178,8 +178,8 @@ const HomeTuition = () => {
               variants={fadeInUp}
               className="text-lg md:text-xl text-blue-100/90 mb-8"
             >
-              Verified, trained teachers matched to your child's needs. Simple
-              online application, trusted service.
+              Teachers matched to your child's subject, level and location.
+              Simple online application and a clear process.
             </motion.p>
             <motion.div
               variants={fadeInUp}
@@ -230,7 +230,7 @@ const HomeTuition = () => {
               Why Choose Our Tuition Service?
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle mx-auto">
-              Parent-friendly process with trusted, quality teaching
+              Parent-friendly process with a clear, transparent approach
             </motion.p>
           </motion.div>
           <motion.div

@@ -5,13 +5,10 @@ import { Helmet } from 'react-helmet-async';
 import { FiArrowLeft, FiInfo, FiExternalLink, FiAlertCircle, FiPlay } from 'react-icons/fi';
 import { FaGraduationCap } from 'react-icons/fa';
 
-import Loading from '../components/Loading';
-
 const CatalogVideo = () => {
   const { id } = useParams();
 
   const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [videoUrl, setVideoUrl] = useState('');
   const [error, setError] = useState(false);
   // The video file is large, so it is only requested after the visitor presses play.
@@ -22,7 +19,6 @@ const CatalogVideo = () => {
     if (id) {
       const url = `/videos/${id}.mp4`;
       setVideoUrl(url);
-      setLoading(false);
     }
   }, [id]);
 
@@ -30,10 +26,6 @@ const CatalogVideo = () => {
     // If the local video fails to load, trigger the error state
     setError(true);
   };
-
-  if (loading) {
-    return <Loading />;
-  }
 
   return (
     <>
@@ -151,7 +143,7 @@ const CatalogVideo = () => {
 
         {/* Cinematic Footer */}
         <footer className="w-full py-6 px-4 text-center text-sm text-blue-200 border-t border-white/10 bg-brand-blue-dark">
-          <p>© {new Date().getFullYear()} Builds Your Mind - Premium Educational Video Portal</p>
+          <p>© {new Date().getFullYear()} Builds Your Mind - Educational Video Portal</p>
         </footer>
       </div>
     </>

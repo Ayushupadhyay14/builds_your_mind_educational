@@ -45,6 +45,14 @@ export const servicePages = {
       'Builds Your Mind supports STEM lab setup for schools in Indore, from planning the space to running hands-on sessions in it. A lab should be used every week, not opened once.',
       'If you are planning a robotics lab for schools on your campus, tell us the space and the class groups you want it for. We will tell you what a workable plan looks like.',
     ],
+    quickFacts: [
+      { label: 'Class groups', value: 'Primary, middle and senior school' },
+      { label: 'Planning', value: 'Agreed with your school' },
+      { label: 'Format', value: 'On-site lab planning and programme support' },
+      { label: 'Materials', value: 'Kits and equipment planned with you' },
+      { label: 'Outcome', value: 'A lab used regularly, with a term-wise plan' },
+      { label: 'Deliverable', value: 'A written plan agreed before ordering' },
+    ],
     button: 'Discuss a STEM Lab',
     altAction: { label: 'Talk to our team', to: CONTACT },
     sections: [
@@ -132,6 +140,14 @@ export const servicePages = {
     intro: [
       'Builds Your Mind runs a school STEM programme in Indore for schools that want STEM education for schools in Indore to be hands-on all year, not just a one-off session.',
       'A structured STEM programme for schools keeps the same class groups building, testing and presenting across the academic year, with each term building on the last.',
+    ],
+    quickFacts: [
+      { label: 'Class groups', value: 'Primary, middle and senior school' },
+      { label: 'Duration', value: 'Academic year, term by term' },
+      { label: 'Format', value: 'On-site sessions at your school' },
+      { label: 'Planning', value: 'Proposal agreed with your school' },
+      { label: 'Outcome', value: 'Student projects and a year-end showcase' },
+      { label: 'Deliverable', value: 'Term-wise activity plan and year-end review' },
     ],
     button: 'Request a Programme Proposal',
     altAction: { label: 'See how a workshop works', to: '/stem-workshops-schools-indore' },
@@ -230,6 +246,14 @@ export const servicePages = {
     intro: [
       'Builds Your Mind runs technology workshops for colleges and universities in Indore. Sessions cover robotics, AI, IoT and coding, and are planned with the department.',
       'These sessions are practical from the start — students build, test and take apart working examples rather than watching slides. If your department is planning college technology workshops in Indore, or STEM workshops for colleges across the term, tell us the subjects and the years you want them for.',
+    ],
+    quickFacts: [
+      { label: 'Audience', value: 'College and university students' },
+      { label: 'Duration', value: 'Agreed with the department' },
+      { label: 'Format', value: 'On-campus, hands-on sessions' },
+      { label: 'Batch size', value: 'Agreed with the department' },
+      { label: 'Topics', value: 'Robotics, AI, IoT and coding' },
+      { label: 'Outcome', value: 'Hands-on build and testing' },
     ],
     button: 'Plan a Workshop for Your Department',
     altAction: { label: 'See what schools ask us', to: '/stem-partnership-mou' },
@@ -361,7 +385,7 @@ export const servicePages = {
         ],
       },
       {
-        heading: 'Verified Partners',
+        heading: 'Named With Permission',
         body: 'We publish an institution or partner name on this page only when that institution has given written permission for it to be named. This section is therefore left unpublished for now. For references, ask our programme team about a robotics MOU for schools or any other arrangement you are considering.',
         photoSlots: 1,
       },
