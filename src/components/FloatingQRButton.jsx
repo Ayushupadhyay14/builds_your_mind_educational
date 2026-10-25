@@ -109,7 +109,7 @@ const FloatingQRButton = ({
           </span>
 
           {/* Descriptive label for desktop / tablet */}
-          <span className="qr-btn-label">Watch Video</span>
+          <span className="qr-btn-label">Students, Watch This First</span>
         </button>
       </div>
 
@@ -179,6 +179,7 @@ const FloatingQRButton = ({
                   <span>Scan on Phone</span>
                 </button>
 
+                {/* Hidden for now (client does not want it yet). Uncomment to restore.
                 <button
                   type="button"
                   role="tab"
@@ -188,7 +189,7 @@ const FloatingQRButton = ({
                 >
                   <FiVideo size={14} />
                   <span>Watch on Desktop</span>
-                </button>
+                </button> */}
               </div>
             </div>
 
