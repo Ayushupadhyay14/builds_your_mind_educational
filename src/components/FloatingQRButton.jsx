@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { FaQrcode, FaYoutube, FaPlay } from 'react-icons/fa';
-import { FiX, FiExternalLink, FiCopy, FiCheck, FiSmartphone, FiVideo } from 'react-icons/fi';
+import { FiX, FiExternalLink, FiSmartphone, FiVideo } from 'react-icons/fi';
 import { getScannableVideoUrl, LOCAL_VIDEO_PATH, FEATURED_YOUTUBE_URL, QR_MODAL_DEFAULTS } from '../config/video';
 import './FloatingQRButton.css';
 
@@ -22,7 +22,6 @@ const FloatingQRButton = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('qr'); // 'qr' | 'player'
-  const [copied, setCopied] = useState(false);
   const [scannableUrl, setScannableUrl] = useState(() => customVideoUrl || getScannableVideoUrl());
 
   const modalCardRef = useRef(null);
@@ -76,19 +75,6 @@ const FloatingQRButton = ({
       }
     }
   }, [isOpen]);
-
-  // Copy link helper
-  const handleCopyLink = async () => {
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(scannableUrl);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2200);
-      }
-    } catch {
-      setCopied(false);
-    }
-  };
 
   // Close when clicking the semi-transparent backdrop
   const handleBackdropClick = (e) => {
@@ -226,40 +212,6 @@ const FloatingQRButton = ({
                       fgColor="#0F172A"
                       title="Scan with phone camera to run video on mobile"
                     />
-                  </div>
-
-                  <div className="qr-modal-actions">
-                    <a
-                      href={scannableUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`qr-btn-primary-action ${isYouTube ? 'qr-btn-youtube' : 'qr-btn-standard'}`}
-                      id="qr-modal-open-video-link"
-                    >
-                      {isYouTube ? <FaYoutube size={19} /> : <FaPlay size={14} />}
-                      <span>{isYouTube ? 'Watch on YouTube' : 'Open Video Link'}</span>
-                      <FiExternalLink size={15} className="ml-0.5 opacity-80" />
-                    </a>
-
-                    <button
-                      type="button"
-                      onClick={handleCopyLink}
-                      className="qr-btn-copy"
-                      aria-label="Copy video URL to clipboard"
-                      id="qr-modal-copy-link-btn"
-                    >
-                      {copied ? (
-                        <>
-                          <FiCheck size={16} className="text-emerald-600" />
-                          <span className="text-emerald-600">Link Copied!</span>
-                        </>
-                      ) : (
-                        <>
-                          <FiCopy size={15} />
-                          <span>Copy Mobile Video Link</span>
-                        </>
-                      )}
-                    </button>
                   </div>
 
                   <p className="qr-modal-hint">
