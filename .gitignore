@@ -42,3 +42,4 @@ yarn-error.log*
 next-env.d.ts
 # server bundle used only by the pre-render step
 /dist-server
+credentials.json
