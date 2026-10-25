@@ -94,7 +94,17 @@ const Contact = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      await submitEnquiry(data);
+      // The backend has no "meeting" enquiry type; send it as "school" and keep
+      // the original intent visible to the team in the message.
+      const payload =
+        data.enquiry_type === "meeting"
+          ? {
+              ...data,
+              enquiry_type: "school",
+              message: `[School Meeting Request]\n${data.message || ""}`,
+            }
+          : data;
+      await submitEnquiry(payload);
       toast.success(
         "Thank you for your enquiry! We will get back to you soon.",
       );
