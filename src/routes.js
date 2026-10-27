@@ -20,6 +20,7 @@ export const routes = [
   { path: '/stem-partnership-mou', page: 'ServicePage', props: { pageId: 'P11' }, prerender: true },
   { path: '/stem-education-madhya-pradesh', page: 'ServicePage', props: { pageId: 'P12' }, prerender: true },
   { path: '/case-studies', page: 'CaseStudies', prerender: true },
+  { path: '/case-studies/:slug', page: 'CaseStudyDetail' },
   { path: '/blog', page: 'Blog', prerender: true },
   { path: '/home-tuition', page: 'HomeTuition', prerender: true },
   { path: '/for-schools', page: 'ForSchools', prerender: true },

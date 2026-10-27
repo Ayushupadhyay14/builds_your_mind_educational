@@ -11,6 +11,7 @@ export const pages = {
   WorkshopPage: lazy(() => import('./pages/WorkshopPage')),
   ServicePage: lazy(() => import('./pages/ServicePage')),
   CaseStudies: lazy(() => import('./pages/CaseStudies')),
+  CaseStudyDetail: lazy(() => import('./pages/CaseStudyDetail')),
   Blog: lazy(() => import('./pages/Blog')),
   HomeTuition: lazy(() => import('./pages/HomeTuition')),
   ForSchools: lazy(() => import('./pages/ForSchools')),
