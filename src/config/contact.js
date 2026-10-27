@@ -6,8 +6,8 @@
 //
 // If the number ever changes, edit it once — in this file.
 
-export const PHONE_DISPLAY = "+91 91097 11321"; // what visitors see
-export const PHONE_E164 = "+919109711321"; // E.164, for schema and tel:
+export const PHONE_DISPLAY = "+91 8349260769"; // what visitors see
+export const PHONE_E164 = "+918349260769"; // E.164, for schema and tel:
 
 export const PHONE_HREF = `tel:${PHONE_E164}`;
 
@@ -20,7 +20,7 @@ export const INSTAGRAM_URL = "https://www.instagram.com/buildsyourmind.in/";
 // One official email for the whole site. Import this instead of typing the
 // address into a component. (The value matches the address already used in
 // the live site, footer, forms and schema.)
-export const EMAIL = "buildsyourmind@gmail.com";
+export const EMAIL = "hello@buildsyourmind.in";
 export const EMAIL_HREF = `mailto:${EMAIL}`;
 
 // The office is deliberately shown at city level only: no street address or
