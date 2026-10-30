@@ -22,6 +22,7 @@ import {
   FiAward
 } from "react-icons/fi";
 import EnquiryForm from "../components/EnquiryForm";
+import { homeGalleryPhotos } from "../data/gallery";
 import HeroVisual from "../components/HeroVisual";
 import HeroEffects from "../components/HeroEffects";
 import Testimonials from "../components/Testimonials";
@@ -245,7 +246,7 @@ const Home = () => (
             {/* Trust Pill Bar */}
             <motion.div
               variants={fadeInUp}
-              className="pt-6 border-t border-white/10 grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs sm:text-sm text-blue-100/80 font-medium"
+              className="pt-6 border-t border-white/10 grid grid-cols-1 min-[380px]:grid-cols-2 sm:grid-cols-3 gap-4 text-xs sm:text-sm text-blue-100/80 font-medium"
             >
               <div className="flex items-center gap-2">
                 <FiCheckCircle className="text-emerald-400 flex-shrink-0" />
@@ -273,7 +274,7 @@ const Home = () => (
     {/* Verified facts strip — no unverified counts */}
     <section className="border-y border-slate-100 bg-white">
       <div className="container-custom py-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 min-[380px]:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {siteFacts.map((fact) => (
             <div key={fact.label} className="text-center sm:text-left">
               <div className="text-3xl md:text-4xl font-display font-bold text-brand-blue">
@@ -437,6 +438,38 @@ const Home = () => (
           </div>
           <Link to="/case-studies" className="btn-outline flex-shrink-0 font-bold">
             View Case Studies <FiArrowRight className="ml-2" />
+          </Link>
+        </div>
+      </div>
+    </section>
+
+    {/* Real session photos */}
+    <section className="py-16 lg:py-24 bg-white">
+      <div className="container-custom">
+        <SectionHead eyebrow="From Our Sessions" title="Moments From Our Workshops">
+          Real photos from STEM sessions in schools and colleges.
+        </SectionHead>
+        <ul className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+          {homeGalleryPhotos.map((p) => (
+            <li key={p.file} className="overflow-hidden rounded-xl sm:rounded-2xl shadow-md aspect-[4/3] bg-slate-100">
+              <img
+                src={p.src}
+                alt={p.alt}
+                width={p.width}
+                height={p.height}
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </li>
+          ))}
+        </ul>
+        <div className="mt-8 flex flex-col min-[420px]:flex-row items-center justify-center gap-3">
+          <Link to="/gallery" className="btn-outline font-bold">
+            View Full Gallery <FiArrowRight className="ml-2" />
+          </Link>
+          <Link to="/gallery#videos" className="btn-secondary font-bold">
+            Watch Session Videos
           </Link>
         </div>
       </div>

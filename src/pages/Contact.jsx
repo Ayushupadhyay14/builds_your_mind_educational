@@ -50,7 +50,6 @@ const Contact = () => {
     odm: "odm",
     distributor: "distributor",
     retailer: "retailer",
-    tuition: "tuition",
   };
   const defaultType =
     typeMap[typeParam] || (productParam ? "product" : "general");
@@ -88,7 +87,6 @@ const Contact = () => {
     { value: "retailer", label: "Retailer Enquiry" },
     { value: "school", label: "School Enquiry" },
     { value: "workshop", label: "Workshop Enquiry" },
-    { value: "tuition", label: "Home Tuition Enquiry" },
   ];
 
   const onSubmit = async (data) => {
@@ -209,8 +207,8 @@ const Contact = () => {
               </h2>
               <p className="text-gray-600 mb-8">
                 Reach us directly on any of these. For workshop, STEM lab,
-                partnership, OEM, ODM, bulk order, distributor, retailer or home
-                tuition enquiries, the same team handles every message.
+                partnership, OEM, ODM, bulk order, distributor or retailer
+                enquiries, the same team handles every message.
               </p>
 
               <div className="space-y-6">

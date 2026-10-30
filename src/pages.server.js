@@ -9,7 +9,7 @@ import ServicePage from './pages/ServicePage';
 import CaseStudies from './pages/CaseStudies';
 import CaseStudyDetail from './pages/CaseStudyDetail';
 import Blog from './pages/Blog';
-import HomeTuition from './pages/HomeTuition';
+import Gallery from './pages/Gallery';
 import ForSchools from './pages/ForSchools';
 import OEMServices from './pages/OEMServices';
 import ODMServices from './pages/ODMServices';
@@ -23,7 +23,7 @@ import NotFound from './pages/NotFound';
 // Plain (non-lazy) pages for the build-time server render.
 export const pages = {
   Home, About, Products, ProductDetail, CatalogVideo, WatchVideo, WorkshopPage,
-  ServicePage, CaseStudies, CaseStudyDetail, Blog, HomeTuition, ForSchools, OEMServices,
+  ServicePage, CaseStudies, CaseStudyDetail, Gallery, Blog, ForSchools, OEMServices,
   ODMServices, DistributorProgram, RetailerProgram, Privacy, Terms, Contact,
   NotFound,
 };

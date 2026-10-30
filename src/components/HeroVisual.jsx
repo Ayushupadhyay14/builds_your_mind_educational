@@ -78,8 +78,8 @@ const HeroVisual = () => {
         {/* photo frame (fixed ratio = no layout shift) */}
         <div className="relative aspect-[16/10] lg:aspect-[5/4] overflow-hidden rounded-[2rem] ring-1 ring-white/25 shadow-[0_30px_60px_-20px_rgba(4,12,40,0.8)]">
           <img
-            src="/images/stock/hero-children-building-robots.jpg"
-            alt="Three children building a small red robot together at a table"
+            src="/images/workshops/hero-students-building-kits.webp"
+            alt="Students building a Builds Your Mind project kit with an educator during a hands-on workshop"
             width="1000"
             height="800"
             decoding="async"

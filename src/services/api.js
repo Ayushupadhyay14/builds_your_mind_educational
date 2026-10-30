@@ -24,12 +24,6 @@ export const getFeaturedProducts = () => api.get('/products/', { params: { is_fe
 export const getWorkshops = (params = {}) => api.get('/workshops/list/', { params });
 export const bookWorkshop = (data) => api.post('/workshops/bookings/', data);
 
-// Tuition
-export const getSubjects = () => api.get('/tuition/subjects/');
-export const getTeachers = (params = {}) => api.get('/tuition/teachers/', { params });
-export const getTeacherById = (id) => api.get(`/tuition/teachers/${id}/`);
-export const applyTuition = (data) => api.post('/tuition/apply/', data);
-export const registerTeacher = (data) => api.post('/tuition/register-teacher/', data);
 
 // Enquiries
 export const submitEnquiry = (data) => api.post('/enquiries/enquiry/', data);

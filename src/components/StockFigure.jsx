@@ -1,6 +1,6 @@
 import { stockImageFor } from '../data/stockImages';
 
-// Illustrative stock photo with an honest caption. Fixed width/height keep the
+// Real session photo with a short caption. Fixed width/height keep the
 // layout stable (no shift) and the image is lazy-loaded below the fold.
 const StockFigure = ({ pageId }) => {
   const img = stockImageFor(pageId);
@@ -17,7 +17,7 @@ const StockFigure = ({ pageId }) => {
         className="w-full h-auto rounded-2xl shadow-xl"
       />
       <figcaption className="mt-3 text-sm text-gray-600 text-center">
-        Illustrative stock photograph, not one of our sessions.
+        Photo from a Builds Your Mind session.
       </figcaption>
     </figure>
   );
