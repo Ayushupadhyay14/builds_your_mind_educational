@@ -61,7 +61,7 @@ const pageRegistry = {
 /**
  * Labelled photo spot.
  * Real photographs must be dropped in here before launch.
- * Hero photos on service pages are labelled illustrative stock (STOCK_IMAGES.md).
+ * Hero photos on service pages are real session photos (public/images/workshops).
  */
 const PhotoSpot = ({ label, detail }) => (
   <div className="border-2 border-dashed border-brand-orange/60 bg-orange-50 rounded-2xl p-6 md:p-8 text-center">
@@ -214,7 +214,7 @@ const ServicePage = ({ pageId }) => {
             <h2 className="section-title text-center mb-8">
               Programme at a Glance
             </h2>
-            <dl className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
+            <dl className="grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
               {page.quickFacts.map((fact) => (
                 <div
                   key={fact.label}
@@ -233,7 +233,7 @@ const ServicePage = ({ pageId }) => {
         </section>
       )}
 
-      {/* Illustrative stock photo (see STOCK_IMAGES.md) */}
+      {/* Real session photo */}
       <section className="py-20 bg-white">
         <div className="container-custom">
           <StockFigure pageId={pageId} />

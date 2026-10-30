@@ -43,7 +43,7 @@ const staggerContainer = {
 /**
  * Labelled photo spot.
  * Real workshop photographs must be dropped in here before launch.
- * Hero photos on service pages are labelled illustrative stock (STOCK_IMAGES.md).
+ * Hero photos on service pages are real session photos (public/images/workshops).
  */
 const PhotoSpot = ({ label, detail }) => (
   <div className="border-2 border-dashed border-brand-orange/60 bg-orange-50 rounded-2xl p-6 md:p-8 text-center">
@@ -195,7 +195,7 @@ const WorkshopPage = ({ pageId }) => {
           <h2 className="section-title text-center mb-8">
             Workshop at a Glance
           </h2>
-          <dl className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
+          <dl className="grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
             {[
               ["Class groups", "Primary, middle and senior school"],
               ["Duration", "Agreed with your institution"],
@@ -218,7 +218,7 @@ const WorkshopPage = ({ pageId }) => {
         </div>
       </section>
 
-      {/* Illustrative stock photo (see STOCK_IMAGES.md) */}
+      {/* Real session photo */}
       <section className="py-20 bg-white">
         <div className="container-custom">
           <StockFigure pageId={pageId} />

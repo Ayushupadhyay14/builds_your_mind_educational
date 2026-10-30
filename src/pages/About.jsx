@@ -100,7 +100,15 @@ const About = () => {
               className="relative"
             >
               <div className="absolute -inset-4 bg-blue-100/20 rounded-3xl rotate-3"></div>
-              <BrandPanel icon={FaGraduationCap} />
+              <img
+                src="/images/gallery/students-showing-completed-kits.webp"
+                alt="Students and faculty showing completed Builds Your Mind project kits"
+                width="1400"
+                height="1050"
+                loading="lazy"
+                decoding="async"
+                className="relative w-full h-auto aspect-[4/3] object-cover rounded-2xl shadow-xl"
+              />
             </motion.div>
 
             <motion.div
@@ -221,7 +229,7 @@ const About = () => {
       {/* Stats Section */}
       <section className="overflow-hidden py-20 bg-brand-blue">
         <div className="container-custom">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 min-[380px]:grid-cols-2 lg:grid-cols-4 gap-8">
             {siteFacts.map((fact, index) => (
               <motion.div
                 key={fact.label}
@@ -367,7 +375,7 @@ const About = () => {
               { title: 'Schools', desc: 'Workshops, STEM lab planning and programmes for class groups, from primary to senior school.' },
               { title: 'Colleges & Universities', desc: 'Technology sessions for departments and student groups.' },
               { title: 'Institutions & Training Centres', desc: 'Programme planning and activity support.' },
-              { title: 'Parents & Students', desc: 'Eco-friendly learning kits and home tuition services.' },
+              { title: 'Parents & Students', desc: 'Eco-friendly learning kits for hands-on learning at home.' },
               { title: 'Distributors & Retailers', desc: 'Area-wise supply of educational kits.' },
               { title: 'Brands & Businesses', desc: 'OEM and ODM services to launch kits under your own brand.' },
             ].map((item, index) => (

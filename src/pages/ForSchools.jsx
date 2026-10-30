@@ -262,7 +262,7 @@ const ForSchools = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Interested In</label>
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-3">
                       {[
                         { name: 'interest_kits', label: 'Educational Kits' },
                         { name: 'interest_workshops', label: 'Workshops' },

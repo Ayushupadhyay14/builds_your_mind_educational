@@ -319,7 +319,7 @@ const EnquiryForm = ({ defaultProgramme = '', source = '' }) => {
         </div>
 
         {/* Step buttons */}
-        <div className="grid grid-cols-2 gap-3 mt-4">
+        <div className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-3 mt-4">
           <button
             type="button"
             onClick={() => setStep(1)}
@@ -577,7 +577,7 @@ const EnquiryForm = ({ defaultProgramme = '', source = '' }) => {
             {/* Duration Type Pill Selector */}
             <div>
               <Label id="eq-duration" required>Engagement Format</Label>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-1 min-[380px]:grid-cols-3 gap-2">
                 {[
                   { value: 'One-time', label: 'One-Time Workshop' },
                   { value: 'Long-term', label: 'Annual Programme' },

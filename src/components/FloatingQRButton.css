@@ -519,12 +519,12 @@
   .qr-floating-wrapper {
     bottom: 1rem;
     right: 1rem;
-    bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
-    right: max(1rem, env(safe-area-inset-right, 1rem));
+    bottom: max(0.75rem, env(safe-area-inset-bottom, 0.75rem));
+    right: max(0.75rem, env(safe-area-inset-right, 0.75rem));
   }
 
   .qr-floating-btn {
-    padding: 0.75rem;
+    padding: 0.6rem;
     border-radius: 50%;
   }
 

@@ -83,8 +83,8 @@ const navLinks = [
       { name: "Retailer Program", path: "/retailer-program", icon: "store" },
       { name: "OEM Services", path: "/oem-services", icon: "tool" },
       { name: "ODM Services", path: "/odm-services", icon: "pen" },
-      { name: "Home Tuition", path: "/home-tuition", icon: "user" },
       { name: "Case Studies", path: "/case-studies", icon: "image" },
+      { name: "Photo Gallery", path: "/gallery", icon: "image" },
       { name: "Blog", path: "/blog", icon: "doc" },
     ],
   },
@@ -130,12 +130,12 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-[0_4px_24px_-4px_rgba(30,58,138,0.06)] transition-all duration-300"
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between gap-4 h-20">
+        <div className="flex items-center justify-between gap-2 sm:gap-4 h-20">
           {/* Logo: mark + name */}
           <Link
             to="/"
             aria-label="Builds Your Mind, go to home page"
-            className="flex items-center gap-3 flex-shrink-0 group"
+            className="flex items-center gap-2 sm:gap-3 min-w-0 group"
           >
             <div className="relative">
               <img
@@ -143,14 +143,14 @@ const Navbar = () => {
                 alt=""
                 width="39"
                 height="48"
-                className="h-12 w-auto transition-transform group-hover:scale-105 duration-300"
+                className="h-10 sm:h-12 w-auto flex-shrink-0 transition-transform group-hover:scale-105 duration-300"
               />
             </div>
-            <span className="flex flex-col justify-center leading-tight">
-              <span className="font-display font-bold text-xl text-brand-blue whitespace-nowrap tracking-tight group-hover:text-primary-600 transition-colors">
+            <span className="flex flex-col justify-center leading-tight min-w-0">
+              <span className="font-display font-bold text-base min-[360px]:text-xl text-brand-blue truncate tracking-tight group-hover:text-primary-600 transition-colors">
                 Builds Your Mind
               </span>
-              <span className="text-xs text-slate-500 whitespace-nowrap font-medium">
+              <span className="text-[10px] min-[360px]:text-xs text-slate-500 truncate font-medium">
                 by Harmono Pvt. Ltd.
               </span>
             </span>
@@ -260,7 +260,7 @@ const Navbar = () => {
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
-            className="lg:hidden flex items-center justify-center h-11 w-11 rounded-2xl bg-slate-100 text-brand-blue hover:bg-blue-50 transition-colors"
+            className="lg:hidden flex-shrink-0 flex items-center justify-center h-11 w-11 rounded-2xl bg-slate-100 text-brand-blue hover:bg-blue-50 transition-colors"
           >
             <Icon name={isOpen ? "close" : "menu"} size={22} />
           </button>

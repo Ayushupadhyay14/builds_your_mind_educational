@@ -1,48 +1,47 @@
-// Illustrative stock photographs (Pexels licence: free to use, no attribution
-// required). Credits are kept in STOCK_IMAGES.md at the repo root.
-// NOT used in case studies or testimonials. Swap for real photos when available.
-const base = '/images/stock/';
+// Real photographs from Builds Your Mind sessions (public/images/workshops).
+// Keyed by page id; alt text describes what each photo shows.
+const base = '/images/workshops/';
 
 export const stockImages = {
   P03: {
-    file: 'stem-teacher-student-experiment.jpg',
-    alt: 'A teacher and a young student doing a science experiment together at a whiteboard',
+    file: 'stem-workshop-classroom-kits.webp',
+    alt: 'Students seated in a classroom with Builds Your Mind project kits stacked on the desks during a STEM workshop',
   },
   P04: {
-    file: 'robotics-students-building.jpg',
-    alt: 'Three students building and testing a small red robot together at a table',
+    file: 'robotics-educator-kits-table.webp',
+    alt: 'A Builds Your Mind educator with project kits and parts laid out on a table in front of a college class',
   },
   P05: {
-    file: 'ai-students-laptops-teacher.jpg',
-    alt: 'Two students working on a laptop while a teacher looks on in a classroom',
+    file: 'ai-workshop-computer-lab.webp',
+    alt: 'Students and faculty at computers in a college lab during a Builds Your Mind AI session',
   },
   P06: {
-    file: 'iot-student-soldering-circuit.jpg',
-    alt: 'A student soldering an electronic circuit board at a workbench',
+    file: 'iot-electrical-control-board.webp',
+    alt: 'An electrical control training board with contactors, switches and indicator lamps used for hands-on IoT and automation learning',
   },
   P07: {
-    file: 'coding-students-computers.jpg',
-    alt: 'Students working at computers in a classroom',
+    file: 'coding-workshop-computer-lab.webp',
+    alt: 'Students working at computers in a college lab during a Builds Your Mind coding session',
   },
   P08: {
-    file: 'lab-children-assembling-parts.jpg',
-    alt: 'Children assembling parts of a project together at a table in a learning lab',
+    file: 'stem-lab-students-3d-design.webp',
+    alt: 'School students designing a 3D model on a lab computer during a STEM session',
   },
   P09: {
-    file: 'programme-teacher-robotics-class.jpg',
-    alt: 'A teacher guiding students who are building red robots in a classroom',
+    file: 'school-programme-classroom.webp',
+    alt: 'A Builds Your Mind educator explaining a circuit diagram on the blackboard to school students',
   },
   P10: {
-    file: 'college-computer-lab.jpg',
-    alt: 'A student working at a computer in a college computer lab',
+    file: 'college-workshop-session.webp',
+    alt: 'College students seated in a lecture room during a Builds Your Mind workshop',
   },
   P11: {
-    file: 'partnership-handshake-chalkboard.jpg',
-    alt: 'A teacher and a student shaking hands in front of a chalkboard',
+    file: 'partnership-institute-leaders.webp',
+    alt: 'Builds Your Mind with institute leaders and faculty at an educational partner visit',
   },
   P12: {
-    file: 'region-school-computer-room.jpg',
-    alt: 'A classroom full of school students working at computers',
+    file: 'school-assembly-stem-session.webp',
+    alt: 'A hall full of school students in uniform attending a Builds Your Mind STEM session in Madhya Pradesh',
   },
 };
 
